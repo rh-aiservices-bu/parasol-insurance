@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: ic-workbench
-        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/ic-workbench:2.0.1
+        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/ic-workbench:2.1.0
         command: ["tail"]
         args: ["-f", "/dev/null"]
         resources:

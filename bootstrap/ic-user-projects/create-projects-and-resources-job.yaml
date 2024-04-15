@@ -33,7 +33,7 @@ spec:
 
           # Define some variables
           WORKBENCH_NAME="my-workbench"
-          WORKBENCH_IMAGE="ic-workbench:2.0.1"
+          WORKBENCH_IMAGE="ic-workbench:2.1.0"
           PIPELINE_ENGINE="Tekton"
 
           for i in $(seq 1 $user_count);

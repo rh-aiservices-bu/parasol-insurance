@@ -11,9 +11,9 @@ resources:
 - fix-odf-config.yaml
 # wave 1
 - pvc.yaml
-- pvc-ollama.yaml
+- pvc-hftgi.yaml
 - deployment.yaml
 - service.yaml
-- deployment-ollama.yaml
-- service-ollama.yaml
+- deployment-hftgi.yaml
+- service-hftgi.yaml
 # wave 2
