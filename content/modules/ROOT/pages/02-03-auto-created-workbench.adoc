@@ -1,7 +1,7 @@
 = Pre-Created workbench
 include::_attributes.adoc[]
 
-One of the components that was auto-created for you is the workbench.
+One of the components that was pre-created for you is the workbench.
 
 * If you click on the arrow next to the workbench, you can see some of the libraries included in it as well as how much resources it has been given.
 +

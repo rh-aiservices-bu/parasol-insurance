@@ -1,7 +1,7 @@
 = Creating a workbench
 include::_attributes.adoc[]
 
-IMPORTANT: If you've used the auto-created workbench, you do not need to perform this section. Only do so if you are interested in how a workbench is created.
+IMPORTANT: If you've used the pre-created workbench, you do not need to perform this section. Only do so if you are interested in how a workbench is created.
 
 == Launch a Workbench
 
