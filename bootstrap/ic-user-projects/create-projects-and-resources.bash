@@ -18,7 +18,7 @@ do
 
 # Construct dynamic variables
 USER_NAME="user$i"
-USER_PROJECT="user$i-auto"
+USER_PROJECT="user$i"
 
 echo "Generating and apply resources for $USER_NAME..."
 
@@ -205,7 +205,7 @@ spec:
     deploy: true
 EOF
 
-# Create the Elyra secret 
+# Create the Elyra secret
 cat << EOF | oc apply -f-
 apiVersion: batch/v1
 kind: Job
