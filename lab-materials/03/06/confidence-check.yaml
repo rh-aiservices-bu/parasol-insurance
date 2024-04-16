@@ -46,7 +46,7 @@ spec:
             sh -c "mkdir -p ./jupyter-work-dir && cd ./jupyter-work-dir"
             sh -c "echo 'Downloading file:///opt/app-root/bin/utils/bootstrapper.py' && curl --fail -H 'Cache-Control: no-cache' -L file:///opt/app-root/bin/utils/bootstrapper.py --output bootstrapper.py"
             sh -c "echo 'Downloading file:///opt/app-root/bin/utils/requirements-elyra.txt' && curl --fail -H 'Cache-Control: no-cache' -L file:///opt/app-root/bin/utils/requirements-elyra.txt --output requirements-elyra.txt"
-            sh -c "python3 -m pip install  packaging && python3 -m pip freeze > requirements-current.txt && python3 bootstrapper.py --pipeline-name 'confidence-check' --cos-endpoint 'http://minio.ic-shared-minio.svc:9000' --cos-bucket 'pipeline-bucket' --cos-directory 'confidence-check-0109084010' --cos-dependencies-archive 'test_response_quality-d0510f0c-fc50-42fc-a598-97e26b34ed88.tar.gz' --file 'insurance-claim-processing/lab-materials/03/06/test_response_quality.py' --outputs 'quality_result.json' "
+            sh -c "python3 -m pip install  packaging && python3 -m pip freeze > requirements-current.txt && python3 bootstrapper.py --pipeline-name 'confidence-check' --cos-endpoint 'http://minio.ic-shared-minio.svc:9000' --cos-bucket 'pipeline-bucket' --cos-directory 'confidence-check-0109084010' --cos-dependencies-archive 'test_response_quality-d0510f0c-fc50-42fc-a598-97e26b34ed88.tar.gz' --file 'parasol-insurance/lab-materials/03/06/test_response_quality.py' --outputs 'quality_result.json' "
           command:
           - sh
           - -c
@@ -88,7 +88,7 @@ spec:
             elyra/node-name: test_response_quality
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
-            elyra/node-file-name: insurance-claim-processing/lab-materials/03/06/test_response_quality.py
+            elyra/node-file-name: parasol-insurance/lab-materials/03/06/test_response_quality.py
             elyra/pipeline-source: confidence-check.pipeline
             pipelines.kubeflow.org/task_display_name: test_response_quality
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Run a file",
@@ -102,7 +102,7 @@ spec:
             sh -c "mkdir -p ./jupyter-work-dir && cd ./jupyter-work-dir"
             sh -c "echo 'Downloading file:///opt/app-root/bin/utils/bootstrapper.py' && curl --fail -H 'Cache-Control: no-cache' -L file:///opt/app-root/bin/utils/bootstrapper.py --output bootstrapper.py"
             sh -c "echo 'Downloading file:///opt/app-root/bin/utils/requirements-elyra.txt' && curl --fail -H 'Cache-Control: no-cache' -L file:///opt/app-root/bin/utils/requirements-elyra.txt --output requirements-elyra.txt"
-            sh -c "python3 -m pip install  packaging && python3 -m pip freeze > requirements-current.txt && python3 bootstrapper.py --pipeline-name 'confidence-check' --cos-endpoint 'http://minio.ic-shared-minio.svc:9000' --cos-bucket 'pipeline-bucket' --cos-directory 'confidence-check-0109084010' --cos-dependencies-archive 'test_responsetime-c50bb14f-a036-4af1-b5dc-21e48eb80f7f.tar.gz' --file 'insurance-claim-processing/lab-materials/03/06/test_responsetime.py' --outputs 'responsetime_result.json' "
+            sh -c "python3 -m pip install  packaging && python3 -m pip freeze > requirements-current.txt && python3 bootstrapper.py --pipeline-name 'confidence-check' --cos-endpoint 'http://minio.ic-shared-minio.svc:9000' --cos-bucket 'pipeline-bucket' --cos-directory 'confidence-check-0109084010' --cos-dependencies-archive 'test_responsetime-c50bb14f-a036-4af1-b5dc-21e48eb80f7f.tar.gz' --file 'parasol-insurance/lab-materials/03/06/test_responsetime.py' --outputs 'responsetime_result.json' "
           command:
           - sh
           - -c
@@ -144,7 +144,7 @@ spec:
             elyra/node-name: test_responsetime
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
-            elyra/node-file-name: insurance-claim-processing/lab-materials/03/06/test_responsetime.py
+            elyra/node-file-name: parasol-insurance/lab-materials/03/06/test_responsetime.py
             elyra/pipeline-source: confidence-check.pipeline
             pipelines.kubeflow.org/task_display_name: test_responsetime
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Run a file",
@@ -158,7 +158,7 @@ spec:
             sh -c "mkdir -p ./jupyter-work-dir && cd ./jupyter-work-dir"
             sh -c "echo 'Downloading file:///opt/app-root/bin/utils/bootstrapper.py' && curl --fail -H 'Cache-Control: no-cache' -L file:///opt/app-root/bin/utils/bootstrapper.py --output bootstrapper.py"
             sh -c "echo 'Downloading file:///opt/app-root/bin/utils/requirements-elyra.txt' && curl --fail -H 'Cache-Control: no-cache' -L file:///opt/app-root/bin/utils/requirements-elyra.txt --output requirements-elyra.txt"
-            sh -c "python3 -m pip install  packaging && python3 -m pip freeze > requirements-current.txt && python3 bootstrapper.py --pipeline-name 'confidence-check' --cos-endpoint 'http://minio.ic-shared-minio.svc:9000' --cos-bucket 'pipeline-bucket' --cos-directory 'confidence-check-0109084010' --cos-dependencies-archive 'test_security-6b595dc7-afb8-46bb-bf52-7cd695ddafb8.tar.gz' --file 'insurance-claim-processing/lab-materials/03/06/test_security.py' --outputs 'security_result.json' "
+            sh -c "python3 -m pip install  packaging && python3 -m pip freeze > requirements-current.txt && python3 bootstrapper.py --pipeline-name 'confidence-check' --cos-endpoint 'http://minio.ic-shared-minio.svc:9000' --cos-bucket 'pipeline-bucket' --cos-directory 'confidence-check-0109084010' --cos-dependencies-archive 'test_security-6b595dc7-afb8-46bb-bf52-7cd695ddafb8.tar.gz' --file 'parasol-insurance/lab-materials/03/06/test_security.py' --outputs 'security_result.json' "
           command:
           - sh
           - -c
@@ -200,7 +200,7 @@ spec:
             elyra/node-name: test_security
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
-            elyra/node-file-name: insurance-claim-processing/lab-materials/03/06/test_security.py
+            elyra/node-file-name: parasol-insurance/lab-materials/03/06/test_security.py
             elyra/pipeline-source: confidence-check.pipeline
             pipelines.kubeflow.org/task_display_name: test_security
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Run a file",
@@ -214,7 +214,7 @@ spec:
             sh -c "mkdir -p ./jupyter-work-dir && cd ./jupyter-work-dir"
             sh -c "echo 'Downloading file:///opt/app-root/bin/utils/bootstrapper.py' && curl --fail -H 'Cache-Control: no-cache' -L file:///opt/app-root/bin/utils/bootstrapper.py --output bootstrapper.py"
             sh -c "echo 'Downloading file:///opt/app-root/bin/utils/requirements-elyra.txt' && curl --fail -H 'Cache-Control: no-cache' -L file:///opt/app-root/bin/utils/requirements-elyra.txt --output requirements-elyra.txt"
-            sh -c "python3 -m pip install  packaging && python3 -m pip freeze > requirements-current.txt && python3 bootstrapper.py --pipeline-name 'confidence-check' --cos-endpoint 'http://minio.ic-shared-minio.svc:9000' --cos-bucket 'pipeline-bucket' --cos-directory 'confidence-check-0109084010' --cos-dependencies-archive 'summarize_results-6b99ceae-d124-4758-904a-03e1a49fe56d.tar.gz' --file 'insurance-claim-processing/lab-materials/03/06/summarize_results.py' --inputs 'responsetime_result.json;security_result.json;quality_result.json' --outputs 'results.json' "
+            sh -c "python3 -m pip install  packaging && python3 -m pip freeze > requirements-current.txt && python3 bootstrapper.py --pipeline-name 'confidence-check' --cos-endpoint 'http://minio.ic-shared-minio.svc:9000' --cos-bucket 'pipeline-bucket' --cos-directory 'confidence-check-0109084010' --cos-dependencies-archive 'summarize_results-6b99ceae-d124-4758-904a-03e1a49fe56d.tar.gz' --file 'parasol-insurance/lab-materials/03/06/summarize_results.py' --inputs 'responsetime_result.json;security_result.json;quality_result.json' --outputs 'results.json' "
           command:
           - sh
           - -c
@@ -256,7 +256,7 @@ spec:
             elyra/node-name: summarize_results
             pipelines.kubeflow.org/cache_enabled: "true"
           annotations:
-            elyra/node-file-name: insurance-claim-processing/lab-materials/03/06/summarize_results.py
+            elyra/node-file-name: parasol-insurance/lab-materials/03/06/summarize_results.py
             elyra/pipeline-source: confidence-check.pipeline
             pipelines.kubeflow.org/task_display_name: summarize_results
             pipelines.kubeflow.org/component_spec_digest: '{"name": "Run a file",

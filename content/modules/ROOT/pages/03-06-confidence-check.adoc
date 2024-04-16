@@ -8,7 +8,7 @@ And to make sure it stays the same over time, we'll schedule that pipeline.
 
 == Deploy a confidence-check pipeline
 
-In the `insurance-claim-processing/lab-materials/03/06` folder there are two pipeline files, one `confidence_check.pipeline` and one `confidence_check.yaml` file.
+In the `parasol-insurance/lab-materials/03/06` folder there are two pipeline files, one `confidence_check.pipeline` and one `confidence_check.yaml` file.
 
 The `.pipeline` file can be opened in Elyra to be visually modified and executed, while the `.yaml` file can be imported into the pipeline server through the RHOAI Dashboard. +
 Here we will be running the pipeline through Elyra.
@@ -18,7 +18,7 @@ Here we will be running the pipeline through Elyra.
 Running it through Elyra is the same as doing an ad-hoc execution of the pipeline, as opposed to importing the pipeline which won't automatically execute it.
 
 . Start by going to your running workbench
-. Navigate to the folder `insurance-claim-processing/lab-materials/03/06`
+. Navigate to the folder `parasol-insurance/lab-materials/03/06`
 . Open up the `confidence_check.pipeline` file
 . Here we can see that the pipeline consists of 3 checks:
 .. response quality check

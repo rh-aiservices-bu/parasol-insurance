@@ -29,5 +29,5 @@ image::02/02-02-accept.png[]
 [.bordershadow]
 image::02/02-03-pre-created-jupyter.png[]
 
-* Note the extra folder called **insurance-claim-processing**. +
+* Note the extra folder called **parasol-insurance**. +
 * This folder has been cloned from github for you and will be the main working folder for this lab.

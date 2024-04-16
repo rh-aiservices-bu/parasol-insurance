@@ -5,6 +5,6 @@ So far, for this {ic-lab}, we have used the model https://huggingface.co/mistral
 
 In this exercise, we'll pitch our previous model against the itself but in a quantized version. The values of the 7 Billion parameters used in the model have been "rounded", therefore loosing precision, but saving space. As it consumes now less memory, we are able to load it directly in a container and run it on a CPU. We'll compare the results and see if the quantized model is good enough for our use case.
 
-From the `insurance-claim-processing/lab-materials/03` folder, please open the notebook called `03-04-comparing-model-servers.ipynb` and follow the instructions.
+From the `parasol-insurance/lab-materials/03` folder, please open the notebook called `03-04-comparing-model-servers.ipynb` and follow the instructions.
 
 When done, you can close the notebook and head to the next page.
