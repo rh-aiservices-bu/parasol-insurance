@@ -3,7 +3,7 @@ include::_attributes.adoc[]
 
 == Original App
 
-The first item menu on the left, Original App, gives a view of what the older application used at the insurance company looks like. You can navigate each claim (click on tabs 'Claim 1', 'Claim 2' and 'Claim 3') and see that the interface was very crude, with a simple copy of the originally received email with the pictures that were attached to it.
+The first item menu on the left, Original App, gives a view of what the older application used at {company-name} looks like. You can navigate each claim (click on tabs 'Claim 1', 'Claim 2' and 'Claim 3') and see that the interface was very crude, with a simple copy of the originally received email with the pictures that were attached to it.
 
 [.bordershadow]
 image::05/original-app-1.png[]
@@ -12,7 +12,7 @@ image::05/original-app-2.png[]
 
 == Prototype App
 
-The second item menu on the left, New App, gives a view of what the prototype of the new application looks like. 
+The second item menu on the left, New App, gives a view of what the prototype of the new application looks like.
 
 [.bordershadow]
 image::05/05-new-app-claims.jpg[]

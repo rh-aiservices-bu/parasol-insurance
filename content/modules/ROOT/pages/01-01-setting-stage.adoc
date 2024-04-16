@@ -6,8 +6,8 @@ In order to make this {ic-lab} seem more realistic, we will be describing this i
 == Situation
 :slide:
 
-* We all work for a large multi-national insurance company:
-** Our company is in the midst of digital transformation
+* We all work for a large multi-national insurance company called "{company-name}":
+** {company-name} is in the midst of digital transformation
 ** It is looking at modernizing practices and leveraging new technologies
 * A small team was asked to:
 ** Review the way insurance claims are currently being processed
@@ -16,4 +16,3 @@ In order to make this {ic-lab} seem more realistic, we will be describing this i
 ** Findings will be presented to the board
 ** If they are convincing, the team will be granted the resources to implement the recommendations
 * The next sections in this chapter are the materials that were presented to the board
-

@@ -10,7 +10,7 @@ asciidoc:
     page-pagination: true
     experimental:
     numbered:
-    lab_name: "Streamlining insurance claims with OpenShift AI"
+    lab_name: "OpenShift AI Unleashed: Transforming Claims Processing for Maximum Efficiency!"
     guid: my-guid
     ssh_user: lab-user
     ssh_password: lab-user
@@ -32,8 +32,9 @@ asciidoc:
     ocp-short: "OpenShift"
     argocd: "ArgoCD"
     ocp-gitops: "OpenShift GitOps"
+    company-name: "Parasol Insurance"
     ic-lab: "lab"
-    ic: "Insurance Claim Processing Lab"
+    ic: "{company-name} {ic-lab}"
 
   extensions:
     - ./content/lib/tab-block.js

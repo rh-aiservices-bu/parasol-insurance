@@ -45,7 +45,7 @@ If you want to read what **we** thought could be improved, read below! (response
 * We could ask the LLM to start writing a response to the customer.
 ** It could be just to ask for missing details.
 ** or it could be to let them know whether the claim is accepted or denied.
-* However, to do this, the LLM would have to be aware of the policies that the insurance company uses to make those determinations.
+* However, to do this, the LLM would have to be aware of the policies that the {company-name} uses to make those determinations.
 ** This could be an interesting use-case for the https://research.ibm.com/blog/retrieval-augmented-generation-RAG[RAG,window=_blank] approach.
 
 ====

@@ -17,7 +17,7 @@ The quality of these models is enough for a prototype. Choosing the right model 
 
 == Timetable
 
-This is a tentative timetable for the materials that will be presented today.
+This is a tentative timetable for the materials that will be presented.
 
 [width="90%",cols="3,^2,^2,10",options="header"]
 |=========================================================
@@ -31,7 +31,7 @@ a|- We describe what the desired end state looks like.
 |Connection and Setup |5 | Hands-On
 a|- Attendees get connected
 - help validate environment health
-- setup the playpen project
+- access the playpen project
 
 |LLM |20 | Hands-On
 a|- summarization check
@@ -48,6 +48,7 @@ a|- car recognition checks
 |Web App  |20 | Hands-On
 a|- deployment
 - update
+- RAG
 
 |Productization  |5 | Presentation + discussion
 a|- What else could we add that would have value?
