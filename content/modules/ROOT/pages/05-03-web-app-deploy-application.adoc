@@ -105,6 +105,11 @@ spec:
     syncOptions: [CreateNamespace=false]
 EOF
 
+- Go to the Admin view in the {ocp-short} Console
+
+[.bordershadow]
+image::05/05-switch-to-admin-view.jpg[]
+
 - Wait for the application to be fully deployed and initialized. It will be the case when the two Jobs `db-init-job` and `populate-images` are completed (Completions: 1 of 1).
 
 [.bordershadow]
