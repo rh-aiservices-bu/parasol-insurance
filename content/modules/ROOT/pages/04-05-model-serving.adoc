@@ -56,7 +56,7 @@ image::04/model-data-connection.png[model connection]
 
 In your project create a model server:
 
-* In the "Multi-model serving platform" type of model, click **Add model server**:
+* Click **Add model server**:
 +
 [.bordershadow]
 image::04/add-model-server.png[]
