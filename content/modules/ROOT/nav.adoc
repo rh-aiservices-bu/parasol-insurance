@@ -11,7 +11,8 @@
 // ** xref:02-02-diy-creating-project.adoc[2.2 (DIY) Creating your project and pipeline server]
 ** xref:02-03-auto-created-workbench.adoc[2.3 Pre-Created workbench]
 // ** xref:02-03-diy-creating-workbench.adoc[2.3 (DIY) Creating your workbench]
-** xref:02-04-validating-env.adoc[2.4 Validating the environment]
+** xref:02-04-first-jupyter-notebook.adoc[2.4 Your first Jupyter Notebook]
+** xref:02-05-validating-env.adoc[2.5 Validating the environment]
 
 * 3. Working with an LLM
 ** xref:03-01-notebook-based-llm.adoc[3.1 Notebook-Based LLM Example]
