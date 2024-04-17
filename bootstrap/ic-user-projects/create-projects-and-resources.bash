@@ -32,7 +32,7 @@ metadata:
     openshift.io/display-name: $USER_PROJECT
   labels:
     kubernetes.io/metadata.name: $USER_PROJECT
-    modelmesh-enabled: 'true'
+    # modelmesh-enabled: 'true'
     opendatahub.io/dashboard: 'true'
   name: $USER_PROJECT
 spec:
