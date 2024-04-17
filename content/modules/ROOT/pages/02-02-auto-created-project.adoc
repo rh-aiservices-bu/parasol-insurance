@@ -23,4 +23,4 @@ image::02/02-02-pre-created-components.png[]
 ** A Workbench - this is your environment that you can experiment and train in.
 ** A Cluster storage - this is a persistent storage for your workbench.
 ** A Data Connection - it contains all the information needed to talk with an existing S3 storage, we use that to store models and pipeline artifacts.
-** A Pipeline Server - the pipeline server has already been set up here so you can import or run pipelines right away.
+** A Pipeline Server - the pipeline server has already been set up here so you can import or run Data Science pipelines right away.

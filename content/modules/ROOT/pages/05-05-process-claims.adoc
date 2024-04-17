@@ -115,7 +115,7 @@ image::05/05-import-pipeline.jpg[import pipeline]
 [.bordershadow]
 image::05/05-import-pipeline-highlighted.jpg[imported pipeline]
 
-* Click  **Import Pipeline** and you should see it pop up under your pipelines
+* Click  **Import Pipeline** and you should see it appear under the pipelines section of your Project
 
 * Now go into the settings at the right side
 * Click **Create Run** to create a new run of the pipeline you just added

@@ -37,7 +37,7 @@ If you want to read what **we** thought could be improved, read below! (response
 * We could have something that analyzes the images and checks for discrepancies with the customer data, such as:
 ** Not the same make or color car as what is on file.
 ** Mismatch in license plate, if visible in the picture.
-* We've only scratched the surface with gitops and pipelines here
+* We've only scratched the surface with gitops and Data Science pipelines here
 ** There was no performance testing done. If too many users connect at the same time, it might overwhelm either the app, the database, the LLM, etc...
 * Currently, most simple changes would probably end up breaking the application. And the person who, for example decides to change Mistral7B for Flan-T5-Small would not necessarily realize that.
 ** It would be critical to have multiple instances (Dev/Test/UAT/Prod) of the application.

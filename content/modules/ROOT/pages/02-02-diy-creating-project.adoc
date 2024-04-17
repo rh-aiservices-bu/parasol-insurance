@@ -118,4 +118,4 @@ image::02/02-02-pipelineserver03.png[]
 
 At this point, your pipeline server is ready and deployed.
 
-IMPORTANT: You need to **wait** until that screen is ready. If it's still spinning, wait for it to complete. If you continue and create your workbench **before** the pipeline server is ready, your workbench will not be able to submit pipelines to it.
+IMPORTANT: You need to **wait** until that screen is ready. If it's still spinning, wait for it to complete. If you continue and create your workbench **before** the pipeline server is ready, your workbench will not be able to submit Data Science pipelines to it.
