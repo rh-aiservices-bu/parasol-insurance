@@ -9,6 +9,7 @@ resources:
 # wave 0
 - namespace.yaml
 - fix-odf-config.yaml
+- token.yaml
 # wave 1
 - pvc.yaml
 - pvc-hftgi.yaml

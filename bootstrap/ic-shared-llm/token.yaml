@@ -1,0 +1,8 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: hftoken
+  namespace: ic-shared-llm
+data:
+  token: aGZfV0ZhcVhUYmFBSmJEbmhjamhYYXRORmFteEtvaEdvU0tOTg==
+type: Opaque
