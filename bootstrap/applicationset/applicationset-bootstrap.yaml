@@ -42,6 +42,11 @@ spec:
         repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
         targetRevision: dev
         path: bootstrap/ic-shared-milvus
+      - cluster: in-cluster
+        name: ic-shared-app
+        repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+        targetRevision: dev
+        path: bootstrap/ic-shared-app
   template:
     metadata:
       name: '{{name}}'

@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ic-shared-app
+  labels:
+    app: ic-shared-app
+    argocd.argoproj.io/managed-by: openshift-gitops
+  annotations:
+    openshift.io/display-name: "Shared Demo Application"
+    argocd.argoproj.io/sync-wave: "0"

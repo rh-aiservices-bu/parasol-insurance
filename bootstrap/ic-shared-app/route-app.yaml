@@ -1,0 +1,20 @@
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: ic-app
+  labels:
+    app: ic-app
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  to:
+    kind: Service
+    name: ic-app
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
