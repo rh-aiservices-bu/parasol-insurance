@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: insurance-claim-app
-          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-app:2.1.1
+          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-app:2.1.2
           ports:
             - containerPort: 5000
               protocol: TCP

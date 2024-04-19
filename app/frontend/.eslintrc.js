@@ -15,8 +15,7 @@ export default {
     "@redhat-cloud-services/eslint-config-redhat-cloud-services",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:storybook/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
   "globals": {
     "window": "readonly",

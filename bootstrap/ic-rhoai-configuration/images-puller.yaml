@@ -185,7 +185,7 @@ spec:
     spec:
       containers:
       - name: ic-app
-        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-app:2.1.1
+        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-app:2.1.2
         command: ["tail"]
         args: ["-f", "/dev/null"]
         resources:
