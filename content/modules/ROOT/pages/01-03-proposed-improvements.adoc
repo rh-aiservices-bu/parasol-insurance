@@ -6,10 +6,10 @@ include::_attributes.adoc[]
 * Recommendations:
 ** Progressive, step-wise, implementation
 ** Use various AI/ML tools and techniques to **assist** the adjusters
-*** (Completely replacing humans is extremely hard. Helping them is much easier)
 ** Provide support for low-level, repetitive tasks
 *** Point out areas in need of review
 *** Help with parsing and data extraction
+*** Reduce repetition fatigue
 * Goals:
 ** Bring average processing time from 7h/claim down to 2h/claim
 ** Reduce human error by 80%
