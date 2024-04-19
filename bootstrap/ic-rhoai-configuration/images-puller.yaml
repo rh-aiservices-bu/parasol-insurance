@@ -194,3 +194,62 @@ spec:
           requests:
             cpu: 10m
             memory: 10Mi
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: image-puller-pipelines
+  namespace: rhods-notebooks
+  labels:
+    k8s-app: image-puller
+spec:
+  selector:
+    matchLabels:
+      name: image-puller
+  template:
+    metadata:
+      labels:
+        name: image-puller
+    spec:
+      containers:
+        - name: mariadb
+          image: registry.redhat.io/rhel8/mariadb-103@sha256:2370ca7fd91c0d35910006c8ba40bb9651244b2a42050cb9b2dd9d5163155e15
+          command: ["tail"]
+          args: ["-f", "/dev/null"]
+          resources:
+            limits:
+              memory: 20Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+        - name: ds-pipeline-scheduledworkflow-pipelines-definition
+          image: registry.redhat.io/rhods/odh-ml-pipelines-scheduledworkflow-rhel8@sha256:17cb168262d64409c613d09815a122958e69c29c1b78218f5f8a47af0a76b3f7
+          command: ["tail"]
+          args: ["-f", "/dev/null"]
+          resources:
+            limits:
+              memory: 20Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+        - name: ds-pipeline-pipelines-definition
+          image: registry.redhat.io/rhods/odh-ml-pipelines-api-server-rhel8@sha256:e1a5ceff2354b5ea787838143338848727a0dba4240fe8ed84350128603399e9
+          command: ["tail"]
+          args: ["-f", "/dev/null"]
+          resources:
+            limits:
+              memory: 20Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+        - name: ds-pipeline-persistenceagent-pipelines-definition
+          image: registry.redhat.io/rhods/odh-ml-pipelines-persistenceagent-rhel8@sha256:e87c4aab19435d4d3ded11acf53506a586127a4ec670db65bd25c72ed66c3537
+          command: ["tail"]
+          args: ["-f", "/dev/null"]
+          resources:
+            limits:
+              memory: 20Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+
