@@ -62,7 +62,7 @@ If you want to install packages manually:
 
 ### Development
 
-From the main folder, launch `npm run dev`. This will launch both backend and frontend.
+From the main folder, launch `npm run dev` or `./start-dev.sh`. This will launch both backend and frontend.
 
 - Frontend is accessible at `http://localhost:9000`
 - Backend is accessible at `http://localhost:5000`, with Swagger API doc at `http://localhost:5000/docs`

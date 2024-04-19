@@ -1,0 +1,107 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vectordb-milvus
+  labels:
+    app: ic-shared-milvus
+    argocd.argoproj.io/managed-by: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+data:
+  default.yaml: |-
+    # Copyright (C) 2019-2021 Zilliz. All rights reserved.
+    #
+    # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
+    # with the License. You may obtain a copy of the License at
+    #
+    # http://www.apache.org/licenses/LICENSE-2.0
+    #
+    # Unless required by applicable law or agreed to in writing, software distributed under the License
+    # is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+    # or implied. See the License for the specific language governing permissions and limitations under the License.
+
+    etcd:
+      endpoints:
+        - vectordb-etcd:2379
+
+    metastore:
+      type: etcd
+
+    minio:
+      address: minio.ic-shared-minio.svc.cluster.local
+      port: 9000
+      accessKeyID: minio
+      secretAccessKey: minio123
+      useSSL: false
+      bucketName: milvus-bucket
+      rootPath: file
+      useIAM: false
+      iamEndpoint: 
+      region: 
+      useVirtualHost: false
+
+    mq:
+      type: rocksmq
+
+    messageQueue: rocksmq
+
+    rootCoord:
+      address: localhost
+      port: 53100
+      enableActiveStandby: false  # Enable rootcoord active-standby
+
+    proxy:
+      port: 19530
+      internalPort: 19529
+
+    queryCoord:
+      address: localhost
+      port: 19531
+      enableActiveStandby: false  # Enable querycoord active-standby
+
+    queryNode:
+      port: 21123
+      enableDisk: true # Enable querynode load disk index, and search on disk index
+
+    indexCoord:
+      address: localhost
+      port: 31000
+      enableActiveStandby: false  # Enable indexcoord active-standby
+
+    indexNode:
+      port: 21121
+      enableDisk: true # Enable index node build disk vector index
+
+    dataCoord:
+      address: localhost
+      port: 13333
+      enableActiveStandby: false  # Enable datacoord active-standby
+
+    dataNode:
+      port: 21124
+
+    log:
+      level: info
+      file:
+        rootPath: ""
+        maxSize: 300
+        maxAge: 10
+        maxBackups: 20
+      format: text
+
+  user.yaml: |-
+    #    For example enable rest http for milvus proxy
+    #    proxy:
+    #      http:
+    #        enabled: true
+    ##  Enable tlsMode and set the tls cert and key
+    #  tls:
+    #    serverPemPath: /etc/milvus/certs/tls.crt
+    #    serverKeyPath: /etc/milvus/certs/tls.key
+    #   common:
+    #     security:
+    #       tlsMode: 1
+    common:
+      security:
+        authorizationEnabled: true

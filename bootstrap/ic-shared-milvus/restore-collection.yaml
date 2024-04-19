@@ -1,0 +1,111 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: restore-collection
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+      initContainers:
+      - name: wait-for-milvus-backup
+        image: image-registry.openshift-image-registry.svc:5000/openshift/tools:latest
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/bash"]
+        args:
+        - -ec
+        - |-
+          echo -n "Waiting for milvus-backup pod in ic-shared-milvus namespace"
+          while ! nc -z milvus-backup.ic-shared-milvus.svc.cluster.local 8080; do
+            echo -n '.'
+            sleep 1
+          done
+          echo "Milvus-backup pod is running in ic-shared-milvus namespace"
+      containers:
+      - name: add-model
+        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/s2i-generic-data-science-notebook:1.2
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/bash"]
+        args:
+        - -ec
+        - |-
+          # Retrieve the backup from the S3 bucket
+          curl -LO https://rhods-public.s3.amazonaws.com/parasol-insurance-handbook-backup/backup.tar.gz
+          mkdir -p backup && tar xvzf backup.tar.gz -C ./backup
+
+          # Install the pymilvus package
+          pip install -q pymilvus==2.3.7
+
+          cat << 'EOF' | python3
+          import boto3, os, requests
+          from pymilvus import MilvusClient
+
+          # Connect to the object storage
+          s3 = boto3.client("s3",
+                  endpoint_url="http://minio.ic-shared-minio.svc.cluster.local:9000",
+                  aws_access_key_id="minio",
+                  aws_secret_access_key="minio123")
+
+          # Create the milvus buckets
+          milvus_bucket_name = "milvus-bucket"
+          if milvus_bucket_name not in [bu["Name"] for bu in s3.list_buckets()["Buckets"]]:
+              s3.create_bucket(Bucket=milvus_bucket_name)
+
+          milvus_backup_bucket_name = "milvus-backup-bucket"
+          if milvus_backup_bucket_name not in [bu["Name"] for bu in s3.list_buckets()["Buckets"]]:
+              s3.create_bucket(Bucket=milvus_backup_bucket_name)
+
+          def upload_to_s3(bucket_name, directory_name):
+              
+              for root, dirs, files in os.walk(directory_name):
+                  for file in files:
+                      s3.upload_file(os.path.join(root, file), bucket_name, os.path.join(root, file).lstrip('/'))
+
+          # Upload the backup to the S3 bucket
+          upload_to_s3('milvus-backup-bucket', 'backup')
+
+          # Restore the collection from the backup
+          url = 'http://milvus-backup.ic-shared-milvus.svc.cluster.local:8080/api/v1/restore'
+          headers = {'Content-Type': 'application/json'}
+          data = {
+            "async": True,
+            "collection_names": [
+              "california_driver_handbook_1_0"
+            ],
+            "backup_name": "california_driver_handbook_1_0"
+          }
+
+          response = requests.post(url, headers=headers, json=data)
+
+          client = MilvusClient(
+              uri="http://vectordb-milvus.ic-shared-milvus.svc.cluster.local:19530",
+              token="root:Milvus",
+              db_name="default"
+          )
+
+          # Create the index
+          index_params = client.prepare_index_params()
+
+          index_params.add_index(
+              field_name="vector", 
+              index_type="AUTOINDEX",
+              metric_type="L2",
+              params={}
+          )
+
+          client.create_index(
+              collection_name='california_driver_handbook_1_0',
+              index_params=index_params
+          )
+
+          client.load_collection(
+              collection_name='california_driver_handbook_1_0'
+          )
+
+          EOF
+
+      restartPolicy: Never

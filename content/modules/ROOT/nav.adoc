@@ -19,8 +19,9 @@
 ** xref:03-02-summarization.adoc[3.2 Text Summarization]
 ** xref:03-03-information-extractions.adoc[3.3 Information Extraction]
 ** xref:03-04-comparing-model-servers.adoc[3.4 Comparing Model Servers]
-** xref:03-05-prompt-engineering.adoc[3.5 Prompt Engineering Exercise (Optional)]
+** xref:03-05-retrieval-augmented-generation.adoc[3.5 Retrieval-Augmented Generation]
 ** xref:03-06-confidence-check.adoc[3.6 Confidence-check pipeline]
+** xref:03-07-prompt-engineering.adoc[3.7 Prompt Engineering Exercise (Optional)]
 
 * 4. Image Processing
 ** xref:04-01-over-approach.adoc[4.1 Overall Approach]

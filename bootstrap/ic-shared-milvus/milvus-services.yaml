@@ -1,0 +1,79 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vectordb-etcd-headless
+  labels:
+    app.kubernetes.io/name: etcd
+    app.kubernetes.io/instance: vectordb
+    argocd.argoproj.io/managed-by: openshift-gitops
+  annotations:
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  publishNotReadyAddresses: true
+  ports:
+    - name: "client"
+      port: 2379
+      targetPort: client
+    - name: "peer"
+      port: 2380
+      targetPort: peer
+  selector:
+    app.kubernetes.io/name: etcd
+    app.kubernetes.io/instance: vectordb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vectordb-etcd
+  labels:
+    app.kubernetes.io/name: etcd
+    app.kubernetes.io/instance: vectordb
+    argocd.argoproj.io/managed-by: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  type: ClusterIP
+  ports:
+    - name: "client"
+      port: 2379
+      targetPort: client
+      nodePort: null
+    - name: "peer"
+      port: 2380
+      targetPort: peer
+      nodePort: null
+  selector:
+    app.kubernetes.io/name: etcd
+    app.kubernetes.io/instance: vectordb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vectordb-milvus
+  labels:
+    app.kubernetes.io/name: milvus
+    app.kubernetes.io/instance: vectordb
+    app.kubernetes.io/version: "2.4.0"
+    argocd.argoproj.io/managed-by: openshift-gitops
+    component: "standalone"
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  type: ClusterIP
+  ports:
+    - name: milvus
+      port: 19530
+      protocol: TCP
+      targetPort: milvus
+    - name: metrics
+      protocol: TCP
+      port: 9091
+      targetPort: metrics
+  selector:
+    app.kubernetes.io/name: milvus
+    app.kubernetes.io/instance: vectordb
+    component: "standalone"

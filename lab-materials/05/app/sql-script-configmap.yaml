@@ -30,6 +30,10 @@ data:
     CREATE TABLE IF NOT EXISTS claims.claims
     (
         id integer NOT NULL DEFAULT nextval('claims.claims_id_seq'::regclass),
+        claim_number text COLLATE pg_catalog."default",
+        category text COLLATE pg_catalog."default",
+        policy_number text COLLATE pg_catalog."default",
+        client_name text COLLATE pg_catalog."default",
         subject text COLLATE pg_catalog."default",
         body text COLLATE pg_catalog."default",
         summary text COLLATE pg_catalog."default",
@@ -119,8 +123,9 @@ data:
     -----
     -- CLAIM1
 
-    INSERT INTO claims.claims (subject, body, summary, location, time, sentiment) VALUES ('Claim for Recent Car Accident - Policy Number: AC-987654321', '
-    Dear Pacific Shield Insurance,
+    INSERT INTO claims.claims (claim_number, category, policy_number, client_name, subject, body, summary, location, time, sentiment) 
+    VALUES ('CLM202401', 'Multiple vehicle', 'AC-987654321', 'Sarah Turner','Claim for Recent Car Accident - Policy Number: AC-987654321', '
+    Dear Parasol Insurance,
     
     I hope this email finds you well. My name is Sarah Turner, and I am writing to file a claim for a recent car accident that occurred on January 2nd, 2024, at approximately 3:30 PM. My policy number is AC-987654321.
 
@@ -160,8 +165,9 @@ data:
 
     -- CLAIM2
 
-    INSERT INTO claims.claims (subject, body, summary, location, time, sentiment) VALUES ('Urgent: Unacceptable Delay and Lack of Communication Regarding Claim #XYZ789', '
-    Dear Prestige Insurances,
+    INSERT INTO claims.claims (claim_number, category, policy_number, client_name, subject, body, summary, location, time, sentiment) 
+    VALUES ('CLM202402', 'Multiple vehicle', 'PT-567890', 'John T. Anderson','Urgent: Unacceptable Delay and Lack of Communication Regarding Claim #XYZ789', '
+    Dear Parasol Insurances,
 
     I am writing to express my extreme dissatisfaction with the appalling service I have received concerning my recent claim, reference number #XYZ789. The lack of communication and delayed response from your company is utterly unacceptable, and I demand immediate attention to rectify this matter.
 
@@ -181,20 +187,21 @@ data:
 
     Sincerely,
     John T. Anderson
-    Policy Number: PT567890
+    Policy Number: PT-567890
     ',
     '
-    The text is a letter of complaint from John T. Anderson to Prestige Insurances regarding an unresolved car insurance claim, #XYZ789. The incident occurred on January 15, 2024, when Anderson''s vehicle was hit by another driver, Samantha Reynolds, who ran a red light. The accident caused significant damage to Anderson''s car, and he reported the claim immediately, providing all necessary details. However, he has experienced poor communication and a delayed response from Prestige Insurances. Anderson demands an explanation for the delay, transparency, and urgency in handling his claim. He threatens to escalate the matter to regulatory authorities and consider legal action if his concerns are not addressed promptly. Anderson requests a comprehensive update on the status of his claim within the next 48 hours.
+    The text is a letter of complaint from John T. Anderson to Parasol Insurances regarding an unresolved car insurance claim, #XYZ789. The incident occurred on January 15, 2024, when Anderson''s vehicle was hit by another driver, Samantha Reynolds, who ran a red light. The accident caused significant damage to Anderson''s car, and he reported the claim immediately, providing all necessary details. However, he has experienced poor communication and a delayed response from Parasol Insurances. Anderson demands an explanation for the delay, transparency, and urgency in handling his claim. He threatens to escalate the matter to regulatory authorities and consider legal action if his concerns are not addressed promptly. Anderson requests a comprehensive update on the status of his claim within the next 48 hours.
     ',
     'Near the intersection of Maple Street and Oak Avenue in Rivertown',
     'January 15, 2024, at approximately 3:45 PM',
-    'The sender of this claim is expressing extreme dissatisfaction with the handling of their insurance claim by Prestige Insurances. They are frustrated with the lack of communication and the significant delay in processing their claim. The tone of the message is demanding and assertive, with the sender threatening to escalate the matter if their concerns are not addressed promptly.'
+    'The sender of this claim is expressing extreme dissatisfaction with the handling of their insurance claim by Parasol Insurances. They are frustrated with the lack of communication and the significant delay in processing their claim. The tone of the message is demanding and assertive, with the sender threatening to escalate the matter if their concerns are not addressed promptly.'
     );
 
     -- CLAIM3
 
-    INSERT INTO claims.claims (subject, body) VALUES ('Urgent: Car Accident Claim Assistance Needed', '
-    Dear AssuranceCare Inc.,
+    INSERT INTO claims.claims (claim_number, category, policy_number, client_name, subject, body, summary, location, time, sentiment) 
+    VALUES ('CLM502803', 'Multiple vehicle', 'AC-987654', 'Jane Doe','Urgent: Car Accident Claim Assistance Needed', '
+    Dear Parasol Inc.,
 
     I hope this email finds you well. I''m writing to, uh, inform you about, well, something that happened recently. It''s, um, about a car accident, and I''m not really sure how to, you know, go about all this. I''m kinda anxious and confused, to be honest.
 
@@ -215,8 +222,13 @@ data:
     Sincerely,
 
     Jane Doe
-    Policy Number: AC987654
-    ');
+    Policy Number: AC-987654
+    ',
+    '',
+    '',
+    '',
+    ''
+    );
 
     -- IMAGES
 
@@ -229,6 +241,8 @@ data:
     INSERT INTO claims.processed_images (image_name, image_key, claim_id) VALUES ('car0-processed.jpg', 'processed_images/car0-processed.jpg', 1);
     INSERT INTO claims.processed_images (image_name, image_key, claim_id) VALUES ('car1-processed.jpg', 'processed_images/car1-processed.jpg', 1);
     INSERT INTO claims.processed_images (image_name, image_key, claim_id) VALUES ('car2-processed.jpg', 'processed_images/car2-processed.jpg', 2);
-    -- INSERT INTO claims.processed_images (image_name, image_key, claim_id) VALUES ('car3-processed.jpg', 'processed_images/car3-processed.jpg', 3);
-    -- INSERT INTO claims.processed_images (image_name, image_key, claim_id) VALUES ('car5-processed.jpg', 'processed_images/car5-processed.jpg', 3);
-    -- INSERT INTO claims.processed_images (image_name, image_key, claim_id) VALUES ('car6-processed.jpg', 'processed_images/car6-processed.jpg', 3);
+    INSERT INTO claims.processed_images (image_name, image_key, claim_id) VALUES ('car3-processed.jpg', 'processed_images/car3-processed.jpg', 3);
+    INSERT INTO claims.processed_images (image_name, image_key, claim_id) VALUES ('car5-processed.jpg', 'processed_images/car5-processed.jpg', 3);
+    INSERT INTO claims.processed_images (image_name, image_key, claim_id) VALUES ('car6-processed.jpg', 'processed_images/car6-processed.jpg', 3);
+
+

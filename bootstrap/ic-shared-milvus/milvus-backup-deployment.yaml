@@ -1,0 +1,111 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: milvus-backup
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  labels:
+    app: ic-shared-milvus
+    argocd.argoproj.io/managed-by: openshift-gitops
+    component: milvus-backup
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: milvus-backup
+      component: milvus
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: milvus-backup
+    spec:
+      initContainers:
+      - name: wait-for-minio
+        image: image-registry.openshift-image-registry.svc:5000/openshift/tools:latest
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/bash"]
+        args:
+        - -ec
+        - |-
+          echo -n "Waiting for minio pod in ic-shared-minio namespace"
+          while ! nc -z minio.ic-shared-minio.svc.cluster.local 9000; do
+            echo -n '.'
+            sleep 1
+          done
+          echo "Minio pod is running in ic-shared-minio namespace"
+      - name: wait-for-milvus
+        image: image-registry.openshift-image-registry.svc:5000/openshift/tools:latest
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/bash"]
+        args:
+        - -ec
+        - |-
+          echo -n "Waiting for milvus pod in ic-shared-milvus namespace"
+          while ! nc -z vectordb-milvus.ic-shared-milvus.svc.cluster.local 19530; do
+            echo -n '.'
+            sleep 1
+          done
+          echo "Milvus pod is running in ic-shared-milvus namespace"
+      containers:
+      - name: milvus-backup
+        image: quay.io/rh-aiservices-bu/milvus-backup:v0.4.12
+        imagePullPolicy: Always
+        args:
+          - server
+          - '--config=/opt/app-root/src/milvus-backup/configs/backup.yaml'
+          - '-p'
+          - '8080'
+        securityContext:
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            seccompProfile:
+              type: RuntimeDefault
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        resources:
+          limits:
+            cpu: '2'
+            memory: 4Gi
+          requests:
+            cpu: '1'
+            memory: 2Gi
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+            scheme: HTTP
+          timeoutSeconds: 5
+          periodSeconds: 30
+          successThreshold: 1
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+            scheme: HTTP
+          timeoutSeconds: 8
+          periodSeconds: 100
+          successThreshold: 1
+          failureThreshold: 3
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - name: config-volume
+          mountPath: /opt/app-root/src/milvus-backup/configs/backup.yaml
+          subPath: backup.yaml
+          readOnly: true
+      restartPolicy: Always
+      volumes:
+      - name: config-volume
+        configMap:
+          name: milvus-backup-configmap
+          items:
+          - key: backup.yaml
+            path: backup.yaml

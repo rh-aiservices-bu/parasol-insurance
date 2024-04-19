@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: milvus-backup
+  labels:
+    app.kubernetes.io/name: milvus-backup
+    argocd.argoproj.io/managed-by: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  type: ClusterIP
+  ports:
+    - name: milvus-backup
+      port: 8080
+      protocol: TCP
+      targetPort: http
+  selector:
+    app: milvus-backup
+    component: milvus

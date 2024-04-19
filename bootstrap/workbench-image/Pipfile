@@ -29,6 +29,8 @@ langchain = "==0.1.12"
 openai = "==1.14.1"
 text_generation = "==0.6.1"
 sentence_transformers = "==2.6.1"
+pymilvus = "==2.3.7"
+einops = "==0.7.0"
 
 # Image recognition section - YOLO
 Flask = "~=3.0.2"

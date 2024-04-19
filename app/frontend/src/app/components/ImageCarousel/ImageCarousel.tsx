@@ -1,8 +1,6 @@
-import * as React from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import ImageGallery from "react-image-gallery";
 import config from '@app/config';
+import * as React from 'react';
+import ImageGallery from "react-image-gallery";
 
 
 interface Image {
@@ -20,6 +18,8 @@ const ImageCarousel: React.FunctionComponent<ImageCarouselProps> = ({ images }) 
         thumbnail: config.backend_api_url + "/images/" + image.image_key,
         thumbnailClass: "image-gallery-thumbnail",
         originalClass: "image-gallery-original",
+        originalAlt: image.image_key,
+        thumbnailAlt: image.image_key,
     }));
     return (
         <ImageGallery items={transformedImages} />

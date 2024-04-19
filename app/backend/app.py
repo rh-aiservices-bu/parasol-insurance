@@ -5,18 +5,22 @@ import os
 import sys
 import time
 from typing import List
+import json
 
 import boto3
 import data_classes
 import db_utils
+import chatbot
 import httpx
 from app_config import LOG_LEVELS, LOGGING_CONFIG
 from dotenv import dotenv_values, load_dotenv
-from fastapi import FastAPI, File, HTTPException, Request, UploadFile
+from fastapi import FastAPI, File, HTTPException, Request, UploadFile, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from uvicorn import run
+from fastapi import HTTPException
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 # Load local env vars if present
 load_dotenv()
@@ -56,7 +60,10 @@ s3 = boto3.client(
     endpoint_url=config["S3_ENDPOINT_URL"],
     aws_access_key_id=config["AWS_ACCESS_KEY_ID"],
     aws_secret_access_key=config["AWS_SECRET_ACCESS_KEY"],
-    use_ssl=config["INFERENCE_SERVER_URL"].startswith("https"),)
+    use_ssl=config["S3_ENDPOINT_URL"].startswith("https"),)
+
+# Initialize Chatbot
+chatbot = chatbot.Chatbot(config, logger)
 
 # Status API
 @app.get("/health")
@@ -187,12 +194,18 @@ async def s3_get_image(image_key: str):
     image = s3.get_object(Bucket=config["IMAGES_BUCKET"], Key=image_key)
     return StreamingResponse(image["Body"], media_type=image["ContentType"])
 
+@app.websocket("/ws/query")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+
+    while True:
+        data = await websocket.receive_text()
+        data = json.loads(data)
+        for next_item in chatbot.stream(data["query"], data["claim"]):
+            answer = json.dumps(next_item)
+            await websocket.send_text(answer)
 
 # Serve React App
-from fastapi import HTTPException
-from starlette.exceptions import HTTPException as StarletteHTTPException
-
-
 class SPAStaticFiles(StaticFiles):
     async def get_response(self, path: str, scope):
         if len(sys.argv) > 1 and sys.argv[1] == "dev":

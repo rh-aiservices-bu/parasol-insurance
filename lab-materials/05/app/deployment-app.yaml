@@ -18,8 +18,8 @@ spec:
         deployment: ic-app
     spec:
       containers:
-        - name: insurance-claim-processing-git
-          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-app:1.3
+        - name: insurance-claim-app
+          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-app:2.1.1
           ports:
             - containerPort: 5000
               protocol: TCP
@@ -29,18 +29,16 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: INFERENCE_SERVER_URL
-              value: http://llm.ic-shared-llm.svc.cluster.local:3000/
-            - name: MAX_NEW_TOKENS
-              value: '1024'
-            - name: TOP_K
-              value: '10'
+              value: http://llm.ic-shared-llm.svc.cluster.local:8000/v1
+            - name: MODEL_NAME
+              value: 'mistralai/Mistral-7B-Instruct-v0.2'
+            - name: MAX_TOKENS
+              value: '512'
             - name: TOP_P
-              value: '0.95'
-            - name: TYPICAL_P
               value: '0.95'
             - name: TEMPERATURE
               value: '0.01'
-            - name: REPETITION_PENALTY
+            - name: PRESENCE_PENALTY
               value: '1.03'
             - name: POSTGRES_HOST
               value: claimdb.$(NAMESPACE).svc.cluster.local
@@ -75,6 +73,20 @@ spec:
                 secretKeyRef:
                   name: secret-minio
                   key: aws_secret_access_key
+            - name: MILVUS_HOST
+              value: vectordb-milvus.ic-shared-milvus.svc.cluster.local
+            - name: MILVUS_PORT
+              value: '19530'
+            - name: MILVUS_USERNAME
+              value: root
+            - name: MILVUS_PASSWORD
+              value: Milvus
+            - name: SCORE_THRESHOLD
+              value: '0.90'
+            - name: MILVUS_COLLECTION
+              value: california_driver_handbook_1_0
+            - name: MAX_RETRIEVED_DOCS
+              value: '4'
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File

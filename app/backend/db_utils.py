@@ -60,7 +60,7 @@ class Database:
         try:
             query = """
             SET schema 'claims';
-            SELECT claims.id, claims.subject, claims.summary
+            SELECT claims.id, claims.claim_number, claims.category, claims.policy_number, claims.client_name, claims.subject, claims.summary
             FROM claims
             ORDER BY claims.id
             """
@@ -165,7 +165,7 @@ class Database:
         try:
             query = """
             SET schema 'claims';
-            SELECT claims.id, claims.subject, claims.body, claims.sentiment, claims.summary, claims.location, claims.time,
+            SELECT claims.id, claims.claim_number, claims.category, claims.policy_number, claims.client_name, claims.subject, claims.body, claims.sentiment, claims.summary, claims.location, claims.time,
             (SELECT json_agg(
                 json_build_object('image_name',original_images.image_name,'image_key',original_images.image_key)) AS original_images
             FROM original_images WHERE claim_id = claims.id

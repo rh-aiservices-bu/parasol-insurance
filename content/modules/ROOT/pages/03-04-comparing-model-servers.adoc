@@ -1,9 +1,9 @@
 = Comparing Model Servers
 include::_attributes.adoc[]
 
-So far, for this {ic-lab}, we have used the model https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2[Mistral-7B Instruct v2,window=_blank]. Although lighter than other models, it is still quite heavy and we need a large GPU to run it. Would we get as good results with a quantized model (reduced in size) to run on CPU only? Let's try!
+So far, for this {ic-lab}, we have used the model https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2[Mistral-7B Instruct v2,window=_blank]. Although lighter than other models, it is still quite heavy and we need a large GPU to run it. Would we get as good results with a smaller model running on a CPU only? Let's try!
 
-In this exercise, we'll pitch our previous model against the itself but in a quantized version. The values of the 7 Billion parameters used in the model have been "rounded", therefore loosing precision, but saving space. As it consumes now less memory, we are able to load it directly in a container and run it on a CPU. We'll compare the results and see if the quantized model is good enough for our use case.
+In this exercise, we'll pitch our previous model against a much smaller LLM called https://huggingface.co/google/flan-t5-small[flan-t5-large,window=_blank]. We'll compare the results and see if the smaller model is good enough for our use case.
 
 From the `parasol-insurance/lab-materials/03` folder, please open the notebook called `03-04-comparing-model-servers.ipynb` and follow the instructions.
 

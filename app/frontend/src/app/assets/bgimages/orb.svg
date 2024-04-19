@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg version="1.1" viewBox="-50 -50 100 100"
+	xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<radialGradient id="shiny"
+    fx="0.25" fy="0.25">
+			<stop offset="0%" stop-color="#ffffff" />
+			<stop offset="50%" stop-color="#ddb733" />
+			<stop offset="75%" stop-color="#997800" />
+			<stop offset="100%" stop-color="#000000" />
+		</radialGradient>
+		<radialGradient id="bl" fx="0.25" fy="0.25">
+			<stop offset="0%" stop-color="#fff" stop-opacity="0" />
+			<stop offset="50%" stop-color="#000" stop-opacity="0.01" />
+			<stop offset="94%" stop-color="#000" stop-opacity="0.3" />
+			<stop offset="97%" stop-color="#000" stop-opacity="0.95" />
+			<stop offset="100%" stop-color="#000"  stop-opacity="1" />
+		</radialGradient>
+		<clipPath id="cl">
+			<circle r="50" />
+		</clipPath>
+		<filter id="f1" filterUnits="objectBoundingBox"
+          x="-0.25" y="-0.25" width="1.5" height="1.5">
+			<feGaussianBlur in="SourceAlpha"
+       stdDeviation="3"/>
+		</filter>
+		<linearGradient id="g1" y2="1" >
+			<stop offset="0" stop-color="#f00">
+				<animate attributeName="stop-color" values="red; #ff0; #0f0; cyan; blue; #f0f; red" dur="7s" fill="freeze" repeatDur="indefinite" />
+			</stop>
+			<stop offset="0.2857" stop-color="#ff0" >
+				<animate attributeName="stop-color" values="#ff0; #0f0; cyan; blue; #f0f; red; #ff0" dur="7s" fill="freeze" repeatDur="indefinite" />
+			</stop>
+			<stop offset="0.4286" stop-color="#0f0" >
+				<animate attributeName="stop-color" values="#0f0; cyan; blue; #f0f; red; #ff0; #0f0" dur="7s" fill="freeze" repeatDur="indefinite" />
+			</stop>
+			<stop offset="0.5714" stop-color="cyan" >
+				<animate attributeName="stop-color" values="cyan; blue; #f0f; red; #ff0; #0f0; cyan" dur="7s" fill="freeze" repeatDur="indefinite" />
+			</stop>
+			<stop offset="0.7142" stop-color="blue" >
+				<animate attributeName="stop-color" values="blue; #f0f; red; #ff0; #0f0; cyan; blue" dur="7s" fill="freeze" repeatDur="indefinite" />
+			</stop>
+			<stop offset="0.8571" stop-color="#f0f" >
+				<animate attributeName="stop-color" values="#f0f; red; #ff0; #0f0; cyan; blue; #f0f" dur="7s" fill="freeze" repeatDur="indefinite" />
+			</stop>
+			<stop offset="1" stop-color="red">
+				<animate attributeName="stop-color" values="red; #ff0; #0f0; cyan; blue; #f0f; red" dur="7s" fill="freeze" repeatDur="indefinite" />
+			</stop>
+		</linearGradient>
+		<mask id="light" maskContentUnits="objectBoundingBox">
+			<rect fill="url(#shiny)" width="1" height="1" />
+		</mask>
+	</defs>
+	<g>
+	<set attributeName="display" to="none" begin="ich.click" />
+	<circle r="50" fill="url(#g1)" opacity="1">
+		<animateTransform attributeName="transform"
+    type="rotate" values="0; 360"
+    repeatDur="indefinite" dur="63s"
+    additive="replace" fill="freeze"/>
+	</circle>
+	<circle r="50" fill="#fff" mask="url(#light)" />
+	<circle r="50" fill="url(#bl)" clip-path="url(#cl)" filter="url(#f1)" id="ich"/>
+	</g>
+</svg>

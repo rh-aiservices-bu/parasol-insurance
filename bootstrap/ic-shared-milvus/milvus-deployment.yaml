@@ -1,0 +1,259 @@
+---
+# Source: milvus/templates/standalone-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vectordb-milvus-standalone
+  labels:
+    app.kubernetes.io/name: milvus
+    app.kubernetes.io/instance: vectordb
+    app.kubernetes.io/version: "2.4.0"
+    argocd.argoproj.io/managed-by: openshift-gitops
+    component: "standalone"
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: milvus
+      app.kubernetes.io/instance: vectordb
+      component: "standalone"
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: milvus
+        app.kubernetes.io/instance: vectordb
+        component: "standalone"
+      annotations:
+        checksum/config: 525c25e4e18f4d7ba4c1679a2bb6626f70ce2dd3369bfe106601ee09e8eee274
+    spec:
+      serviceAccountName: default
+      initContainers:
+        - name: wait-for-minio
+          image: image-registry.openshift-image-registry.svc:5000/openshift/tools:latest
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/bash"]
+          args:
+          - -ec
+          - |-
+            echo -n "Waiting for minio pod in ic-shared-minio namespace"
+            while ! nc -z minio.ic-shared-minio.svc.cluster.local 9000; do
+              echo -n '.'
+              sleep 1
+            done
+            echo "Minio pod is running in ic-shared-minio namespace"
+        - name: config
+          command:
+            - /cp
+            - /run-helm.sh,/merge
+            - /milvus/tools/run-helm.sh,/milvus/tools/merge
+          image: "milvusdb/milvus-config-tool:v0.1.2"
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - mountPath: /milvus/tools
+              name: tools
+      containers:
+        - name: standalone
+          image: "quay.io/rh-data-services/milvus-openshift:v2.3.10"
+          imagePullPolicy: IfNotPresent
+          args: ["/milvus/tools/run-helm.sh", "milvus", "run", "standalone"]
+          ports:
+            - name: milvus
+              containerPort: 19530
+              protocol: TCP
+            - name: metrics
+              containerPort: 9091
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: metrics
+            initialDelaySeconds: 90
+            periodSeconds: 30
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: metrics
+            initialDelaySeconds: 90
+            periodSeconds: 10
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 5
+          resources: {}
+          env:
+          volumeMounts:
+            - mountPath: /milvus/tools
+              name: tools
+            - name: milvus-config
+              mountPath: /milvus/configs/default.yaml
+              subPath: default.yaml
+              readOnly: true
+            - name: milvus-config
+              mountPath: /milvus/configs/user.yaml
+              subPath: user.yaml
+              readOnly: true
+            - name: milvus-data-disk
+              mountPath: "/var/lib/milvus"
+              subPath:
+            - mountPath: /var/lib/milvus/data
+              name: disk
+      volumes:
+        - emptyDir: {}
+          name: tools
+        - name: milvus-config
+          configMap:
+            name: vectordb-milvus
+        - name: milvus-data-disk
+          persistentVolumeClaim:
+            claimName: vectordb-milvus
+        - name: disk
+          emptyDir: {}
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: vectordb-etcd
+  labels:
+    app.kubernetes.io/name: etcd
+    app.kubernetes.io/instance: vectordb
+    argocd.argoproj.io/managed-by: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: etcd
+      app.kubernetes.io/instance: vectordb
+  serviceName: vectordb-etcd-headless
+  podManagementPolicy: Parallel
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: etcd
+        helm.sh/chart: etcd-6.3.3
+        app.kubernetes.io/instance: vectordb
+        app.kubernetes.io/managed-by: Helm
+      annotations:
+    spec:
+      affinity:
+        podAffinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: etcd
+                    app.kubernetes.io/instance: vectordb
+                namespaces:
+                  - "ic-shared-milvus"
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+        nodeAffinity:
+      securityContext: {}
+      serviceAccountName: "default"
+      containers:
+        - name: etcd
+          image: docker.io/milvusdb/etcd:3.5.5-r4
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+          env:
+            - name: BITNAMI_DEBUG
+              value: "false"
+            - name: MY_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: ETCDCTL_API
+              value: "3"
+            - name: ETCD_ON_K8S
+              value: "yes"
+            - name: ETCD_START_FROM_SNAPSHOT
+              value: "no"
+            - name: ETCD_DISASTER_RECOVERY
+              value: "no"
+            - name: ETCD_NAME
+              value: "$(MY_POD_NAME)"
+            - name: ETCD_DATA_DIR
+              value: "/bitnami/etcd/data"
+            - name: ETCD_LOG_LEVEL
+              value: "info"
+            - name: ALLOW_NONE_AUTHENTICATION
+              value: "yes"
+            - name: ETCD_ADVERTISE_CLIENT_URLS
+              value: "http://$(MY_POD_NAME).vectordb-etcd-headless.ic-shared-milvus.svc.cluster.local:2379"
+            - name: ETCD_LISTEN_CLIENT_URLS
+              value: "http://0.0.0.0:2379"
+            - name: ETCD_INITIAL_ADVERTISE_PEER_URLS
+              value: "http://$(MY_POD_NAME).vectordb-etcd-headless.ic-shared-milvus.svc.cluster.local:2380"
+            - name: ETCD_LISTEN_PEER_URLS
+              value: "http://0.0.0.0:2380"
+            - name: ETCD_AUTO_COMPACTION_MODE
+              value: "revision"
+            - name: ETCD_AUTO_COMPACTION_RETENTION
+              value: "1000"
+            - name: ETCD_QUOTA_BACKEND_BYTES
+              value: "4294967296"
+            - name: ETCD_HEARTBEAT_INTERVAL
+              value: "500"
+            - name: ETCD_ELECTION_TIMEOUT
+              value: "2500"
+          envFrom:
+          ports:
+            - name: client
+              containerPort: 2379
+              protocol: TCP
+            - name: peer
+              containerPort: 2380
+              protocol: TCP
+          livenessProbe:
+            exec:
+              command:
+                - /opt/bitnami/scripts/etcd/healthcheck.sh
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 10
+            successThreshold: 1
+            failureThreshold: 5
+          readinessProbe:
+            exec:
+              command:
+                - /opt/bitnami/scripts/etcd/healthcheck.sh
+            initialDelaySeconds: 60
+            periodSeconds: 20
+            timeoutSeconds: 10
+            successThreshold: 1
+            failureThreshold: 5
+          resources:
+            limits: {}
+            requests: {}
+          volumeMounts:
+            - name: data
+              mountPath: /bitnami/etcd
+      volumes:
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "10Gi"

@@ -10,6 +10,10 @@ class ClaimImage(BaseModel):
 class ClaimBaseInfo(BaseModel):
     """Basic information about a claim"""
     id: int = ""
+    claim_number: Optional[str] = ""
+    category: Optional[str] = ""
+    policy_number: Optional[str] = ""
+    client_name: Optional[str] = ""
     subject: str = ""
     summary: Optional[str] = ""
 
@@ -46,6 +50,10 @@ class ClaimCreationInfo(BaseModel):
 class ClaimFullInfo(BaseModel):
     """All information about a claim"""
     id: int = ""
+    claim_number: str = ""
+    category: str = ""
+    policy_number: str = ""
+    client_name: str = ""
     subject: str = ""
     body: str = ""
     summary: Optional[str] = ""

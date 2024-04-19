@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ic-shared-milvus
+  labels:
+    app: ic-shared-milvus
+    argocd.argoproj.io/managed-by: openshift-gitops
+  annotations:
+    openshift.io/display-name: "Milvus"
+    argocd.argoproj.io/sync-wave: "0"

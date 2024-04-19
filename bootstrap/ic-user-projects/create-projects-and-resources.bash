@@ -10,7 +10,7 @@ DASHBOARD_ROUTE=https://$(oc get route rhods-dashboard -n redhat-ods-application
 
 # Define some variables
 WORKBENCH_NAME="my-workbench"
-WORKBENCH_IMAGE="ic-workbench:2.1.0"
+WORKBENCH_IMAGE="ic-workbench:2.1.2"
 PIPELINE_ENGINE="Tekton"
 
 for i in $(seq 1 $user_count);

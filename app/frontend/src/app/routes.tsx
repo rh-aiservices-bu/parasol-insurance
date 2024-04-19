@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { Route, RouteComponentProps, Switch, useLocation } from 'react-router-dom';
-import { OriginalApp } from '@app/components/OriginalApp/OriginalApp';
-import { NewApp } from '@app/components/NewApp/NewApp';
 import { NotFound } from '@app/components/NotFound/NotFound';
+import { OriginalApp } from '@app/components/OriginalApp/OriginalApp';
 import { useDocumentTitle } from '@app/utils/useDocumentTitle';
-import { ClaimsList } from './components/ClaimsList/ClaimsList';
+import * as React from 'react';
+import { Redirect, Route, RouteComponentProps, Switch, useLocation } from 'react-router-dom';
 import { ClaimDetail } from './components/ClaimDetail/ClaimDetail';
+import { ClaimsList } from './components/ClaimsList/ClaimsList';
+import { Empty } from './components/Empty/Empty';
 
 
 let routeFocusTimer: number;
@@ -18,6 +18,8 @@ export interface IAppRoute {
   path: string;
   title: string;
   routes?: undefined;
+  bottomRoutes?: undefined;
+  disabled?: boolean;
 }
 
 export interface IAppRouteGroup {
@@ -29,22 +31,27 @@ export type AppRouteConfig = IAppRoute | IAppRouteGroup;
 
 const routes: AppRouteConfig[] = [
   {
-    component: OriginalApp,
+    component: () => <Redirect to="/ClaimsList" />,
     exact: true,
-    label: 'Original App',
     path: '/',
-    title: 'Original App',
+    title: 'Redirect',
   },
-/*   {
-    component: NewApp,
-    exact: true,
-    path: '/newapp',
-    title: 'NewApp',
-  }, */
+  {
+    component: Empty,
+    label: 'Dashboard',
+    path: '#',
+    title: 'Dashboard'
+  },
+  {
+    component: Empty,
+    label: 'Policies',
+    path: '#',
+    title: 'Policies'
+  },
   {
     component: ClaimsList,
     exact: true,
-    label: 'New App',
+    label: 'Claims',
     path: '/ClaimsList',
     title: 'Claims List',
   },
@@ -53,6 +60,49 @@ const routes: AppRouteConfig[] = [
     exact: true,
     path: '/ClaimDetail/:claim_id',
     title: 'Claim Detail',
+  },
+  {
+    component: Empty,
+    label: 'Coverages',
+    path: '#',
+    title: 'Coverages'
+  },
+  {
+    component: Empty,
+    label: 'Annuities',
+    path: '#',
+    title: 'Annuities'
+  },
+  {
+    component: Empty,
+    label: 'Subscriptions',
+    path: '#',
+    title: 'Subscriptions'
+  },
+  {
+    component: Empty,
+    label: 'Reports',
+    path: '#',
+    title: 'Reports'
+  },
+  {
+    component: Empty,
+    label: 'Admin',
+    path: '#',
+    title: 'Admin'
+  },
+  {
+    component: Empty,
+    label: 'Settings',
+    path: '#',
+    title: 'Settings'
+  },
+  {
+    component: OriginalApp,
+    exact: true,
+    label: 'Original App',
+    path: '/OriginalApp',
+    title: 'Original App',
   },
 ];
 

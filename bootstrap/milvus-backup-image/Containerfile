@@ -1,0 +1,16 @@
+FROM --platform=linux/amd64 registry.access.redhat.com/ubi9:latest
+ARG MILVUS_BACKUP_VERSION=v0.4.12
+
+USER 0
+
+RUN curl -LO https://github.com/zilliztech/milvus-backup/releases/download/${MILVUS_BACKUP_VERSION}/milvus-backup_Linux_x86_64.tar.gz && \
+    tar -zxvf milvus-backup_Linux_x86_64.tar.gz && \
+    mv milvus-backup /usr/local/bin/milvus-backup && \
+    rm -rf milvus-backup_Linux_x86_64.tar.gz && \
+    mkdir -p /var/log/milvus-backup && \
+    chown -R 1001:0 /var/log/milvus-backup && \
+    chmod -R g=u /var/log/milvus-backup
+
+USER 1001
+
+ENTRYPOINT ["/usr/local/bin/milvus-backup"]
