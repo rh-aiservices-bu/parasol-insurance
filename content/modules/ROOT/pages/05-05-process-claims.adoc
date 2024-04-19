@@ -88,17 +88,19 @@ image::05/05-PVC-settings.png[PVC settings]
 
 * Then press **Create**
 
-== Run the pipeline
-To run the pipeline, start by downloading the `process_claims.yaml` file locally. To do this, select the menu in the top left of the VSCode environment and navigate to *File -> Save As...*.
+== Import the pipeline
 
-[.bordershadow]
-image::05/05-download-process-yaml.png[download process claims yaml]
+To import the pipeline, start by downloading the `process_claims.yaml` file locally.
+Navigate to `parasol-insurance/lab-materials/05/05-05` to find it.
 
 
-Then go to your Data Science project and press Import Pipeline.
+// * To do this, Select the menu in the top left of the VSCode environment and navigate to *File -> Save As...*.
+// [.bordershadow]
+// image::05/05-download-process-yaml.png[download process claims yaml]
+// Then go to your Data Science project and press Import Pipeline.
 
 * Start by downloading the `process_claims.yaml` file locally to your laptop
-** In your VSCode Workbench, right click on the file, and select **Download**
+** In your VSCode Workbench, right-click on the file, and select **Download**
 ** Save the file somewhere on your laptop
 * Then go to the {rhoai} Dashboard
 * Select your Data Science project
@@ -116,6 +118,8 @@ image::05/05-import-pipeline.jpg[import pipeline]
 image::05/05-import-pipeline-highlighted.jpg[imported pipeline]
 
 * Click  **Import Pipeline** and you should see it appear under the pipelines section of your Project
+
+== Run the pipeline
 
 * Now go into the settings at the right side
 * Click **Create Run** to create a new run of the pipeline you just added
