@@ -39,6 +39,9 @@ def download_images(claim_id):
     
     downloaded_images = []
     failed_downloads = []
+
+    if not images:
+        return None
     
     for image in images:
         image_name = image["image_name"]
@@ -88,6 +91,9 @@ def detect_objects(claim_id = None):
     claim_id = claim_id or int(os.environ.get("claim_id"))
     
     downloaded_images = download_images(claim_id)
+    if not downloaded_images:
+        print(f"skipping claim {claim_id} as there were no images attached")
+        return
     processed_images = process_images(downloaded_images)
     upload_images(claim_id, processed_images)
 
