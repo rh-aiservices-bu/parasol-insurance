@@ -145,7 +145,7 @@ Run once immediately after creation
 [.console-input]
 [source, text]
 [subs=attributes+]
-3
+0
 ** detection_endpoint:
 [.lines_space]
 [.console-input]
@@ -160,7 +160,7 @@ This is the same route to the object detection endpoint that was used earlier in
 [.bordershadow]
 image::05/05-run-settings-create-pipeline.png[run settings]
 
-* Note that by changing claim_id you can change which claim to process. If you set it to 0 it will process all unprocessed claims
+* Note that by changing claim_id you can change which claim to process. We set it to 0 to process all unprocessed claims
 
 * Click **Create** and watch it run
 +
@@ -170,12 +170,12 @@ image::05/05-process-claims.jpg[process]
 == Check the results
 
 * After the pipeline has finished running, you can go to the app and take a look at the claims
-* You will see that claim 3 is now processed
+* You will now see that all the claims are processed
 +
 [.bordershadow]
 image::05/05-process-claim3-app.jpg[claim3processed]
 
-* Click on claim3
+* Click on the last claim
 * Instead of just a long body, you will now see a summary, a location field, an accident time field, and a sentiment field
 * You can also see that we have new image(s) which have bounding boxes where the damage is
 +
