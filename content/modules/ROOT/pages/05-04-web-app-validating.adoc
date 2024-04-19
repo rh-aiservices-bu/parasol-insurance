@@ -3,25 +3,45 @@ include::_attributes.adoc[]
 
 == Original App
 
-The first item menu on the left, Original App, gives a view of what the older application used at {company-name} looks like. You can navigate each claim (click on tabs 'Claim 1', 'Claim 2' and 'Claim 3') and see that the interface was very crude, with a simple copy of the originally received email with the pictures that were attached to it.
+What you see when you first connect to the application is the new version.
+
+But to see where we are coming from, let's start by navigating to the original version and see what it looked like. Click on the **Original App** menu on the left.
+
+[.bordershadow]
+image::05/original-app-link.png[]
+
+The Original App gives a view of what the older application used at {company-name} looks like. You can navigate each claim (click on tabs 'Claim 1', 'Claim 2' and 'Claim 3') and see that the interface was very crude, with a simple copy of the originally received email with the pictures that were attached to it.
 
 [.bordershadow]
 image::05/original-app-1.png[]
-[.bordershadow]
-image::05/original-app-2.png[]
 
 == Prototype App
 
-The second item menu on the left, New App, gives a view of what the prototype of the new application looks like.
+The Prototype App is the first version of the new application that we built to show to the board. Of course, not all features are implemented in this prototype, but it was enough to show the potential of the new application to help with claim processing.
+
+Click on the third item from menu on the left, Claims.
 
 [.bordershadow]
-image::05/05-new-app-claims.jpg[]
+image::05/claims-link.png[]
 
-You can navigate each claim (click the subject line) and see that the interface is much more user friendly, with a nice interface to navigate the claim and see the pictures that were attached to it.
+You now have a list of all the claims that have been received by the application. You can navigate each claim (click the subject line) and see that the interface is much more user friendly, with a nice interface to navigate the claim and see the pictures that were attached to it.
+
+[.bordershadow]
+image::05/new-app-claims.png[]
 
 Moreover, for the claims that have been processed, you can see the summary of this claim as well as the customer sentiment analysis, the location and time of the event that have been extracted from the claim, and the pictures that have been processed by the AI.
 
 [.bordershadow]
 image::05/new-app-1.png[]
+
+You also now have access to an assistant that can help you with the claim processing. Open the assistant by clicking on the 'Chat icon' at the bottom right of an opened claim.
+
+[.bordershadow]
+image::05/new-app-chat-icon.png[]
+
+The assistant will open and you can ask it questions about the claim. As we have seen in the RAG notebook, the assistant can rely on some documentation to answer your questions. For example, on claim **CLM202401** Try with: "Did Daniel have the right to pass at the red light?".
+
+[.bordershadow]
+image::05/new-app-chat.png[]
 
 This is still obviously a very simple and crude application, but remember that this was a prototype. And it was enough to show the potential of an AI-Enhanced application to the board, and convince them to invest in the project.
