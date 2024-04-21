@@ -21,6 +21,7 @@ Backend
 bgd
 bordershadow
 bugfix
+california
 CarImage
 cd
 centric
@@ -31,6 +32,7 @@ ChatOps
 Chris
 claimdb
 CLI
+CLM
 cls
 CMD
 config
@@ -51,6 +53,7 @@ diag
 dir
 diy
 DIY
+dmv
 dotenv
 drawio
 ds
@@ -60,6 +63,7 @@ dvh
 eCommerce
 elyra
 Elyra
+Embeddings
 eng
 env
 EOF
@@ -71,6 +75,8 @@ EXAMPLEs
 FastAPI
 ffdrf
 fi
+flant
+FlanT
 formatter
 fromarray
 frontend
@@ -84,6 +90,7 @@ gitignore
 gitops
 GitOps
 Globex
+GPUs
 Grafana
 Granafa
 Granger
@@ -129,6 +136,8 @@ Lundberg
 LWBS
 mAP
 md
+milvus
+Milvus
 minio
 Minio
 MinIO
@@ -239,6 +248,7 @@ un
 unopinionated
 url
 userX
+vectordb
 venv
 vscode
 VSCode
