@@ -27,6 +27,6 @@ cd frontend; npm install
 cd ../..
 ./start-dev.sh
 ```
-Frontend web app will open on `localhost:9000`, backend on `localhost:5000`.
+Frontend web app will open on `0.0.0.0:8006`, backend on `0.0.0.0:8005`.
 
 Open the app, click on a claim, click on the chat app, and start asking questions. The context of the claim is sent to the LLM along with your Query, and the response is shown in the chat (it may take time depending on your machine's performance).
