@@ -14,13 +14,14 @@ interface ImageCarouselProps {
 
 const ImageCarousel: React.FunctionComponent<ImageCarouselProps> = ({ images }) => {
     const transformedImages = images.map(image => ({
-        original: config.backend_api_url + "/images/" + image.image_key,
-        thumbnail: config.backend_api_url + "/images/" + image.image_key,
+        original: "/images/" + image.image_key,
+        thumbnail: "/images/" + image.image_key,
         thumbnailClass: "image-gallery-thumbnail",
         originalClass: "image-gallery-original",
         originalAlt: image.image_key,
         thumbnailAlt: image.image_key,
     }));
+    console.log("transformed images: " + transformedImages);
     return (
         <ImageGallery items={transformedImages} />
     );

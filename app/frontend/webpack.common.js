@@ -76,7 +76,7 @@ module.exports = (env) => {
           include: [
             path.resolve(__dirname, 'src/app/assets/images'),
           ],
-          use: 
+          use:
             {
               loader: 'file-loader',
               options: {

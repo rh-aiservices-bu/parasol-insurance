@@ -21,6 +21,11 @@ const ClaimDetail: React.FunctionComponent<ClaimProps> = () => {
   React.useEffect(() => {
     axios.get(config.backend_api_url + `/db/claims/${claim_id}`)
       .then((response) => {
+        response.data.original_images = [{image_name: `images/original_car${claim_id}.jpg`, image_key: `src/app/assets/images/original_car${claim_id}.jpg`, claim_id: `${claim_id}`}];
+        response.data.processed_images = [{image_name: `images/car${claim_id}-processed.jpg`, image_key: `src/app/assets/images/car${claim_id}-processed.jpg`, claim_id: `${claim_id}`}];
+        //image_name, image_key, claim_id
+        console.log(`images for ${claim_id}`);
+        console.log(response.data);
         setClaim(response.data);
       })
       .catch(error => {

@@ -1,8 +1,0 @@
-<s>[INST] <<SYS>>
-Is the predominant sentiment of the customer in the following text positive, negative, or neutral?
-Respond in one word: Positive, Negative, or Neutral.
-
-Text:
-<</SYS>>
-{car_claim}
-[/INST]

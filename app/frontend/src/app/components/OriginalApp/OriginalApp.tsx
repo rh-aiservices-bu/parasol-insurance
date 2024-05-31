@@ -3,6 +3,20 @@ import { Page, PageSection, TextContent, Text, TextVariants, Title, Tabs, Tab } 
 import car1 from '@app/assets/images/car1.jpg';
 import car2 from '@app/assets/images/car2.jpg';
 import car3 from '@app/assets/images/car3.jpg';
+import ocar0 from '@app/assets/images/original_car0.jpg';
+import ocar1 from '@app/assets/images/original_car1.jpg';
+import ocar2 from '@app/assets/images/original_car2.jpg';
+import ocar3 from '@app/assets/images/original_car3.jpg';
+import ocar4 from '@app/assets/images/original_car4.jpg';
+import ocar5 from '@app/assets/images/original_car5.jpg';
+import ocar6 from '@app/assets/images/original_car6.jpg';
+import pcar0 from '@app/assets/images/car0-processed.jpg';
+import pcar1 from '@app/assets/images/car1-processed.jpg';
+import pcar2 from '@app/assets/images/car2-processed.jpg';
+import pcar3 from '@app/assets/images/car3-processed.jpg';
+import pcar4 from '@app/assets/images/car4-processed.jpg';
+import pcar5 from '@app/assets/images/car5-processed.jpg';
+import pcar6 from '@app/assets/images/car6-processed.jpg';
 
 const OriginalApp: React.FunctionComponent = () => {
   const [activeTabKey, setActiveTabKey] = React.useState<string | number>(0);
@@ -179,6 +193,20 @@ const OriginalApp: React.FunctionComponent = () => {
               <Text component={TextVariants.h3}>Attached images:</Text>
             </TextContent>
             <img src={car3} width={250} />
+            <img src={ocar0} width={250} />
+            <img src={ocar1} width={250} />
+            <img src={ocar2} width={250} />
+            <img src={ocar3} width={250} />
+            <img src={ocar4} width={250} />
+            <img src={ocar5} width={250} />
+            <img src={ocar6} width={250} />
+            <img src={pcar0} width={250} />
+            <img src={pcar1} width={250} />
+            <img src={pcar2} width={250} />
+            <img src={pcar3} width={250} />
+            <img src={pcar4} width={250} />
+            <img src={pcar5} width={250} />
+            <img src={pcar6} width={250} />
           </Tab>
         </Tabs>
       </PageSection>

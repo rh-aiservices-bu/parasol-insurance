@@ -21,7 +21,7 @@
     "build:backend": "cd ./backend && export PATH=$PATH:/opt/app-root/src/.local/bin && python3 -m ensurepip --upgrade && pip3 install -r requirements.txt",
     "build:frontend": "cd ./frontend && npm run build && cp -r ./dist/* ../backend/public",
     "dev": "run-p -l dev:*",
-    "dev:backend": "cd ./backend && source ./.venv/bin/activate && nodemon app.py dev",
+    "dev:backend": "cd ./backend && quarkus dev",
     "dev:frontend": "cd ./frontend && npm run start:dev",
     "format": "prettier --write \"backend/**/*.ts\" \"frontend/**/*.ts\" \"frontend/**/*.tsx\"",
     "make": "make",
@@ -31,7 +31,6 @@
     "make:undeploy": "make undeploy",
     "make:push": "make push",
     "postinstall": "run-p postinstall:*",
-    "postinstall:backend": "echo \"backend venv needs to be activated\"",
     "postinstall:frontend": "cd ./frontend && npm install",
     "start": "run-p start:*",
     "start:backend": "cd ./backend && python3 app.py",
@@ -51,6 +50,7 @@
     "dotenv": "^8.2.0",
     "dotenv-expand": "^5.1.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "run-p": "^0.0.0"
   }
 }

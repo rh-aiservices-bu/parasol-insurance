@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-#
-
-echo "Removing old site..."
-rm -rf ./content/www/*
-echo "Old site removed"

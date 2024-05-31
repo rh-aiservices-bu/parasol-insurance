@@ -1,9 +1,0 @@
-{
-    "display_name": "Datascience with Python 3.11 (CentOS Stream 9)",
-    "metadata": {
-        "tags": [],
-        "display_name": "Datascience with Python 3.11 (CentOS Stream 9)",
-        "image_name": "quay.io/opendatahub-contrib/workbench-images:runtime-datascience-c9s-py311_RELEASE_latest"
-    },
-    "schema_name": "runtime-image"
-}

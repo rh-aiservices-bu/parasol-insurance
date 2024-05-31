@@ -1,6 +1,0 @@
--- SCHEMA: claims
-
--- DROP SCHEMA IF EXISTS claims ;
-
-CREATE SCHEMA IF NOT EXISTS claims
-    AUTHORIZATION claimdb;
