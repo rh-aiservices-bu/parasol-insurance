@@ -17,6 +17,10 @@ You can change the coordinates (host/port and other stuff) for the LLM and backe
 
 ## Running
 
+First, get your inference server up and running. For example, with [InstructLab](https://github.com/instructlab/instructlab), the default after running `ilab serve` is that the server is listening on `localhost:8000`. This is the default for this app as well.
+
+Then:
+
 ```
 cd app; npm install
 cd frontend; npm install
@@ -25,3 +29,4 @@ cd ../..
 ```
 Frontend web app will open on `localhost:9000`, backend on `localhost:5000`.
 
+Open the app, click on a claim, click on the chat app, and start asking questions. The context of the claim is sent to the LLM along with your Query, and the response is shown in the chat (it may take time depending on your machine's performance).
