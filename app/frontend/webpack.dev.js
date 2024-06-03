@@ -13,6 +13,7 @@ module.exports = merge(common('development'), {
   devServer: {
     host: HOST,
     port: PORT,
+    allowedHosts: 'all',
     historyApiFallback: true,
     open: true,
     static: {
