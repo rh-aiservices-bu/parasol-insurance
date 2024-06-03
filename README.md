@@ -36,6 +36,12 @@ sdk install maven
 
 edit app/frontend/webpack.dev.js and insert `    allowedHosts: 'all',` after the line `     historyApiFallback: true,`
 
+edit the confix.tsx file for the front end and change localhost to the hostname of your system
+
+```
+vi ~/code/parasol-insurance/app/frontend/src/app/config.tsx
+```
+
 After this you can follow the instructions in the **Running** section.
 
 
