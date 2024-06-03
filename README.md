@@ -11,6 +11,41 @@ A [Quarkus](https://quarkus.io) + [React](https://react.dev/) AI app for managin
 - Node.js 21 or later -- Get it https://nodejs.org/en/download/package-manager here) or install using your favorite package manager.
 - An OpenAI-capable LLM inference server. Get one here with [InstructLab](https://github.com/instructlab/instructlab)!
 
+## To Configure on InstructLab instance of Red Hat Demo Platform
+
+
+Install Node.js
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh  > install.sh
+chmod +x install.sh
+./install.sh
+```
+
+Install zip
+```
+sudo dnf install zip -y
+```
+
+Install sdkman in order to get newer versions of Java and Maven. Then install Quarkus, Java, and Maven.
+```
+curl -s "https://get.sdkman.io" | bash
+sdk install quarkus
+sdk install java 22.0.1-tem
+sdk install maven
+```
+
+edit app/frontend/webpack.dev.js and insert `    allowedHosts: 'all',` after the line `     historyApiFallback: true,`
+
+edit the confix.tsx file for the front end and change localhost to the hostname of your system
+
+```
+vi ~/code/parasol-insurance/app/frontend/src/app/config.tsx
+```
+
+After this you can follow the instructions in the **Running** section.
+
+
+
 ## Configuration
 
 You can change the coordinates (host/port and other stuff) for the LLM and backend in `app/backend/src/main/resources/application.properties`.
