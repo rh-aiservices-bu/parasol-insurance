@@ -23,9 +23,8 @@ public class ClaimWebsocketChatBot {
     }
     @OnTextMessage
     public Multi<ClaimBotQueryResponse> onMessage(ClaimBotQuery query) {
-        return bot.chat(query.claim(), query.query()).map(resp -> {
-            return new ClaimBotQueryResponse("token", resp, "");
-        });
+        return bot.chat(query.claim(), query.query())
+          .map(resp -> new ClaimBotQueryResponse("token", resp, ""));
     }
 }
 
