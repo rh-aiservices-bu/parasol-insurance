@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
 import java.time.Duration;
+import java.util.Optional;
 
 import jakarta.ws.rs.core.Response.Status;
 
@@ -15,6 +16,7 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.junit.TestProfile;
 
 import com.microsoft.playwright.BrowserContext;
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Response;
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
@@ -72,9 +74,22 @@ public class ClaimsDetailPageTests {
 			.isVisible();
 		sendQueryButton.click();
 
+		// Wait for the answer text to have at least one piece of text in the answer
 		await()
 			.atMost(Duration.ofSeconds(30))
-			.until(() -> page.locator(".chat-answer-text").count() == 2);
+			.until(() -> getChatResponseText(page).isPresent());
+
+		assertThat(getChatResponseText(page))
+			.isNotNull()
+			.isPresent();
+	}
+
+	private Optional<String> getChatResponseText(Page page) {
+		return page.locator(".chat-answer-text").all().stream()
+			.map(Locator::textContent)
+			.map(String::trim)
+			.filter(answer -> !"Hi! I am Parasol Assistant. How can I help you today?".equals(answer))
+			.findFirst();
 	}
 
 	private Page loadPage(Claim claim) {
