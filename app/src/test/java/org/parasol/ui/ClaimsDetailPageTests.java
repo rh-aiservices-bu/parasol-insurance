@@ -89,7 +89,9 @@ public class ClaimsDetailPageTests {
 			.map(Locator::textContent)
 			.map(String::trim)
 			.filter(answer -> !"Hi! I am Parasol Assistant. How can I help you today?".equals(answer))
-			.findFirst();
+			.findFirst()
+			.map(String::trim)
+			.filter(s -> !s.isEmpty());
 	}
 
 	private Page loadPage(Claim claim) {
