@@ -1,41 +1,42 @@
 INSERT INTO claim(id, claim_number,category,policy_number,client_name,subject, body, summary, location, claim_time, sentiment)
-    VALUES (1, 'CLM202401', 'Multiple vehicle', 'AC-987654321', 'Sarah Turner','Claim for Recent Car Accident - Policy Number: AC-987654321', '
+    VALUES (1, 'CLM195501', 'Multiple vehicle', 'AC-987654321', 'Marty McFly','Claim for Recent Car Accident - Policy Number: AC-987654321', '
     Dear Parasol Insurance,
 
-    I hope this email finds you well. My name is Sarah Turner, and I am writing to file a claim for a recent car accident that occurred on January 2nd, 2024, at approximately 3:30 PM. My policy number is AC-987654321.
+    I hope this email finds you well. My name is Marty McFly, and I am writing to file a claim for a recent car accident that occurred on January 2nd, 1955, at approximately 3:30 PM. My policy number is AC-987654321.
 
-    The accident took place at the intersection of Birch Street and Willow Avenue in the city of Evergreen. I was driving my vehicle, a black Toyota Camry with license plate number DEF-456, heading south on Birch Street. At the intersection, the traffic signal was green, and I proceeded through the intersection.
+    The accident took place at the intersection of Colima Road and Azusa Avenue in the city of Hill Valley. I was driving my vehicle, a silver Delorean DMC-12 with license plate number OUTA-TIME, heading south on Colima Road at approximately 88 mph. At the intersection, the traffic signal was green, and I proceeded through the intersection.
 
-    At the same time, another vehicle, a blue Chevrolet Traverse with license plate number GHI-789, was traveling west on Willow Avenue. Unfortunately, the driver failed to stop at the red traffic signal, resulting in a collision with the front passenger side of my vehicle.
+    At the same time, another vehicle, a blue Type 2 Volkswagen Bus with license plate number BIF-RULZ, was traveling west on Azusa Avenue. Unfortunately, the driver failed to stop at the red traffic signal, resulting in a collision with the front passenger side of my vehicle.
 
-    The impact caused significant damage to both vehicles. The front bumper and right headlight of my Toyota Camry are extensively damaged, and there are also damages to the front driver''s side of the Chevrolet Traverse. Fortunately, no injuries were sustained during the accident, and both drivers were able to move their vehicles to the side of the road.
+    The impact caused significant damage to both vehicles. The front bumper and right headlight of my Delorean are extensively damaged, and the collision cause irreparable damage to the flux capacitor and driver''s side gull-wing door mechanism. There are also damages to the front driver''s side of the Volkswagen Bus. Fortunately, no injuries were sustained during the accident, and both drivers were able to move their vehicles to the side of the road.
 
-    I promptly exchanged information with the other driver, Mr. Daniel Reynolds, including our names, phone numbers, insurance details, and a brief description of the accident. Additionally, I took photos of the accident scene, including the damages to both vehicles and the position of the traffic signal.
+    I promptly exchanged information with the other driver, Mr. Biff Tanner, including our names, phone numbers, insurance details, and a brief description of the accident. Additionally, I took photos of the accident scene, including the damages to both vehicles and the position of the traffic signal.
 
-    I have attached the necessary documents to this email, including the photos, a copy of the police report filed at the Evergreen Police Department, and the estimate for the repair costs from Evergreen Auto Repair, where I have taken my vehicle for assessment.
+    I have attached the necessary documents to this email, including the photos, a copy of the police report filed at the Hill Valley Police Department, and the estimate for the repair costs from Hill Valley Auto Repair, where I have taken my vehicle for assessment.
 
-    I kindly request your prompt attention to this matter and would appreciate any guidance on the next steps in the claims process. If you require any additional information or documentation, please do not hesitate to contact me at (555) 123-4567 or sarah.turner@email.com.
+    I kindly request your prompt attention to this matter and would appreciate any guidance on the next steps in the claims process. If you require any additional information or documentation, please do not hesitate to contact me at (916) 555-4385 or marty.mcfly@email.com.
 
     Thank you for your assistance, and I look forward to a swift resolution of this claim.
 
     Sincerely,
 
-    Sarah Turner
-    123 Oak Street
-    Evergreen, CA 98765
-    (555) 123-4567
-    sarah.turner@email.com
+
+    Marty McFly
+    9303 Lyon Drive
+    Hill Valley, CA 95420
+    (916) 555-4385
+    marty.mcfly@email.com
     ',
     '
-    On January 2, 2024, at around 3:30 PM, a car accident occurred at the intersection of Birch Street and Willow Avenue in Evergreen. The involved parties were Sarah Turner, driving a black Toyota Camry (DEF-456), and Daniel Reynolds in a blue Chevrolet Traverse (GHI-789).
+    On January 2nd, 1955, at around 3:30 PM, a car accident occurred at the intersection of Colima Road and Azusa Avenue in Hill Vallet. The involved parties were Marty McFly, driving a silver Delorean DMC-12 (OUTA-TIME), and Biff Tanner in a blue Type 2 Volkswagen Bus (BIF-RULZ).
 
-    Sarah was heading south on Birch Street when Daniel failed to stop at the red traffic signal on Willow Avenue, causing a collision with Sarah''s vehicle. Both drivers exchanged information and took photos of the accident scene, which included damages to the front passenger side of Sarah''s Toyota Camry and the front driver''s side of Daniel''s Chevrolet Traverse. No injuries were reported.
+    Marty was heading south on Colima Road when Biff failed to stop at the red traffic signal on Asuza Avenue, causing a collision with Marty''s vehicle. Both drivers exchanged information and took photos of the accident scene, which included damages to the front driver and passenger side of Marty''s Delorean DMC-12 and the front driver''s side of Biff''s Volkswagen Bus. No injuries were reported.
 
-    Sarah has attached necessary documents, such as photos, a police report, and an estimate for repair costs, to her email. She requests prompt attention to the claim and is available at (555) 123-4567 or sarah.turner@email.com for any additional information or documentation needed.
+    Marty has attached necessary documents, such as photos, a police report, and an estimate for repair costs, to his email. He requests prompt attention to the claim and is available at (916) 555-4385 or marty.mcfly@email.com for any additional information or documentation needed.
     ',
-    'Intersection of Birch Street and Willow Avenue in the city of Evergreen',
-    'January 2nd, 2024, at approximately 3:30 PM',
-    'The sender, Sarah Turner, expresses a polite and professional tone in her email. She is respectful and detailed in her description of the car accident and the subsequent steps she took to file a claim. She requests prompt attention to the matter and provides all necessary documentation. Overall, her sentiment is one of being proactive and cooperative in the claims process.'
+    'Intersection of Colima Road and Asuza Avenue in the city of Hill Valley',
+    'January 2nd, 1955, at approximately 3:30 PM',
+    'The sender, Marty McFly, expresses a polite and professional tone in his email. He is respectful and detailed in his description of the car accident and the subsequent steps he took to file a claim. He requests prompt attention to the matter and provides all necessary documentation. Overall, his sentiment is one of being proactive and cooperative in the claims process.'
     );
 
 INSERT INTO claim(id, claim_number,category,policy_number,client_name,subject, body, summary, location, claim_time, sentiment)
