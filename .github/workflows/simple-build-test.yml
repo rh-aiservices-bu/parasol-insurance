@@ -35,7 +35,7 @@ jobs:
         image: ollama/ollama
         ports:
           - 11434:11434
-    name: "build-test-${{ matrix.java }}"
+    name: "jvm-build-test-${{ matrix.java }}"
     steps:
       - uses: actions/checkout@v4
 
