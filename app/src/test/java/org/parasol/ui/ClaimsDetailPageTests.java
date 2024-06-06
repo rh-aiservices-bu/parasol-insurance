@@ -90,7 +90,6 @@ public class ClaimsDetailPageTests {
 			.map(String::trim)
 			.filter(answer -> !"Hi! I am Parasol Assistant. How can I help you today?".equals(answer))
 			.findFirst()
-			.map(String::trim)
 			.filter(s -> !s.isEmpty());
 	}
 
