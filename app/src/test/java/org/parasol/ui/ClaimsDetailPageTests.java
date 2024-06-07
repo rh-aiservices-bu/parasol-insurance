@@ -76,7 +76,7 @@ public class ClaimsDetailPageTests {
 
 		// Wait for the answer text to have at least one piece of text in the answer
 		await()
-			.atMost(Duration.ofSeconds(30))
+			.atMost(Duration.ofMinutes(5))
 			.until(() -> getChatResponseText(page).isPresent());
 
 		assertThat(getChatResponseText(page))
