@@ -1,16 +1,20 @@
 package org.parasol.model;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
-@Entity
-public class Claim extends PanacheEntity {
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
-    public String claim_number;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+@Entity
+@JsonNaming(SnakeCaseStrategy.class)
+public class Claim extends PanacheEntity {
+    public String claimNumber;
     public String category;
-    public String policy_number;
-    public String client_name;
+    public String policyNumber;
+    public String clientName;
     public String subject;
     @Column(length = 5000)
     public String body;

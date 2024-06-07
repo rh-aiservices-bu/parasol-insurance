@@ -1,0 +1,55 @@
+name: Simple build and test
+
+on:
+  push:
+    branches:
+      - dev
+    paths-ignore:
+      - '**/*.md'
+      - '.github/dependabot.yml'
+      - '.github/workflows/dependabot-automerge.yml'
+  pull_request:
+    branches:
+      - dev
+    paths-ignore:
+      - '**/*.md'
+      - '.github/dependabot.yml'
+      - '.github/workflows/dependabot-automerge.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: "workflow = ${{ github.workflow }}, ref = ${{ github.event.ref }}, pr = ${{ github.event.pull_request.id }}"
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  jvm-build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java:
+          - '17'
+          - '21'
+    services:
+      ollama:
+        image: ollama/ollama
+        ports:
+          - 11434:11434
+    name: "jvm-build-test-${{ matrix.java }}"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java ${{ matrix.java }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: temurin
+          cache: maven
+
+      - name: "build-test-jvm-java${{ matrix.java }}"
+        working-directory: app
+        run: |
+          ./mvnw -B clean verify \
+            -Dquarkus.langchain4j.chat-model.provider=ollama \
+            -Dquarkus.http.host=0.0.0.0 \
+            -Dmaven.compiler.release=${{ matrix.java }}
