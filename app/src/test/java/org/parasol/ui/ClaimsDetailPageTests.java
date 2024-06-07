@@ -61,7 +61,7 @@ public class ClaimsDetailPageTests {
 		PlaywrightAssertions.assertThat(page.getByText("Hi! I am Parasol Assistant. How can I help you today?"))
 			.isVisible();
 
-		assertThat(page.locator(".chat-answer-text").count())
+		assertThat(getChatResponseLocator(page).count())
 			.isOne();
 
 		var askMeAnythingField = page.getByPlaceholder("Ask me anything...");
@@ -82,15 +82,22 @@ public class ClaimsDetailPageTests {
 		assertThat(getChatResponseText(page))
 			.isNotNull()
 			.isPresent();
+
+		assertThat(getChatResponseLocator(page).count())
+			.isGreaterThanOrEqualTo(2);
 	}
 
-	private Optional<String> getChatResponseText(Page page) {
-		return page.locator(".chat-answer-text").all().stream()
+	private static Optional<String> getChatResponseText(Page page) {
+		return getChatResponseLocator(page).all().stream()
 			.map(Locator::textContent)
 			.map(String::trim)
 			.filter(answer -> !"Hi! I am Parasol Assistant. How can I help you today?".equals(answer))
 			.findFirst()
 			.filter(s -> !s.isEmpty());
+	}
+
+	private static Locator getChatResponseLocator(Page page) {
+		return page.locator(".chat-answer-text");
 	}
 
 	private Page loadPage(Claim claim) {
