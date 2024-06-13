@@ -1,4 +1,4 @@
-# code-with-quarkus
+# Parasol Frontend
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
