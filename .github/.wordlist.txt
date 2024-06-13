@@ -1,4 +1,8 @@
 adoc
+adoptium
+Adoptium
+Apache
+apache
 aiservices
 amazonaws
 Anbalagan
@@ -26,6 +30,7 @@ CarImage
 cd
 centric
 cephfs
+cgi
 Chase
 ChatGPT
 ChatOps
@@ -72,6 +77,8 @@ Erwan
 eslint
 Eventing
 EXAMPLEs
+executables
+executable
 FastAPI
 ffdrf
 fi
@@ -91,6 +98,7 @@ gitops
 GitOps
 Globex
 GPUs
+GraalVM
 Grafana
 Granafa
 Granger
@@ -114,6 +122,8 @@ Immage
 InfluxDB
 Inlining
 insecureEdgeTerminationPolicy
+InstructLab
+instructlab
 io
 ipynb
 jpg
@@ -160,6 +170,8 @@ ods
 ojsonpath
 ok
 onnx
+openai
+OpenAI
 opencv
 OpenCV
 openshift
@@ -194,6 +206,8 @@ py
 pytorch
 Pytorch
 quantized
+Quarkus
+quarkus
 rbac
 README
 readonly
@@ -214,6 +228,7 @@ roboflow
 Roboflow
 RoboFlow
 rollout
+runnable
 runtime
 RWX
 selfHeal
@@ -243,6 +258,7 @@ TODO
 txt
 TypeScript
 UAT
+über
 UI
 un
 unopinionated
