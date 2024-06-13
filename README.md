@@ -1,6 +1,6 @@
 # Parasol Insurance
 
-A [Quarkus](https://quarkus.io) + [React](https://react.dev/) AI app for managing ficticious insurance claims.
+A [Quarkus](https://quarkus.io) + [React](https://react.dev/) AI app for managing fictitious insurance claims. Uses [Quarkus Quinoa](https://docs.quarkiverse.io/quarkus-quinoa/dev/index.html) under the covers.
 
 ![App](app/frontend/src/app/assets/images/sample.png)
 
@@ -8,7 +8,7 @@ A [Quarkus](https://quarkus.io) + [React](https://react.dev/) AI app for managin
 
 - Java 17 or later -- Get it https://adoptium.net/  or install using your favorite package manager.
 - Maven 3.9.6 or later -- Get it https://maven.apache.org/download.cgi or install using your favorite package manager.
-- Node.js 21 or later -- Get it https://nodejs.org/en/download/package-manager here) or install using your favorite package manager.
+    - Or just use the embedded [Maven Wrapper](https://maven.apache.org/wrapper)
 - An OpenAI-capable LLM inference server. Get one here with [InstructLab](https://github.com/instructlab/instructlab)!
 
 ## To Configure on InstructLab instance of Red Hat Demo Platform
@@ -29,11 +29,9 @@ First, get your inference server up and running. For example, with [InstructLab]
 Then:
 
 ```
-cd app; npm install
-cd frontend; npm install
-cd ../..
-./start-dev.sh
+cd app;
+./mvnw clean quarkus:dev
 ```
-Frontend web app will open on `0.0.0.0:8006`, backend on `0.0.0.0:8005`.
+App will open on `http://0.0.0.0:8005`.
 
 Open the app, click on a claim, click on the chat app, and start asking questions. The context of the claim is sent to the LLM along with your Query, and the response is shown in the chat (it may take time depending on your machine's performance).
