@@ -12,6 +12,7 @@ This [link](https://demo.redhat.com/catalog?item=babylon-catalog-prod/sandboxes-
 
     ```bash
     BR="rhoai-2-10"
+    BR="rhoai-2-10-test-dspa"
     oc -n openshift-gitops get applicationset
 
     echo "   {argocd} UI : https://$(oc -n openshift-gitops \
@@ -35,6 +36,20 @@ This [link](https://demo.redhat.com/catalog?item=babylon-catalog-prod/sandboxes-
     oc -n openshift-gitops get applicationset bootstrap -o json | \
         jq ".spec.generators[0].list.elements |= map(.targetRevision = \"$BR\")" | \
         oc -n openshift-gitops apply -f -
+
+    # conflicts in operator groups
+    oc -n redhat-ods-operator delete OperatorGroup --all
+
+
+    ## delete and re-create all the user projects
+    for ns in $(oc get namespaces -o jsonpath="{.items[*].metadata.name}" \
+        | tr ' ' '\n' \
+        | grep '^user') ; do
+        echo $ns
+        oc delete ns $ns
+    done
+
+    ## trigger a sync of the project creation
 
     ```
 
