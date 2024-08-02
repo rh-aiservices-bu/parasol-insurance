@@ -192,7 +192,7 @@ spec:
           metadata:
             finalizers:
             - datasciencepipelinesapplications.opendatahub.io/finalizer
-            name: pipelines-definition
+            name: dspa
             namespace: $USER_PROJECT
           spec:
             apiServer:
@@ -208,21 +208,27 @@ spec:
               stripEOF: true
               terminateStatus: Cancelled
               trackArtifacts: true
+              caBundleFileMountPath: ''
+              caBundleFileName: ''
             database:
               mariaDB:
                 deploy: true
                 pipelineDBName: mlpipeline
                 pvcSize: 10Gi
                 username: mlpipeline
+            dspVersion: v2
             objectStorage:
               externalStorage:
+                basePath: ''
                 bucket: $USER_NAME
                 host: minio.ic-shared-minio.svc.cluster.local:9000
                 port: ''
+                region: us
                 s3CredentialsSecret:
                   accessKey: AWS_ACCESS_KEY_ID
                   secretKey: AWS_SECRET_ACCESS_KEY
                   secretName: aws-connection-shared-minio---pipelines
+                  secretName: dashboard-dspa-secret
                 scheme: http
                 secure: false
             persistenceAgent:
@@ -521,6 +527,6 @@ spec:
           EOF
 
           sleep 20
-          
+
           done
       restartPolicy: Never
