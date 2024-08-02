@@ -1,0 +1,8 @@
+---
+- op: replace
+  path: /spec/installPlanApproval
+  # value: Automatic
+  value: Manual
+- op: replace
+  path: /spec/channel
+  value: stable-2.10

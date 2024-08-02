@@ -47,6 +47,11 @@ spec:
         repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
         targetRevision: dev
         path: bootstrap/ic-shared-app
+      - cluster: in-cluster
+        name: ic-rhoai
+        repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+        targetRevision: dev
+        path: bootstrap/ic-rhoai
   template:
     metadata:
       name: '{{name}}'

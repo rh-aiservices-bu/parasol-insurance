@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  component: ic-rhoai
+
+resources:
+  - https://github.com/redhat-cop/gitops-catalog/openshift-ai/operator/overlays/fast?ref=main
+
+patches:
+  - target:
+      kind: Subscription
+      name: rhods-operator
+    path: patch-channel.yaml
+
+
