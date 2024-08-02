@@ -1,3 +1,49 @@
+# Bootstrap info
+
+## how to book the environment.
+
+
+## how to configure the environment to use another branch
+
+1. change all the argo apps:
+
+    ```bash
+    BR="rhoai-2-10"
+    oc -n openshift-gitops get applicationset
+
+    echo "   {argocd} UI : https://$(oc -n openshift-gitops \
+         get route openshift-gitops-server \
+         -ojsonpath='{.status.ingress[0].host}')/ "
+
+    oc -n openshift-gitops get applicationset -o yaml > /tmp/parasol_apps.yaml
+    sed -i.back 's/main/rhoai\-2\-10/g' /tmp/parasol_apps.yaml
+    oc apply -f /tmp/parasol_apps.yaml
+
+
+    ```
+
+2. restart/update all the showroom pods
+
+    ```bash
+    #!/bin/bash
+
+    for ns in $(oc get namespaces -o jsonpath="{.items[*].metadata.name}" \
+        | tr ' ' '\n' \
+        | grep '^showroom') ; do
+        echo $ns
+        oc -n $ns scale deploy showroom --replicas=0
+        oc -n $ns patch deployment showroom  \
+            --type='json' \
+            -p='[{"op": "replace", "path": "/spec/template/spec/containers/1/env/1/value", "value": "rhoai-2-10"}]'
+        oc -n $ns scale deploy showroom --replicas=1
+    done
+
+    ```
+
+
+
+## older stuff
+
 manually
 
 ```bash
