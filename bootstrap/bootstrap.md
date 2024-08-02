@@ -2,6 +2,9 @@
 
 ## how to book the environment.
 
+This [link](https://demo.redhat.com/catalog?item=babylon-catalog-prod/sandboxes-gpte.openshift-ai-unleashed.prod&utm_source=webapp&utm_medium=share-link) in the demo system.
+
+
 
 ## how to configure the environment to use another branch
 
@@ -15,10 +18,23 @@
          get route openshift-gitops-server \
          -ojsonpath='{.status.ingress[0].host}')/ "
 
-    oc -n openshift-gitops get applicationset -o yaml > /tmp/parasol_apps.yaml
-    sed -i.back 's/main/rhoai\-2\-10/g' /tmp/parasol_apps.yaml
-    oc apply -f /tmp/parasol_apps.yaml
+    echo "   {argocd} admin pass : $(oc get secret openshift-gitops-cluster \
+        -n openshift-gitops \
+        -o jsonpath='{.data.admin\.password}' \
+        | base64 -d) "
 
+    echo "updating apps"
+
+    ## delete the apps
+    oc -n openshift-gitops delete applicationset bootstrap
+
+    ## re-apply from branch
+    oc apply -f https://raw.githubusercontent.com/rh-aiservices-bu/parasol-insurance/$BR/bootstrap/applicationset/applicationset-bootstrap.yaml
+
+    ## change branch in all apps
+    oc -n openshift-gitops get applicationset bootstrap -o json | \
+        jq ".spec.generators[0].list.elements |= map(.targetRevision = \"$BR\")" | \
+        oc -n openshift-gitops apply -f -
 
     ```
 
@@ -34,7 +50,7 @@
         oc -n $ns scale deploy showroom --replicas=0
         oc -n $ns patch deployment showroom  \
             --type='json' \
-            -p='[{"op": "replace", "path": "/spec/template/spec/containers/1/env/1/value", "value": "rhoai-2-10"}]'
+            -p="[{'op': 'replace', 'path': '/spec/template/spec/containers/1/env/1/value', 'value': \"$BR\"}]"
         oc -n $ns scale deploy showroom --replicas=1
     done
 
