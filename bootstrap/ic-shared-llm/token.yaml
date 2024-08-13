@@ -4,5 +4,5 @@ metadata:
   name: hftoken
   namespace: ic-shared-llm
 data:
-  token: aGZfV0ZhcVhUYmFBSmJEbmhjamhYYXRORmFteEtvaEdvU0tOTg==
+  token: aGZfUkhKeElqSElXcGJXb3NKVlJsa2VLQ2VVcmlxZ2JsS0VDRgo=
 type: Opaque
