@@ -34,8 +34,10 @@ def get_claims(claim_ids=None):
     claim_ids = claim_ids or int(os.environ.get("claim_id"))
     
     if not claim_ids:
+        logger.info("Getting unprocessed claims")
         claim_ids = get_unprocessed_claims()
     else:
+        logger.info(f"Using claim {claim_ids}")
         claim_ids = [claim_ids]
         
     with open('claims.json', 'w') as f:
