@@ -8,6 +8,10 @@ spec:
   - list:
       elements:
       - cluster: in-cluster
+        name: ic-rhoai-installation
+        repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+        targetRevision: dev
+      - cluster: in-cluster
         name: ic-shared-minio-app
         repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
         targetRevision: dev

@@ -1,0 +1,37 @@
+kind: DataScienceCluster
+apiVersion: datasciencecluster.opendatahub.io/v1
+metadata:
+  name: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  components:
+    codeflare:
+      devFlags: {}
+      managementState: Managed
+    dashboard:
+      devFlags: {}
+      managementState: Managed
+    datasciencepipelines:
+      devFlags: {}
+      managementState: Managed
+    kserve:
+      devFlags: {}
+      managementState: Managed
+      serving:
+        ingressGateway:
+          certificate:
+            type: OpenshiftDefaultIngress
+        managementState: Managed
+        name: knative-serving
+    modelmeshserving:
+      devFlags: {}
+      managementState: Managed
+    ray:
+      devFlags: {}
+      managementState: Managed
+    trustyai:
+      devFlags: {}
+      managementState: Removed
+    workbenches:
+      managementState: Managed
