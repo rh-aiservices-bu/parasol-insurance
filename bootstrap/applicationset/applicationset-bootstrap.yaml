@@ -10,7 +10,7 @@ spec:
           - cluster: in-cluster
             name: ic-rhoai-installation
             repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
-            targetRevision: fix/2.13-rhoai-bootstrap-gitops
+            targetRevision: dev
             path: bootstrap/ic-rhoai-installation
           - cluster: in-cluster
             name: ic-shared-minio-app
@@ -35,7 +35,7 @@ spec:
           - cluster: in-cluster
             name: ic-rhoai-configuration
             repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
-            targetRevision: fix/2.13-rhoai-bootstrap-gitops
+            targetRevision: dev
             path: bootstrap/ic-rhoai-configuration
           - cluster: in-cluster
             name: ic-user-projects
