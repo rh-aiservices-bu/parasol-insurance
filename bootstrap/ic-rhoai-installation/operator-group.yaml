@@ -3,3 +3,5 @@ kind: OperatorGroup
 metadata:
   name: rhods-operator-group
   namespace: redhat-ods-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"

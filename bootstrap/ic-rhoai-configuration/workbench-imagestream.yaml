@@ -6,22 +6,22 @@ metadata:
     opendatahub.io/notebook-image-desc: >-
       Jupyter notebook image with all the libraries needed for the OpenShift AI Insurance Claim Lab.
     opendatahub.io/notebook-image-name: CUSTOM - Insurance Claim Processing Lab Workbench
-    opendatahub.io/notebook-image-order: '01'
+    opendatahub.io/notebook-image-order: "01"
     opendatahub.io/notebook-image-url: >-
       https://github.com/rh-aiservices-bu/parasol-insurance/tree/main/bootstrap/workbench-image
-    opendatahub.io/recommended-accelerators: '[]'
+    opendatahub.io/recommended-accelerators: "[]"
     argocd.argoproj.io/sync-wave: "1"
   name: ic-workbench
   namespace: redhat-ods-applications
   labels:
     app.kubernetes.io/created-by: byon
-    opendatahub.io/dashboard: 'true'
-    opendatahub.io/notebook-image: 'true'
+    opendatahub.io/dashboard: "true"
+    opendatahub.io/notebook-image: "true"
 spec:
   lookupPolicy:
     local: true
   tags:
-    - name: '2.1.2'
+    - name: "2.1.2"
       annotations:
         opendatahub.io/notebook-python-dependencies: >-
           [{"name":"PyTorch","version":"2.2.2"},{"name":"Langchain","version":"0.1.12"},{"name":"Ultralytics","version":"8.1.47"},]

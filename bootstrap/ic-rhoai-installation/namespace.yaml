@@ -3,6 +3,7 @@ kind: Namespace
 metadata:
   annotations:
     openshift.io/display-name: "Red Hat OpenShift AI"
+    argocd.argoproj.io/sync-wave: "0"
   labels:
     openshift.io/cluster-monitoring: "true"
   name: redhat-ods-operator
