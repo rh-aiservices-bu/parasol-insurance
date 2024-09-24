@@ -1,9 +1,0 @@
-{
-    "display_name": "CUDA Datascience with Python 3.11 (CentOS Stream 9)",
-    "metadata": {
-        "tags": [],
-        "display_name": "CUDA Datascience with Python 3.11 (CentOS Stream 9)",
-        "image_name": "quay.io/opendatahub-contrib/workbench-images:cuda-runtime-datascience-c9s-py39_RELEASE_latest"
-    },
-    "schema_name": "runtime-image"
-}

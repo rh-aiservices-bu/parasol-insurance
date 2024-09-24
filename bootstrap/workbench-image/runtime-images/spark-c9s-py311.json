@@ -1,9 +1,0 @@
-{
-    "display_name": "Spark/PySpark 3.4.1 with Hadoop 3.3.6 + Datascience with Python 3.11 (CentOS Stream 9)",
-    "metadata": {
-        "tags": [],
-        "display_name": "Spark/PySpark 3.4.1 with Hadoop 3.3.6 + Datascience with Python 3.11 (CentOS Stream 9)",
-        "image_name": "quay.io/opendatahub-contrib/workbench-images:runtime-spark-c9s-py311_RELEASE_latest"
-    },
-    "schema_name": "runtime-image"
-}

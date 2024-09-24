@@ -12,7 +12,6 @@ resources:
   - namespace-notebooks.yaml
   # wave 1
   - workbench-imagestream.yaml
-  - workbench-vscode-is.yaml
   - odhdashboardconfig.yaml
   - accelerator-profile.yaml
   # wave 2
