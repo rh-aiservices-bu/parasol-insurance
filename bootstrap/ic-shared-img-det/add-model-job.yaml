@@ -4,7 +4,7 @@ kind: Job
 metadata:
   name: add-model-job
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   backoffLimit: 4
   template:
