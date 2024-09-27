@@ -6,8 +6,9 @@ metadata:
     serving.knative.openshift.io/enablePassthrough: 'true'
     sidecar.istio.io/inject: 'true'
     sidecar.istio.io/rewriteAppHTTPProbers: 'true'
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
   name: granite-7b-instruct
+  namespace: ic-shared-llm
   labels:
     opendatahub.io/dashboard: 'true'
 spec:
