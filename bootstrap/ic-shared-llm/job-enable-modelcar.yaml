@@ -1,10 +1,10 @@
 apiVersion: batch/v1
 kind: Job
-annotations:
-  argocd.argoproj.io/sync-wave: "1"
 metadata:
   name: patch-inferenceservice-config
   namespace: ic-shared-llm
+annotations:
+  argocd.argoproj.io/sync-wave: "1"
 spec:
   backoffLimit: 4
   template:
@@ -28,12 +28,19 @@ spec:
             # Fetch current storageInitializer config
             config=$(oc get configmap inferenceservice-config -n redhat-ods-applications -o jsonpath='{.data.storageInitializer}')
 
-            # Modify the config to enable modelcar using sed
-            newValue=$(echo "$config" | sed 's/"enableModelcar": false/"enableModelcar": true/')
-            newValueEscaped=$(echo "$newValue" | sed 's/\"/\\\"/g')
+            # Check if "enableModelcar" is already enabled
+            if echo "$config" | grep '"enableModelcar": false'; then
+              echo "Patching configmap to enable modelcar..."
+              
+              # Modify the config to enable modelcar using sed
+              newValue=$(echo "$config" | sed 's/"enableModelcar": false/"enableModelcar": true/')
+              newValueEscaped=$(echo "$newValue" | sed 's/\"/\\\"/g')
 
-            # Patch the configmap with the new value
-            oc patch configmap inferenceservice-config -n redhat-ods-applications --type='json' -p "[{\"op\": \"replace\", \"path\": \"/data/storageInitializer\", \"value\": \"$newValueEscaped\"}]"
+              # Patch the configmap with the new value
+              oc patch configmap inferenceservice-config -n redhat-ods-applications --type='json' -p "[{\"op\": \"replace\", \"path\": \"/data/storageInitializer\", \"value\": \"$newValueEscaped\"}]"
+            else
+              echo "Modelcar is already enabled, no patching needed."
+            fi
 
             # Restart the KServe controller to apply changes
             oc delete pod -n redhat-ods-applications -l control-plane=kserve-controller-manager
