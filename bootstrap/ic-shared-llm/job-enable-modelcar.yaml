@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: Job
+annotations:
+  argocd.argoproj.io/sync-wave: "1"
+metadata:
+  name: patch-inferenceservice-config
+  namespace: ic-shared-llm
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+      serviceAccount: modelcar-enable-sa
+      serviceAccountName: modelcar-enable-sa
+      containers:
+      - name: patch-configmap
+        image: registry.redhat.io/openshift4/ose-cli:v4.15.0
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+           # Wait for the operator to be in "Ready" state
+            echo "Waiting for the operator to be Ready..."
+            until [ "$(oc get dsci -n redhat-ods-applications default-dsci -o jsonpath='{.status.phase}')" = "Ready" ]; do
+              echo "Operator not ready, retrying in 10s..."
+              sleep 10
+            done
+            echo "Operator is Ready!"
+
+            # Fetch current storageInitializer config
+            config=$(oc get configmap inferenceservice-config -n redhat-ods-applications -o jsonpath='{.data.storageInitializer}')
+
+            # Modify the config to enable modelcar (without jq, using sed)
+            newValue=$(echo "$config" | sed 's/"enableModelcar": false/"enableModelcar": true/')
+
+            # Create a patch using the updated config
+            cat <<EOT > patch.txt
+            [{
+              "op": "replace",
+              "path": "/data/storageInitializer",
+              "value": "$newValue"
+            }]
+            EOT
+
+            # Apply the patch to the ConfigMap
+            oc patch configmap inferenceservice-config -n redhat-ods-applications --type=json --patch-file=patch.txt
+
+            # Restart the KServe controller to apply changes
+            oc delete pod -n redhat-ods-applications -l control-plane=kserve-controller-manager
+      restartPolicy: OnFailure
