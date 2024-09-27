@@ -9,12 +9,12 @@ resources:
 # wave 0
 - namespace.yaml
 - fix-odf-config.yaml
-- token.yaml
+- rbac-job-enable-modelcar.yaml
 # wave 1
-- pvc.yaml
+- job-enable-modelcar.yaml
+# wave 2
+- service-runtime-vllm-granite-modelcar.yaml
 - pvc-hftgi.yaml
-- deployment.yaml
-- service.yaml
+- inference-service-granite-modelcar.yaml
 - deployment-hftgi.yaml
 - service-hftgi.yaml
-# wave 2
