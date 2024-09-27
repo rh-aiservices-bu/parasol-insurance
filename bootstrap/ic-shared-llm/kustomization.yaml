@@ -5,9 +5,6 @@ kind: Kustomization
 commonLabels:
   component: ic-shared-llm
 
-commonAnnotations:
-  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-
 resources:
 # wave 0
 - namespace.yaml
