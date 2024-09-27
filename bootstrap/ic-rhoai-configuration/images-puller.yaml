@@ -19,17 +19,7 @@ spec:
     spec:
       containers:
       - name: ic-workbench
-        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/ic-workbench:2.1.2
-        command: ["tail"]
-        args: ["-f", "/dev/null"]
-        resources:
-          limits:
-            memory: 20Mi
-          requests:
-            cpu: 10m
-            memory: 10Mi
-      - name: vscode
-        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/ic-workbench-vscode:2023c
+        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/ic-workbench:1.2
         command: ["tail"]
         args: ["-f", "/dev/null"]
         resources:
@@ -67,7 +57,7 @@ spec:
             cpu: 10m
             memory: 10Mi
       - name: model-server
-        image: quay.io/modh/openvino_model_server@sha256:5d04d405526ea4ce5b807d0cd199ccf7f71bab1228907c091e975efa770a4908
+        image: quay.io/opendatahub/openvino_model_server@sha256:2cbe8a48ab0bc6fe7fb76919bf33253e83a6218a9c4b486b744c3dcf30679616
         command: ["tail"]
         args: ["-f", "/dev/null"]
         resources:
@@ -77,7 +67,7 @@ spec:
             cpu: 10m
             memory: 10Mi
       - name: runtime-adapter
-        image: registry.redhat.io/rhoai/odh-modelmesh-runtime-adapter-rhel8@sha256:5762982131a5381e582a8952a3ba336b68a1e46257f552a087da6d5a900b8bdf
+        image: registry.redhat.io/rhoai/odh-modelmesh-runtime-adapter-rhel8@sha256:3d4e39039afe33ae7841258cc4bfe986755b9faefedf8a964f2c3826626d6d09
         command: ["tail"]
         args: ["-f", "/dev/null"]
         resources:
@@ -87,7 +77,7 @@ spec:
             cpu: 10m
             memory: 10Mi
       - name: modelmesh
-        image: registry.redhat.io/rhoai/odh-modelmesh-rhel8@sha256:b20c29b1a81e8200a81aab2361af2863889eaa3ea68f4fb19335b97949276a1b
+        image: registry.redhat.io/rhoai/odh-modelmesh-rhel8@sha256:2eb179e9cd22bf4a85d990508ede72fe279ec92f9ac60dbfe4dbc43f7d444b09
         command: ["tail"]
         args: ["-f", "/dev/null"]
         resources:
@@ -125,7 +115,7 @@ spec:
               cpu: 10m
               memory: 10Mi
         - name: ds-pipeline-scheduledworkflow-pipelines-definition
-          image: registry.redhat.io/rhoai/odh-ml-pipelines-scheduledworkflow-rhel8@sha256:3edce9aaa66f349c2291a161686349e0068017c7ad084146f41878f27a6eae74
+          image: registry.redhat.io/rhoai/odh-ml-pipelines-scheduledworkflow-v2-rhel8@sha256:bd3c7607b526720ab63adc2e84be145ad186575c8ebe4bae99b93292aab6f530
           command: ["tail"]
           args: ["-f", "/dev/null"]
           resources:
@@ -135,7 +125,7 @@ spec:
               cpu: 10m
               memory: 10Mi
         - name: ds-pipeline-pipelines-definition
-          image: registry.redhat.io/rhoai/odh-ml-pipelines-api-server-rhel8@sha256:07954372e0e4dff0109d8d2551d059832ad87fb1fe8fbb8a54fa1c0f7878dbc1
+          image: registry.redhat.io/rhoai/odh-ml-pipelines-api-server-v2-rhel8@sha256:57c0aca35e6ca40f0d2db044decabdd5244c749da1233a04ed585f37566e5caa
           command: ["tail"]
           args: ["-f", "/dev/null"]
           resources:
@@ -155,7 +145,7 @@ spec:
               cpu: 10m
               memory: 10Mi
         - name: ds-pipeline-persistenceagent-pipelines-definition
-          image: registry.redhat.io/rhoai/odh-ml-pipelines-persistenceagent-rhel8@sha256:6fdf2b754aea6732ae0757e099ec69fac1cb32e633342a160546ee5b99604af7
+          image: registry.redhat.io/rhoai/odh-ml-pipelines-persistenceagent-v2-rhel8@sha256:b90b63e3c5de629eb89798d818218104158a5401220397ddbc7072a390e46bdd
           command: ["tail"]
           args: ["-f", "/dev/null"]
           resources:
