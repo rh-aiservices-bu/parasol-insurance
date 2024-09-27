@@ -9,7 +9,6 @@ resources:
 # wave 0
 - namespace.yaml
 - fix-odf-config.yaml
-- token.yaml
 - rbac-job-enable-modelcar.yaml
 # wave 1
 - job-enable-modelcar.yaml
