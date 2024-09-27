@@ -8,6 +8,7 @@ commonLabels:
 commonAnnotations:
   argocd.argoproj.io/compare-options: IgnoreExtraneous
   argocd.argoproj.io/sync-options: Prune=true
+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 
 resources:
 # wave 0
