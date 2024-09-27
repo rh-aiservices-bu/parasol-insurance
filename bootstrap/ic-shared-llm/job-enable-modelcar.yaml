@@ -19,7 +19,7 @@ spec:
           - |
             # Wait for the operator to be in "Ready" state
             echo "Waiting for the operator to be Ready..."
-            until [ "$(oc get dsci -n redhat-ods-applications default-dsc -o jsonpath='{.status.phase}')" = "Ready" ]; do
+            until [ "$(oc get dsci -n redhat-ods-applications default-dsci -o jsonpath='{.status.phase}')" = "Ready" ]; do
               echo "Operator not ready, retrying in 10s..."
               sleep 10
             done
