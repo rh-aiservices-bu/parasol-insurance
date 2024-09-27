@@ -13,27 +13,36 @@ spec:
       serviceAccountName: modelcar-enable-sa
       containers:
       - name: patch-configmap
-        image: bitnami/kubectl:latest
+        image: registry.redhat.io/openshift4/ose-cli:v4.15.0
         command: ["/bin/sh", "-c"]
         args:
           - |
-            # Wait for the operator to be in "Ready" state
+           # Wait for the operator to be in "Ready" state
             echo "Waiting for the operator to be Ready..."
-            until [ "$(kubectl get dsci -n redhat-ods-applications default-dsci -o jsonpath='{.status.phase}')" = "Ready" ]; do
+            until [ "$(oc get dsci -n redhat-ods-applications default-dsci -o jsonpath='{.status.phase}')" = "Ready" ]; do
               echo "Operator not ready, retrying in 10s..."
               sleep 10
             done
             echo "Operator is Ready!"
-            
+
             # Fetch current storageInitializer config
-            config=$(kubectl get configmap inferenceservice-config -n redhat-ods-applications -o jsonpath='{.data.storageInitializer}');
-            
-            # Enable modelcars in the config
-            newValue=$(echo $config | jq -c '. + {"enableModelcar": true}');
-            
-            # Apply the patch
-            kubectl patch configmap -n redhat-ods-applications inferenceservice-config --type=json -p "[{\"op\": \"replace\", \"path\": \"/data/storageInitializer\", \"value\": \"$newValue\"}]";
-            
+            config=$(oc get configmap inferenceservice-config -n redhat-ods-applications -o jsonpath='{.data.storageInitializer}')
+
+            # Modify the config to enable modelcar (without jq, using sed)
+            newValue=$(echo "$config" | sed 's/"enableModelcar": false/"enableModelcar": true/')
+
+            # Create a patch using the updated config
+            cat <<EOT > patch.txt
+            [{
+              "op": "replace",
+              "path": "/data/storageInitializer",
+              "value": "$newValue"
+            }]
+            EOT
+
+            # Apply the patch to the ConfigMap
+            oc patch configmap inferenceservice-config -n redhat-ods-applications --type=json --patch-file=patch.txt
+
             # Restart the KServe controller to apply changes
-            kubectl delete pod -n redhat-ods-applications -l control-plane=kserve-controller-manager;
+            oc delete pod -n redhat-ods-applications -l control-plane=kserve-controller-manager
       restartPolicy: OnFailure
