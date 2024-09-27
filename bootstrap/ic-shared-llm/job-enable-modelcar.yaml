@@ -1,0 +1,49 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: patch-inferenceservice-config
+  namespace: ic-shared-llm
+annotations:
+  argocd.argoproj.io/sync-wave: "1"
+  argocd.argoproj.io/hook: Sync
+  argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+      serviceAccount: modelcar-enable-sa
+      serviceAccountName: modelcar-enable-sa
+      containers:
+      - name: patch-configmap
+        image: registry.redhat.io/openshift4/ose-cli:v4.15.0
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+           # Wait for the operator to be in "Ready" state
+            echo "Waiting for the operator to be Ready..."
+            until [ "$(oc get dsci -n redhat-ods-applications default-dsci -o jsonpath='{.status.phase}')" = "Ready" ]; do
+              echo "Operator not ready, retrying in 10s..."
+              sleep 10
+            done
+            echo "Operator is Ready!"
+
+            # Fetch current storageInitializer config
+            config=$(oc get configmap inferenceservice-config -n redhat-ods-applications -o jsonpath='{.data.storageInitializer}')
+
+            # Check if "enableModelcar" is already enabled
+            if echo "$config" | grep '"enableModelcar": false'; then
+              echo "Patching configmap to enable modelcar..."
+              
+              # Modify the config to enable modelcar using sed
+              newValue=$(echo "$config" | sed 's/"enableModelcar": false/"enableModelcar": true/')
+              newValueEscaped=$(echo "$newValue" | sed 's/\"/\\\"/g')
+
+              # Patch the configmap with the new value
+              oc patch configmap inferenceservice-config -n redhat-ods-applications --type='json' -p "[{\"op\": \"replace\", \"path\": \"/data/storageInitializer\", \"value\": \"$newValueEscaped\"}]"
+            else
+              echo "Modelcar is already enabled, no patching needed."
+            fi
+
+            # Restart the KServe controller to apply changes
+            oc delete pod -n redhat-ods-applications -l control-plane=kserve-controller-manager
+      restartPolicy: OnFailure

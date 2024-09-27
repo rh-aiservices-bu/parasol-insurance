@@ -3,6 +3,8 @@ apiVersion: v1
 metadata:
   name: rook-ceph-operator-config
   namespace: openshift-storage
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 data:
   CSI_PLUGIN_TOLERATIONS: |
     - key: nvidia.com/gpu
