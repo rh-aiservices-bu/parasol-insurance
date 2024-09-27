@@ -11,6 +11,7 @@ metadata:
     openshift.io/display-name: vllm
     argocd.argoproj.io/sync-wave: "2"
   name: vllm
+  namespace: ic-shared-llm
   labels:
     opendatahub.io/dashboard: 'true'
 spec:
