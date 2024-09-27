@@ -13,27 +13,27 @@ spec:
       serviceAccountName: modelcar-enable-sa
       containers:
       - name: patch-configmap
-        image: registry.redhat.io/openshift4/ose-cli:v4.15.0
+        image: bitnami/kubectl:latest
         command: ["/bin/sh", "-c"]
         args:
           - |
             # Wait for the operator to be in "Ready" state
             echo "Waiting for the operator to be Ready..."
-            until [ "$(oc get dsci -n redhat-ods-applications default-dsci -o jsonpath='{.status.phase}')" = "Ready" ]; do
+            until [ "$(kubectl get dsci -n redhat-ods-applications default-dsci -o jsonpath='{.status.phase}')" = "Ready" ]; do
               echo "Operator not ready, retrying in 10s..."
               sleep 10
             done
             echo "Operator is Ready!"
             
             # Fetch current storageInitializer config
-            config=$(oc get configmap inferenceservice-config -n redhat-ods-applications -o jsonpath='{.data.storageInitializer}');
+            config=$(kubectl get configmap inferenceservice-config -n redhat-ods-applications -o jsonpath='{.data.storageInitializer}');
             
             # Enable modelcars in the config
             newValue=$(echo $config | jq -c '. + {"enableModelcar": true}');
             
             # Apply the patch
-            oc patch configmap -n redhat-ods-applications inferenceservice-config --type=json -p "[{\"op\": \"replace\", \"path\": \"/data/storageInitializer\", \"value\": \"$newValue\"}]";
+            kubectl patch configmap -n redhat-ods-applications inferenceservice-config --type=json -p "[{\"op\": \"replace\", \"path\": \"/data/storageInitializer\", \"value\": \"$newValue\"}]";
             
             # Restart the KServe controller to apply changes
-            oc delete pod -n redhat-ods-applications -l control-plane=kserve-controller-manager;
+            kubectl delete pod -n redhat-ods-applications -l control-plane=kserve-controller-manager;
       restartPolicy: OnFailure
