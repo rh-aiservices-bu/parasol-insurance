@@ -5,6 +5,10 @@ kind: Kustomization
 commonLabels:
   component: ic-shared-llm
 
+commonAnnotations:
+  argocd.argoproj.io/compare-options: IgnoreExtraneous
+  argocd.argoproj.io/sync-options: Prune=true
+
 resources:
 # wave 0
 - namespace.yaml
