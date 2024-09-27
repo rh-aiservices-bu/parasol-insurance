@@ -28,20 +28,12 @@ spec:
             # Fetch current storageInitializer config
             config=$(oc get configmap inferenceservice-config -n redhat-ods-applications -o jsonpath='{.data.storageInitializer}')
 
-            # Modify the config to enable modelcar (without jq, using sed)
+            # Modify the config to enable modelcar using sed
             newValue=$(echo "$config" | sed 's/"enableModelcar": false/"enableModelcar": true/')
+            newValueEscaped=$(echo "$newValue" | sed 's/\"/\\\"/g')
 
-            # Create a patch using the updated config
-            cat <<EOT > patch.txt
-            [{
-              "op": "replace",
-              "path": "/data/storageInitializer",
-              "value": "$newValue"
-            }]
-            EOT
-
-            # Apply the patch to the ConfigMap
-            oc patch configmap inferenceservice-config -n redhat-ods-applications --type=json --patch-file=patch.txt
+            # Patch the configmap with the new value
+            oc patch configmap inferenceservice-config -n redhat-ods-applications --type='json' -p "[{\"op\": \"replace\", \"path\": \"/data/storageInitializer\", \"value\": \"$newValueEscaped\"}]"
 
             # Restart the KServe controller to apply changes
             oc delete pod -n redhat-ods-applications -l control-plane=kserve-controller-manager
