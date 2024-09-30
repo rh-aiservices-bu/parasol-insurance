@@ -21,6 +21,6 @@ def test_security(endpoint, expected_id,):
         }, f)
 
 if __name__ == '__main__':
-    info_endpoint = "http://llm.ic-shared-llm.svc.cluster.local:8000" + "/v1/models"
+    info_endpoint = "http://granite-7b-instruct-predictor.ic-shared-llm.svc.cluster.local:8080" + "/v1/models"
     expected_id = "modelperm" #This is just for the demo, in a real scenario you would input the model id here
     test_security(info_endpoint, expected_id)

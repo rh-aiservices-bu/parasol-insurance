@@ -1,4 +1,8 @@
-langchain==0.0.340
+langchain==0.3.1
+langchain-community==0.3.1
+langchain-core==0.3.6
+langchain-huggingface==0.1.0
+langchain-text-splitters==0.3.0
 text_generation==0.6.1
-sentence_transformers==2.2.2
-openai==1.13.3
+sentence-transformers==3.1.1
+openai==1.47.1

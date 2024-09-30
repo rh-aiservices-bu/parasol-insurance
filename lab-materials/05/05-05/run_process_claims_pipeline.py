@@ -11,10 +11,15 @@ from kfp import kubernetes
 
 from process_claims_pipeline import process_claims_pipeline
 
-COMPILE=False
+COMPILE=True
+
+metadata = {
+        "claim_ids": 0,
+        "detection_endpoint": "https://some-endpoint",
+    }
 
 if COMPILE:
-    kfp.compiler.Compiler().compile(process_claims_pipeline, 'process-claims-pipeline.yaml')
+    kfp.compiler.Compiler().compile(process_claims_pipeline, 'process-claims-pipeline.yaml', pipeline_parameters = metadata)
 else:
     namespace_file_path =\
         '/var/run/secrets/kubernetes.io/serviceaccount/namespace'
@@ -30,11 +35,6 @@ else:
 
     ssl_ca_cert =\
         '/var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt'
-
-    metadata = {
-        "claim_ids": 0,
-        "detection_endpoint": "https://some-endpoint",
-    }
 
     print(f'Connecting to Data Science Pipelines: {kubeflow_endpoint}')
     client = kfp.Client(
