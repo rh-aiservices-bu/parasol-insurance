@@ -4,5 +4,7 @@ Responde with just the location.
 
 Car claim:
 <</SYS>>
+### TEXT:
 {car_claim}
+### ANSWER:
 [/INST]

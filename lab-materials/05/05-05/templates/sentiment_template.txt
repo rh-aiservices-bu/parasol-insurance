@@ -2,7 +2,8 @@
 Is the predominant sentiment of the customer in the following text positive, negative, or neutral?
 Respond in one word: Positive, Negative, or Neutral.
 
-Text:
 <</SYS>>
+### TEXT:
 {car_claim}
+### ANSWER:
 [/INST]

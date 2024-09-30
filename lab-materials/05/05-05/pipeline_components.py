@@ -12,7 +12,7 @@ from kfp import kubernetes
 @dsl.container_component
 def initialize():
     return dsl.ContainerSpec(
-        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1', 
+        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2', 
         command=[
             'sh',
             '-c', 
@@ -30,17 +30,17 @@ def initialize():
 @dsl.container_component
 def get_claims(claim_ids: int):
     return dsl.ContainerSpec(
-        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1', 
+        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2', 
         command=[
             'sh',
             '-c',
             '''claim_id="$0"
             export claim_id=$claim_id
             export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local
+            export IMAGES_BUCKET=$NAMESPACE
             cd /shared-data
             cd parasol-insurance/lab-materials/05/05-05
             python get_claims.py
-            ls
             ''',
         ],
         args=[claim_ids]
@@ -49,11 +49,12 @@ def get_claims(claim_ids: int):
 @dsl.container_component
 def get_accident_time():
     return dsl.ContainerSpec(
-        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1', 
+        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2', 
         command=[
             'sh',
             '-c',
             '''export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local
+            export IMAGES_BUCKET=$NAMESPACE
             cd /shared-data
             cd parasol-insurance/lab-materials/05/05-05
             python get_accident_time.py
@@ -65,11 +66,12 @@ def get_accident_time():
 @dsl.container_component
 def get_location():
     return dsl.ContainerSpec(
-        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1', 
+        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2', 
         command=[
             'sh',
             '-c',
             '''export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local
+            export IMAGES_BUCKET=$NAMESPACE
             cd /shared-data
             cd parasol-insurance/lab-materials/05/05-05
             python get_location.py
@@ -81,11 +83,12 @@ def get_location():
 @dsl.container_component
 def get_sentiment():
     return dsl.ContainerSpec(
-        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1', 
+        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2', 
         command=[
             'sh',
             '-c',
             '''export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local
+            export IMAGES_BUCKET=$NAMESPACE
             cd /shared-data
             cd parasol-insurance/lab-materials/05/05-05
             python get_sentiment.py
@@ -97,13 +100,14 @@ def get_sentiment():
 @dsl.container_component
 def detect_objects(detection_endpoint: str):
     return dsl.ContainerSpec(
-        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1', 
+        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2', 
         command=[
             'sh',
             '-c',
             '''detection_endpoint="$0"
             export detection_endpoint=$detection_endpoint
             export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local
+            export IMAGES_BUCKET=$NAMESPACE
             cd /shared-data
             cd parasol-insurance/lab-materials/05/05-05
             python detect_objects.py
@@ -115,11 +119,12 @@ def detect_objects(detection_endpoint: str):
 @dsl.container_component
 def summarize_text():
     return dsl.ContainerSpec(
-        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1', 
+        image='quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2', 
         command=[
             'sh',
             '-c',
             '''export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local
+            export IMAGES_BUCKET=$NAMESPACE
             cd /shared-data
             cd parasol-insurance/lab-materials/05/05-05
             python summarize_text.py

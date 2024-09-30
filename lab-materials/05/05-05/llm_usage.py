@@ -1,13 +1,10 @@
-import os
-
-from langchain.llms import VLLMOpenAI
-from langchain.chains.combine_documents.stuff import StuffDocumentsChain
-from langchain.chains import LLMChain
-from langchain.prompts import PromptTemplate
 from langchain.evaluation import load_evaluator
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain.prompts import PromptTemplate
+from langchain_community.llms import VLLMOpenAI
 
-INFERENCE_SERVER_URL = "http://llm.ic-shared-llm.svc.cluster.local:8000"
+
+INFERENCE_SERVER_URL = "http://granite-7b-instruct-predictor.ic-shared-llm.svc.cluster.local:8080"
 MAX_NEW_TOKENS = 512
 TOP_P = 0.95
 TEMPERATURE = 0.01
@@ -17,7 +14,7 @@ def infer_with_template(input_text, template):
     llm = VLLMOpenAI(
         openai_api_key="EMPTY",
         openai_api_base= f"{INFERENCE_SERVER_URL}/v1",
-        model_name="mistralai/Mistral-7B-Instruct-v0.2",
+        model_name="granite-7b-instruct",
         max_tokens=MAX_NEW_TOKENS,
         top_p=TOP_P,
         temperature=TEMPERATURE,
@@ -26,11 +23,11 @@ def infer_with_template(input_text, template):
         verbose=False,
     )
     
-    PROMPT = PromptTemplate.from_template(template)
+    prompt = PromptTemplate(input_variables=["car_claim"], template=template)
     
-    llm_chain = LLMChain(llm=llm, prompt=PROMPT)
+    conversation = prompt | llm
     
-    return llm_chain.run(input_text)
+    return conversation.invoke(input=input_text)
     
 def similarity_metric(predicted_text, reference_text):
     embedding_model = HuggingFaceEmbeddings()
