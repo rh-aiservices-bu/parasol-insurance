@@ -46,7 +46,7 @@ spec:
 
           # Define some variables
           WORKBENCH_NAME="my-workbench"
-          WORKBENCH_IMAGE="s2i-generic-data-science-notebook:2024.1"
+          WORKBENCH_IMAGE="ic-workbench:1.2"
           PIPELINE_ENGINE="Argo"
 
           for i in $(seq 1 $user_count);
