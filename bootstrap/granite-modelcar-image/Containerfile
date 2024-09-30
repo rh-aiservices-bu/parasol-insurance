@@ -1,0 +1,11 @@
+# Base image for the modelcar Granite image
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.4  
+
+# Install Git and Git LFS
+RUN microdnf -y install git git-lfs
+
+# Clone the Granite 7b Instruct model from Hugging Face with Git LFS
+RUN git clone https://huggingface.co/ibm-granite/granite-7b-instruct /models && rm -rf /models/.git  
+
+# Set the user to 1001
+USER 1001
