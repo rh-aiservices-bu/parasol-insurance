@@ -1,5 +1,7 @@
 <s>[INST] <<SYS>>
 Summarize the below car insurance claim:
 <</SYS>>
+### TEXT:
 {car_claim}
+### ANSWER:
 [/INST]

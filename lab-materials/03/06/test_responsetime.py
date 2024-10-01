@@ -13,7 +13,9 @@ def test_responsetime():
     TEMPLATE = """<s>[INST] <<SYS>>
 Answer below truthfully and in less than 10 words:
 <</SYS>>
+### QUESTION:
 {silly_question}
+### ANSWER:
 [/INST]"""
     
     start = time.perf_counter()

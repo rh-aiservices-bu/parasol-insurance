@@ -38,18 +38,20 @@ deploymentSpec:
         - -c
         - "detection_endpoint=\"$0\"\n            export detection_endpoint=$detection_endpoint\n\
           \            export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local\n\
-          \            cd /shared-data\n            cd parasol-insurance/lab-materials/05/05-05\n\
-          \            python detect_objects.py\n            "
-        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1
+          \            export IMAGES_BUCKET=$NAMESPACE\n            cd /shared-data\n\
+          \            cd parasol-insurance/lab-materials/05/05-05\n            python\
+          \ detect_objects.py\n            "
+        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2
     exec-get-accident-time:
       container:
         command:
         - sh
         - -c
         - "export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local\n           \
-          \ cd /shared-data\n            cd parasol-insurance/lab-materials/05/05-05\n\
-          \            python get_accident_time.py\n            "
-        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1
+          \ export IMAGES_BUCKET=$NAMESPACE\n            cd /shared-data\n       \
+          \     cd parasol-insurance/lab-materials/05/05-05\n            python get_accident_time.py\n\
+          \            "
+        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2
     exec-get-claims:
       container:
         args:
@@ -58,28 +60,31 @@ deploymentSpec:
         - sh
         - -c
         - "claim_id=\"$0\"\n            export claim_id=$claim_id\n            export\
-          \ POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local\n            cd /shared-data\n\
-          \            cd parasol-insurance/lab-materials/05/05-05\n            python\
-          \ get_claims.py\n            ls\n            "
-        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1
+          \ POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local\n            export\
+          \ IMAGES_BUCKET=$NAMESPACE\n            cd /shared-data\n            cd\
+          \ parasol-insurance/lab-materials/05/05-05\n            python get_claims.py\n\
+          \            "
+        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2
     exec-get-location:
       container:
         command:
         - sh
         - -c
         - "export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local\n           \
-          \ cd /shared-data\n            cd parasol-insurance/lab-materials/05/05-05\n\
-          \            python get_location.py\n            "
-        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1
+          \ export IMAGES_BUCKET=$NAMESPACE\n            cd /shared-data\n       \
+          \     cd parasol-insurance/lab-materials/05/05-05\n            python get_location.py\n\
+          \            "
+        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2
     exec-get-sentiment:
       container:
         command:
         - sh
         - -c
         - "export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local\n           \
-          \ cd /shared-data\n            cd parasol-insurance/lab-materials/05/05-05\n\
-          \            python get_sentiment.py\n            "
-        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1
+          \ export IMAGES_BUCKET=$NAMESPACE\n            cd /shared-data\n       \
+          \     cd parasol-insurance/lab-materials/05/05-05\n            python get_sentiment.py\n\
+          \            "
+        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2
     exec-initialize:
       container:
         command:
@@ -87,18 +92,19 @@ deploymentSpec:
         - -c
         - "cd /shared-data\n            rm -r * 2>/dev/null\n            git clone\
           \ https://github.com/rh-aiservices-bu/parasol-insurance\n            cd\
-          \ parasol-insurance\n            git checkout dev\n            ls\n    \
-          \        "
-        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1
+          \ parasol-insurance\n            git checkout dev\n\
+          \            ls\n            "
+        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2
     exec-summarize-text:
       container:
         command:
         - sh
         - -c
         - "export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local\n           \
-          \ cd /shared-data\n            cd parasol-insurance/lab-materials/05/05-05\n\
-          \            python summarize_text.py\n            "
-        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.1
+          \ export IMAGES_BUCKET=$NAMESPACE\n            cd /shared-data\n       \
+          \     cd parasol-insurance/lab-materials/05/05-05\n            python summarize_text.py\n\
+          \            "
+        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2
 pipelineInfo:
   description: Processes claims.
   name: process-claims-pipeline
@@ -183,17 +189,23 @@ root:
         defaultValue: https://some-endpoint
         parameterType: STRING
 schemaVersion: 2.1.0
-sdkVersion: kfp-2.8.0
+sdkVersion: kfp-2.9.0
 ---
 platforms:
   kubernetes:
     deploymentSpec:
       executors:
         exec-detect-objects:
+          fieldPathAsEnv:
+          - fieldPath: metadata.namespace
+            name: NAMESPACE
           pvcMount:
           - constant: processing-pipeline-storage
             mountPath: /shared-data
         exec-get-accident-time:
+          fieldPathAsEnv:
+          - fieldPath: metadata.namespace
+            name: NAMESPACE
           pvcMount:
           - constant: processing-pipeline-storage
             mountPath: /shared-data
@@ -201,24 +213,20 @@ platforms:
           fieldPathAsEnv:
           - fieldPath: metadata.namespace
             name: NAMESPACE
-          - fieldPath: metadata.namespace
-            name: NAMESPACE
-          - fieldPath: metadata.namespace
-            name: NAMESPACE
-          - fieldPath: metadata.namespace
-            name: NAMESPACE
-          - fieldPath: metadata.namespace
-            name: NAMESPACE
-          - fieldPath: metadata.namespace
-            name: NAMESPACE
           pvcMount:
           - constant: processing-pipeline-storage
             mountPath: /shared-data
         exec-get-location:
+          fieldPathAsEnv:
+          - fieldPath: metadata.namespace
+            name: NAMESPACE
           pvcMount:
           - constant: processing-pipeline-storage
             mountPath: /shared-data
         exec-get-sentiment:
+          fieldPathAsEnv:
+          - fieldPath: metadata.namespace
+            name: NAMESPACE
           pvcMount:
           - constant: processing-pipeline-storage
             mountPath: /shared-data
@@ -227,6 +235,9 @@ platforms:
           - constant: processing-pipeline-storage
             mountPath: /shared-data
         exec-summarize-text:
+          fieldPathAsEnv:
+          - fieldPath: metadata.namespace
+            name: NAMESPACE
           pvcMount:
           - constant: processing-pipeline-storage
             mountPath: /shared-data
