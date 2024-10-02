@@ -3,6 +3,8 @@ kind: Kustomization
 
 resources:
   # wave 0
+  - subscription-authorino.yaml
+  # wave 1
   - namespace.yaml
   - operator-group.yaml
   - subscription.yaml
