@@ -5,7 +5,7 @@ include::_attributes.adoc[]
 
 This {ic-lab} will illustrate how the use of various AI/ML technologies can be combined to produce a valuable solution to a business problem.
 
-The information, code, models and techniques it contains are illustrations of what a first prototype could look like. It is not the definitive way of addressing the stated requirements.
+The information, code, models and techniques it contains are illustrations of what an AI-enhanced application first prototype could look like. It is not the definitive way of addressing the stated requirements.
 
 == Disclaimer
 
