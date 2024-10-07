@@ -10,7 +10,7 @@ asciidoc:
     page-pagination: true
     experimental:
     numbered:
-    lab_name: "OpenShift AI Unleashed: Transforming Claims Processing for Maximum Efficiency!"
+    lab_name: "Parasol Insurance AI Workshop"
     guid: my-guid
     ssh_user: lab-user
     ssh_password: lab-user

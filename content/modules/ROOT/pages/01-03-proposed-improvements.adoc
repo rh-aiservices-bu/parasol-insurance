@@ -4,17 +4,17 @@ include::_attributes.adoc[]
 
 
 * Recommendations:
-** Progressive, step-wise, implementation
-** Use various AI/ML tools and techniques to **assist** the adjusters
-** Provide support for low-level, repetitive tasks
-*** Point out areas in need of review
-*** Help with parsing and data extraction
-*** Reduce repetition fatigue
+** Progressive, step-wise, implementation.
+** Use various AI/ML tools and techniques to **assist** the adjusters.
+** Provide support for low-level, repetitive tasks:
+*** Point out areas in need of review,
+*** Help with parsing and data extraction,
+*** Reduce repetition fatigue.
 * Goals:
-** Bring average processing time from 7h/claim down to 2h/claim
-** Reduce human error by 80%
-** Improve fraud detection by 25%
+** Bring average processing time from 7h/claim down to 2h/claim.
+** Reduce human error by 80%.
+** Improve fraud detection by 25%.
 * Requirements:
 ** More precise measurements of performance:
-**** At baseline
-**** After every change/improvement
+**** At baseline,
+**** After every change/improvement.

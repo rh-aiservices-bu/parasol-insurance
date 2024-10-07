@@ -5,8 +5,8 @@ include::_attributes.adoc[]
 :slide:
 
 * Great news! The {company-name} has decided to fully fund this project!
-* We can now move from the prototyping phase to the production phase!
-* We have decided to hire all of you fine people to be part of the team that will build and implement the complete solution
+* We can now move from the prototyping phase to the production phase.
+* We have decided to hire all of you fine people to be part of the team that will build and implement the complete solution.
 
 == Next steps
 
