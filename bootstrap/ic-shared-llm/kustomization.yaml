@@ -18,3 +18,6 @@ resources:
 - inference-service-granite-modelcar.yaml
 - deployment-hftgi.yaml
 - service-hftgi.yaml
+
+components:
+- health-check-inferenceservice
