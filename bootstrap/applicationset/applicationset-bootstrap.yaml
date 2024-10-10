@@ -80,12 +80,12 @@ spec:
               - key: purpose
                 operator: In
                 values:
-                  - ic-shared-minio
+                  - ic-shared-minio-app
         - matchExpressions:
               - key: purpose
                 operator: In
                 values:
-                  - ic-shared-database
+                  - ic-shared-database-app
         - matchExpressions:
               - key: purpose
                 operator: In
@@ -95,7 +95,7 @@ spec:
               - key: purpose
                 operator: In
                 values:
-                  - ic-shared-llm
+                  - ic-shared-llm-app
         - matchExpressions:
               - key: purpose
                 operator: In
