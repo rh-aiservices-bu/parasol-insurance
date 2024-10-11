@@ -9,10 +9,13 @@ resources:
   # wave 0
   - gp3-remove-default.yaml
   - ceph-rbd-set-default.yaml
+  - odf-config-nvidia.yaml
   - namespace-notebooks.yaml
   # wave 1
+  - rbac-job-enable-modelcar.yaml
   - workbench-imagestream.yaml
   - odhdashboardconfig.yaml
   - accelerator-profile.yaml
   # wave 2
+  - job-enable-modelcar.yaml
   - images-puller.yaml

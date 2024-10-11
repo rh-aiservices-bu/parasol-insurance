@@ -9,7 +9,7 @@ metadata:
     opendatahub.io/template-display-name: vLLM ServingRuntime for KServe
     opendatahub.io/template-name: vllm-runtime
     openshift.io/display-name: vllm
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
   name: vllm
   namespace: ic-shared-llm
   labels:
