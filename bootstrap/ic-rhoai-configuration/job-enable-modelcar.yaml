@@ -20,13 +20,13 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
           - |
-           # Wait for the operator to be in "Ready" state
-            echo "Waiting for the operator to be Ready..."
-            until [ "$(oc get dsci -n redhat-ods-applications default-dsci -o jsonpath='{.status.phase}')" = "Ready" ]; do
-              echo "Operator not ready, retrying in 10s..."
+           # Wait for the inferenceservice-config configmap to be available
+            echo "Waiting for the inferenceservice-config configmap to be available..."
+            until oc get configmap -n redhat-ods-applications inferenceservice-config; do
+              echo "inferenceservice-configmap not available retrying in 10s..."
               sleep 10
             done
-            echo "Operator is Ready!"
+            echo "Ready to proceed!"
 
             # Fetch current storageInitializer config
             config=$(oc get configmap inferenceservice-config -n redhat-ods-applications -o jsonpath='{.data.storageInitializer}')
