@@ -22,7 +22,7 @@ kind: ClusterRoleBinding
 metadata:
   name: project-creator-binding
   annotations:
-  argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "0"
 subjects:
 - kind: ServiceAccount
   name: project-creator
@@ -37,7 +37,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: route-reader
   annotations:
-  argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "0"
 rules:
 - apiGroups: ["route.openshift.io"]
   resources: ["routes"]
