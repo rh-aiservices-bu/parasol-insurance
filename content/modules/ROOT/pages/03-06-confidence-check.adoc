@@ -22,7 +22,7 @@ You also have a button on the top-right side that allows you to expand additiona
 [.bordershadow]
 image::03/06-elyra-menu.png[]
 
-Using Elyra, you can get started quicly with prototyping and running pipelines.
+Using Elyra, you can get started quickly with prototyping and running pipelines.
 
 == Ad-Hoc execution
 
