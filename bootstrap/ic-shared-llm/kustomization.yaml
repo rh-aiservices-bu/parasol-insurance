@@ -8,7 +8,6 @@ commonLabels:
 resources:
 # wave 0
 - namespace.yaml
-- job-enable-modelcar.yaml
 # wave 1
 - serving-runtime-vllm-granite-modelcar.yaml
 # wave 2
