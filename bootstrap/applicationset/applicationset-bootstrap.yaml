@@ -95,22 +95,22 @@ spec:
               - key: purpose
                 operator: In
                 values:
-                  - ic-shared-llm-app
-        - matchExpressions:
-              - key: purpose
-                operator: In
-                values:
                   - ic-shared-img-det
         - matchExpressions:
               - key: purpose
                 operator: In
                 values:
-                  - ic-shared-app
+                  - ic-user-projects
         - matchExpressions:
               - key: purpose
                 operator: In
                 values:
-                  - ic-user-projects
+                  - ic-shared-llm-app
+        - matchExpressions:
+              - key: purpose
+                operator: In
+                values:
+                  - ic-shared-app
   template:
     metadata:
       name: "{{name}}"
