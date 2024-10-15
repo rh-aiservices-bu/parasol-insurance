@@ -1,7 +1,7 @@
-<s>[INST] <<SYS>>
+<|system|>
 Summarize the below car insurance claim:
-<</SYS>>
+<|user|>
 ### TEXT:
 {car_claim}
 ### ANSWER:
-[/INST]
+<|assistant|>
