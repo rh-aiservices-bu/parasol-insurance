@@ -155,7 +155,7 @@ spec:
               cpu: 10m
               memory: 10Mi
         - name: ds-pipeline-runtime-image-confidence
-          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-confidence-pipeline:1.1
+          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-confidence-pipeline:1.2
           command: ["tail"]
           args: ["-f", "/dev/null"]
           resources:

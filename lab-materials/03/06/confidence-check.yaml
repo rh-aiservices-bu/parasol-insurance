@@ -71,7 +71,7 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.annotations['pipelines.kubeflow.org/run_name']
-          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-confidence-pipeline:1.1
+          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-confidence-pipeline:1.2
         stepTemplate:
           volumeMounts:
           - name: mlpipeline-metrics
@@ -127,7 +127,7 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.annotations['pipelines.kubeflow.org/run_name']
-          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-confidence-pipeline:1.1
+          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-confidence-pipeline:1.2
         stepTemplate:
           volumeMounts:
           - name: mlpipeline-metrics
@@ -183,7 +183,7 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.annotations['pipelines.kubeflow.org/run_name']
-          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-confidence-pipeline:1.1
+          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-confidence-pipeline:1.2
         stepTemplate:
           volumeMounts:
           - name: mlpipeline-metrics
@@ -239,7 +239,7 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.annotations['pipelines.kubeflow.org/run_name']
-          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-confidence-pipeline:1.1
+          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-confidence-pipeline:1.2
         stepTemplate:
           volumeMounts:
           - name: mlpipeline-metrics

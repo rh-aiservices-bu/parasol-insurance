@@ -9,12 +9,12 @@ TOP_P = 0.95
 TEMPERATURE = 0.01
 PRESENCE_PENALTY = 1.03
 
-def infer_with_template(input_text, template):
+def infer_with_template(input_text, template, max_tokens = MAX_NEW_TOKENS):
     llm = VLLMOpenAI(
         openai_api_key="EMPTY",
         openai_api_base= f"{INFERENCE_SERVER_URL}/v1",
         model_name="granite-7b-instruct",
-        max_tokens=MAX_NEW_TOKENS,
+        max_tokens=max_tokens,
         top_p=TOP_P,
         temperature=TEMPERATURE,
         presence_penalty=PRESENCE_PENALTY,
