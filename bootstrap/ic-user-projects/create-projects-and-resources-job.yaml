@@ -4,7 +4,7 @@ metadata:
   name: create-and-apply-resources
   namespace: ic-user-projects
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
     argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
     argocd.argoproj.io/compare-options: IgnoreExtraneous
