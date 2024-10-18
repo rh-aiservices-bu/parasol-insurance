@@ -100,17 +100,17 @@ spec:
               - key: purpose
                 operator: In
                 values:
-                  - ic-user-projects
-        - matchExpressions:
-              - key: purpose
-                operator: In
-                values:
                   - ic-shared-llm-app
         - matchExpressions:
               - key: purpose
                 operator: In
                 values:
                   - ic-shared-app
+        - matchExpressions:
+              - key: purpose
+                operator: In
+                values:
+                  - ic-user-projects
   template:
     metadata:
       name: "{{name}}"

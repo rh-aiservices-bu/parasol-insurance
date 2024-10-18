@@ -1,13 +1,3 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: ic-user-projects
-  labels:
-    app: ic-user-projects
-    argocd.argoproj.io/managed-by: openshift-gitops
-  annotations:
-    openshift.io/display-name: "Project Manager"
-    argocd.argoproj.io/sync-wave: "0"
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -15,14 +5,14 @@ metadata:
   name: project-creator
   namespace: ic-user-projects
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "1"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: project-creator-binding
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "1"
 subjects:
 - kind: ServiceAccount
   name: project-creator
@@ -37,7 +27,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: route-reader
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "1"
 rules:
 - apiGroups: ["route.openshift.io"]
   resources: ["routes"]
