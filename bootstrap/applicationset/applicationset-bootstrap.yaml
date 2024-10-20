@@ -132,3 +132,10 @@ spec:
           selfHeal: true
         syncOptions:
           - RespectIgnoreDifferences=true
+          - Retry=true
+        retry:
+          limit: 50
+          backoff:
+            duration: 15s
+            factor: 2
+            maxDuration: 5m # Maximum retry interval
