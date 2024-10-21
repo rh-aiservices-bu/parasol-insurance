@@ -18,6 +18,11 @@ spec:
             targetRevision: dev
             path: bootstrap/ic-rhoai-installation
           - cluster: in-cluster
+            name: ic-rhoai-configuration
+            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+            targetRevision: dev
+            path: bootstrap/ic-rhoai-configuration
+          - cluster: in-cluster
             name: ic-shared-minio-app
             repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
             targetRevision: dev
@@ -27,6 +32,11 @@ spec:
             repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
             targetRevision: dev
             path: bootstrap/ic-shared-database
+          - cluster: in-cluster
+            name: ic-shared-milvus
+            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+            targetRevision: dev
+            path: bootstrap/ic-shared-milvus
           - cluster: in-cluster
             name: ic-shared-llm-app
             repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
@@ -38,20 +48,10 @@ spec:
             targetRevision: dev
             path: bootstrap/ic-shared-img-det
           - cluster: in-cluster
-            name: ic-rhoai-configuration
-            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
-            targetRevision: dev
-            path: bootstrap/ic-rhoai-configuration
-          - cluster: in-cluster
             name: ic-user-projects
             repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
             targetRevision: dev
             path: bootstrap/ic-user-projects
-          - cluster: in-cluster
-            name: ic-shared-milvus
-            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
-            targetRevision: dev
-            path: bootstrap/ic-shared-milvus
           - cluster: in-cluster
             name: ic-shared-app
             repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
@@ -81,11 +81,7 @@ spec:
                 operator: In
                 values:
                   - ic-shared-minio-app
-        - matchExpressions:
-              - key: purpose
-                operator: In
-                values:
-                  - ic-shared-database-app
+                  - ic-shared-database-app                
         - matchExpressions:
               - key: purpose
                 operator: In
@@ -95,22 +91,14 @@ spec:
               - key: purpose
                 operator: In
                 values:
-                  - ic-shared-img-det
-        - matchExpressions:
-              - key: purpose
-                operator: In
-                values:
-                  - ic-shared-llm-app
+                  - ic-shared-llm-app               
         - matchExpressions:
               - key: purpose
                 operator: In
                 values:
                   - ic-shared-app
-        - matchExpressions:
-              - key: purpose
-                operator: In
-                values:
                   - ic-user-projects
+                  - ic-shared-img-det
   template:
     metadata:
       name: "{{name}}"
