@@ -318,7 +318,7 @@ kind: Notebook
 metadata:
   annotations:
     notebooks.opendatahub.io/inject-oauth: 'true'
-    opendatahub.io/image-display-name: CUSTOM - Insurance Claim Processing Lab Workbench
+    opendatahub.io/image-display-name: CUSTOM - Parasol Insurance Claim Processing Lab Workbench
     notebooks.opendatahub.io/oauth-logout-url: >-
       $DASHBOARD_ROUTE/projects/$USER_PROJECT?notebookLogout=$WORKBENCH_NAME
     opendatahub.io/accelerator-name: ''
