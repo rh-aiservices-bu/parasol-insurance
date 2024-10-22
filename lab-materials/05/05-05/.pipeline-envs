@@ -5,4 +5,4 @@ POSTGRES_PASSWORD=claimdb
 POSTGRES_PORT=5432
 DB_S3_ENDPOINT_URL=http://minio.ic-shared-minio.svc.cluster.local:9000
 DB_AWS_ACCESS_KEY_ID=minio
-DB_AWS_SECRET_ACCESS_KEY=minio123
+DB_AWS_SECRET_ACCESS_KEY=minio-parasol
