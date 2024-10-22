@@ -48,7 +48,7 @@ spec:
           s3 = boto3.client("s3",
                   endpoint_url="http://minio.ic-shared-minio.svc.cluster.local:9000",
                   aws_access_key_id="minio",
-                  aws_secret_access_key="minio123")
+                  aws_secret_access_key="minio-parasol")
 
           # Create the milvus buckets
           milvus_bucket_name = "milvus-bucket"

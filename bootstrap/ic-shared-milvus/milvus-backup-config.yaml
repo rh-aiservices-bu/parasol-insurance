@@ -32,7 +32,7 @@ data:
       address: minio.ic-shared-minio.svc.cluster.local
       port: 9000
       accessKeyID: minio
-      secretAccessKey: minio123
+      secretAccessKey: minio-parasol
       useSSL: false
       useIAM: false
       iamEndpoint: ""
