@@ -269,7 +269,7 @@ data:
 
     INSERT INTO claims.claims (claim_number, category, policy_number, client_name, subject, body, summary, location, time, sentiment) 
     VALUES ('CLM52125', 'Multiple vehicle', 'AC-418324', 'Saul Goodman', 'Where is My Money? Urgent Attention Needed for My Car Accident Claim', '
-    Dear Stoneheart Insurance Claims Department,
+    Dear Parasol Insurance Claims Department,
 
     I am absolutely *thrilled* (read: infuriated) to be writing yet another heartfelt missive to the void that is your customer service. My recent car accident claim has vanished into the ether, much like my patience and the professionalism I expected from your company. How about we resolve this before the next ice age?
 
@@ -287,7 +287,7 @@ data:
 
     Attach: Police Report No. 12345, Photos of the Incident, Documented Calls and Emails
     ',
-    'The text is a letter from a customer named Saul Goodman to the Stoneheart Insurance Claims Department regarding an unresolved car accident claim. The incident occurred on March 28, 2023, at the intersection of 5th Avenue and Main St in Springfield, where Saul''s car was hit by another vehicle that ran a red light. He is frustrated with the lack of progress on his claim, which has been ongoing for over two weeks. Saul demands a thorough review and update within 24 hours, threatening further actions if his request is not met. He attaches relevant documents, including a police report, photos of the incident, and records of calls and emails, to support his claim.',
+    'The text is a letter from a customer named Saul Goodman to the Parasol Insurance Claims Department regarding an unresolved car accident claim. The incident occurred on March 28, 2023, at the intersection of 5th Avenue and Main St in Springfield, where Saul''s car was hit by another vehicle that ran a red light. He is frustrated with the lack of progress on his claim, which has been ongoing for over two weeks. Saul demands a thorough review and update within 24 hours, threatening further actions if his request is not met. He attaches relevant documents, including a police report, photos of the incident, and records of calls and emails, to support his claim.',
     'The event the claim is related to happened at the intersection of 5th Avenue and Main St in Springfield.',
     'The car accident described in the text occurred on March 28, 2023, at around 4:15 PM.',
     'The sentiment of the person sending this claim is one of frustration and urgency. They are expressing dissatisfaction with the delay in processing their car accident claim and threatening further action if it is not resolved promptly.'
@@ -295,7 +295,7 @@ data:
 
     INSERT INTO claims.claims (claim_number, category, policy_number, client_name, subject, body, summary, location, time, sentiment) 
     VALUES ('CLM605208', 'Multiple vehicle', 'AC-768901', 'Tyrion Lannister', 'Urgent Claim Review Required: Collision in King''s Landing', '
-    Dear Westeros Insurance Claims Department,
+    Dear Parasol Insurance Claims Department,
 
     This correspondence is from Tyrion Lannister, currently not in a tavern but rather dealing with the aftermath of an unpleasant vehicular incident. As a man known for resolving conflicts, I find myself ironically embroiled in one that requires your immediate attention.
 
