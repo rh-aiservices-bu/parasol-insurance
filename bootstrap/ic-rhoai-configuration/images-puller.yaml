@@ -28,6 +28,16 @@ spec:
           requests:
             cpu: 10m
             memory: 10Mi
+      - name: ic-code-server
+        image: quay.io/modh/codeserver@sha256:4b6b563e75f9e642bac9f21c4a2d8d72d77923fc391dd5dc985d4489c7258ef5
+        command: ["tail"]
+        args: ["-f", "/dev/null"]
+        resources:
+          limits:
+            memory: 20Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
 ---
 apiVersion: apps/v1
 kind: DaemonSet
