@@ -35,58 +35,16 @@ Here are the main files of the pipeline and what they do:
 
 NOTE: In the folder, we still have for reference an Elyra version of the pipeline (`process_claims.pipeline`), but you cannot really use it from VSCode, which is the environment you should still be in.
 
-== Create a new Persistent Volume Claim (PVC)
+== Pipeline artefacts storage
 
-Before we can run the pipeline, we need to create a PVC that will be used to store intermediary files and results in. +
+Before we can run the pipeline, we need a place to store intermediary files and results in. +
 
-* Go to the {ocp-short} Console
-* Make sure and change your view from **Developer** to **Administrator**
-+
+This storage has already been created for you. +
+
+You can verify that the Cluster Storage `Data Pipeline` is available in the {rhoai} Dashboard, in the **Cluster Storage** section of your project. +
+
 [.bordershadow]
-image::05/05-switch-to-admin-view.jpg[]
-
-* Under the Administrator view, navigate to **Storage** -> **PersistentVolumeClaims**
-+
-[.bordershadow]
-image::05/05-PVC.png[go to PVC]
-
-* Make sure you are in the right project (your username) and then press **Create PersistentVolumeClaim**
-+
-[.bordershadow]
-image::05/05-create-pvc-button.jpg[Create PVC]
-
-* Use these settings:
-** StorageClass:
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-ocs-storagecluster-cephfs
-** PersistentVolumeClaim name:
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-processing-pipeline-storage
-** Access mode:
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-Shared access (RWX)
-** Size:
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-1 GiB
-
-* it should look like:
-+
-[.bordershadow]
-image::05/05-PVC-settings.png[PVC settings]
-
-* Then press **Create**
+image::05/05-data-pipeline-storage.png[]
 
 == Import the pipeline
 

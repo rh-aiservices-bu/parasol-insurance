@@ -532,6 +532,32 @@ spec:
                 restartPolicy: Never
           EOF
 
+          # Create the Data Pipeline PVC
+          cat << EOF | oc apply -f-
+          kind: PersistentVolumeClaim
+          apiVersion: v1
+          metadata:
+            annotations:
+              openshift.io/description: ''
+              openshift.io/display-name: Data Pipeline
+              volume.beta.kubernetes.io/storage-provisioner: openshift-storage.cephfs.csi.ceph.com
+              volume.kubernetes.io/storage-provisioner: openshift-storage.cephfs.csi.ceph.com
+            name: processing-pipeline-storage
+            namespace: $USER_PROJECT
+            finalizers:
+              - kubernetes.io/pvc-protection
+            labels:
+              opendatahub.io/dashboard: 'true'
+          spec:
+            accessModes:
+              - ReadWriteMany
+            resources:
+              requests:
+                storage: 1Gi
+            storageClassName: ocs-storagecluster-cephfs
+            volumeMode: Filesystem
+          EOF
+
           sleep 20
           
           done
