@@ -1,9 +1,0 @@
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: patch-code-server
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
-spec:
-  template:
-    spec:
