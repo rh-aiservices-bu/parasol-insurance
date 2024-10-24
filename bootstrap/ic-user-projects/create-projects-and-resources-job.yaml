@@ -558,6 +558,30 @@ spec:
             volumeMode: Filesystem
           EOF
 
+          # Create the ArgoCD Project
+          cat << EOF | oc apply -f-
+          apiVersion: argoproj.io/v1alpha1
+          kind: AppProject
+          metadata:
+            name: project-$USER_PROJECT
+            namespace: openshift-gitops
+          spec:
+            description: Application project for $USER_PROJECT
+            destinations:
+              - name: in-cluster
+                namespace: $USER_PROJECT
+                server: 'https://kubernetes.default.svc'
+            roles:
+              - description: Sync privileges for any application
+                groups:
+                  - $USER_PROJECT
+                name: ci-role
+                policies:
+                  - 'p, proj:project-$USER_PROJECT:ci-role, applications, *, project-$USER_PROJECT/*, allow'
+            sourceRepos:
+              - 'https://github.com/rh-aiservices-bu/parasol-insurance.git'
+          EOF
+
           sleep 20
           
           done

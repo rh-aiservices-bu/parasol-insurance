@@ -32,7 +32,6 @@
 
 * 5. Web App Deployment
 ** xref:05-01-application.adoc[5.1 Application overview]
-** xref:05-02-openshift-terminal.adoc[5.2 OpenShift Terminal]
 ** xref:05-03-web-app-deploy-application.adoc[5.3 Deploying the application via GitOps]
 ** xref:05-04-web-app-validating.adoc[5.4 Validating the application]
 ** xref:05-05-process-claims.adoc[5.5 Process claims with a pipeline]

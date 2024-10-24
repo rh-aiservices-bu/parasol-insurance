@@ -5,7 +5,7 @@ include::_attributes.adoc[]
 
 What you see when you first connect to the application is the new version.
 
-But to see where we are coming from, let's start by navigating to the original version and see what it looked like. Click on the **Original App** menu on the left.
+But to see where we are coming from, let's start by navigating to the original version and see what it looked like. Click on the **Original App** menu on the bottom left.
 
 [.bordershadow]
 image::05/original-app-link.png[]
