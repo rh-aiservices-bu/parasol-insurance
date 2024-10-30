@@ -7,7 +7,7 @@ include::_attributes.adoc[]
 ** fax,
 ** phone,
 ** web form.
-* All formats will have to be transcribed into the web form for better uniformity.
+* All formats have to be transcribed into the web form for better uniformity and processing.
 * Claims have to be processed by (human) claims adjusters.
 ** They spend an aggregated average of 7 hours/claim.
 ** We estimate that human errors account for $2.5M/year in lost revenue.

@@ -7,7 +7,7 @@ Each person attending this lab will have a unique user account in which to do th
 
 == Environment information
 
-If you are using the customized version of the instructions, the information below will render properly. If not, you will see placeholder values instead.
+__Note: if you are using the lab-deployed instructions, the values below will render properly. If not, like when using the rendered instructions from the Github repo, placeholder values will appear.__
 
 * Your account id: `{user}`
 * Your password: `{password}`
@@ -19,12 +19,12 @@ In a new window or tab, open the following URL and log in:
 * Click on the `Login with OpenShift` button:
 +
 [.bordershadow]
-image::02/02-01-login3.png[width=50%]
+image::02/02-01-login3.png[]
 * Enter your credentials (as detailed above)
 * The result should look like:
 +
 [.bordershadow]
-image::02/02-01-login1.png[width=50%]
+image::02/02-01-login1.png[]
 
 * Because the password is so simple (`{password}`), your browser might display a scary message such as:
 +

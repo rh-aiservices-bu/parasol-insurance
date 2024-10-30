@@ -14,7 +14,7 @@ image::05/05-open-argocd.png[]
 +
 [.bordershadow]
 image::05/05-login-argocd-openshift.png[]
-
++
 [.bordershadow]
 image::05/05-openshift-login.png[]
 
@@ -28,7 +28,7 @@ image::05/05-create-application.png[]
 [.bordershadow]
 image::05/05-edit-as-yaml.png[]
 
-- Copy the content of the following text, paste it in the editor, then click on "Save".
+- Copy the content of the following text, paste it in the editor (replace the default content), then click on "Save".
 +
 [source, yaml, subs="attributes+"]
 apiVersion: argoproj.io/v1alpha1
@@ -49,7 +49,7 @@ spec:
       prune: true
       selfHeal: false
     syncOptions: [CreateNamespace=false]
-
++
 [.bordershadow]
 image::05/05-application-yaml-save.png[]
 

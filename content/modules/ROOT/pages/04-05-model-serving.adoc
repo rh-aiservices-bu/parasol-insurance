@@ -8,7 +8,11 @@ include::_attributes.adoc[]
 
 == Create a Data Connection
 
-* In your Data Science project, create a Data Connection that refers to the shared MinIO.
+* In your Data Science project, on the Data Connection tab, click on **Add data connection** to create one that refers to the shared storage (Minio) where a copy of the model is stored.
++
+[.bordershadow]
+image::04/04-add-data-connection.png[]
+
 * Here is the info you need to enter:
 ** Name:
 [.lines_space]
@@ -54,9 +58,11 @@ image::04/model-data-connection.png[model connection]
 
 == Create a Model Server
 
-In your project create a model server:
+In your project, select the **Models** tab to create a model server:
 
-* In the "Multi-model serving platform" type of model, click **Add model server**:
+**VERY IMPORTANT**: in the following step, pay attention and select the right type of model server. Otherwise we would have to reset your project.
+
+* In the **Multi-model serving platform** type of model, the one on the right, click **Add model server**:
 +
 [.bordershadow]
 image::04/add-model-server.png[]
@@ -92,7 +98,7 @@ Standard
 [.console-input]
 [source, text]
 [subs=attributes+]
-None
+None (bug: even when selecting `None`, the drop down will still show `Select...`)
 ** Model route
 [.lines_space]
 [.console-input]
@@ -116,7 +122,7 @@ image::04/add-model-server-config.png[]
 
 == Deploy the Model
 
-In your project, under **Models and model servers** select **Deploy model**.
+Still in your project, on the **Models** tab, under **Models and model servers**:
 
 * Click **Deploy model**:
 +
@@ -136,7 +142,7 @@ My first Model
 [.console-input]
 [source, text]
 [subs=attributes+]
-My first Model Server
+My first Model Server (pre-filled)
 ** Model server - Model framework
 [.lines_space]
 [.console-input]

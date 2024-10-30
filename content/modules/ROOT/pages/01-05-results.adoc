@@ -12,6 +12,6 @@ include::_attributes.adoc[]
 
 We know that you all have various background and responsibilities (Coders, IT, DevOps, Data Scientists, etc..).
 
-But before you start working in your narrow area of specialization, we want you all to have a decent understanding of all the work that was done during the prototype phase.
+So before you start working in your narrow area of specialization, we want you all to have a decent understanding of all the work that was done during the prototype phase.
 
 The next 75 minutes is your official training session, for you to ramp up and gain an understanding of the various technologies involved during the prototype phase.
