@@ -14,7 +14,7 @@ The different components are:
 - The **frontend**: the application itself, developed using the Patternfly framework (React, Typescript), running in the browser of the user.
 - The **backend**: a Python FastAPI application, running in a container on {ocp}. It handles the communication with the database, the LLM, and the Object storage. It handles the communication with the frontend by exposing a REST API.
 - The **database**: a PostgreSQL database, running in a container on {ocp}. It stores the claims.
-- The **LLM**: the language model used to summarize and extract information from the claims. It is consumed by the backend through its API.
+- The **LLM**: the language model used to summarize and extract information from the claims, and powering the chatbot. It is consumed by the backend through its API.
 - The **VectorDB**: the vector database used to store documents for retrieval in the RAG part. It's based on Milvus.
 - The **Object storage**: an S3-compatible object storage. It stores the claim images.
 
@@ -28,21 +28,22 @@ If you want to have a look at the code of the application, you can do it directl
 
 +
 [.bordershadow]
-image::05/05-toggle-off-workbench.jpg[]
+image::05/05-toggle-off-workbench.png[]
+[.bordershadow]
+image::05/05-confirm-turn-off.png[]
 
 
-
--- You should probably give it 5 or 10 seconds to fully stop.
+- You should probably give it 5 or 10 seconds to fully stop.
 - Edit the Workbench configuration by clicking the 3 vertical dots on the right, then choose the **Edit workbench** button.
 +
 [.bordershadow]
 image::05/stop-workbench.png[]
 
-- In the image section, change the image to `CUSTOM - VSCode for {ic}`:
+
+- In the `image selection` section, change the image to `CUSTOM - Code Server for {ic}`:
 +
 [.bordershadow]
-image::05/05-change-to-vscode.jpg[]
-- Note that this is a Custom-built image added in this particular {ic-lab} to illustrate the flexibility of the {rhoai} platform. Not everyone wants to use Jupyter Notebooks for everything.
+image::05/05-change-to-vscode.png[]
 
 - Then click on `Update workbench` at the bottom of the page:
 +
@@ -51,7 +52,7 @@ image::05/update-workbench.png[]
 
 - You can now start your Workbench again by using the toggle.
 - Once the Workbench is started, click on the **Open** Link.
-- You will be redirected to the VSCode IDE.
+- You will be redirected to the VSCode IDE (Code Server is the open source implementation of VSCode).
 - After logging in and accepting the authorization, VSCode will open.
 - The first time you connect to it, you must indicate that you trust the workspace.
 - Click on the **Yes, I trust the authors** button.
@@ -63,7 +64,7 @@ image::05/trust-vscode.png[]
 * Your Persistent Volume has been automatically reconnected to this new environment.
 ** Therefore, all the data you created in the Jupyter environment is still available
 ** You can see more files because VSCode displays hidden files by default, which Jupyter does not do.
-* If you want, you can now explore the code of the application, in the `app` folder:
+* If you want, you can now explore the code of the application, in the `parasol-insurance/app` folder:
 +
 [.bordershadow]
 image::05/app-code.png[]

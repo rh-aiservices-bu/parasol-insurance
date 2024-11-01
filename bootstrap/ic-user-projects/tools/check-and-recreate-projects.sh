@@ -8,7 +8,7 @@ DASHBOARD_ROUTE=https://$(oc get route rhods-dashboard -n redhat-ods-application
 
 # Define some variables
 WORKBENCH_NAME="my-workbench"
-WORKBENCH_IMAGE="ic-workbench:2.1.2"
+WORKBENCH_IMAGE="ic-workbench:1.2"
 PIPELINE_ENGINE="Tekton"
 projects_without_running_pods=()
 
@@ -318,7 +318,7 @@ kind: Notebook
 metadata:
   annotations:
     notebooks.opendatahub.io/inject-oauth: 'true'
-    opendatahub.io/image-display-name: CUSTOM - Insurance Claim Processing Lab Workbench
+    opendatahub.io/image-display-name: CUSTOM - Parasol Insurance Claim Processing Lab Workbench
     notebooks.opendatahub.io/oauth-logout-url: >-
       $DASHBOARD_ROUTE/projects/$USER_PROJECT?notebookLogout=$WORKBENCH_NAME
     opendatahub.io/accelerator-name: ''

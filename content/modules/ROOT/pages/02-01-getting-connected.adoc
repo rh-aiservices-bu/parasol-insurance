@@ -7,7 +7,7 @@ Each person attending this lab will have a unique user account in which to do th
 
 == Environment information
 
-If you are using the customized version of the instructions, the information below will render properly. If not, you will see placeholder values instead.
+__Note: if you are using the lab-deployed instructions, the values below will render properly. If not, like when using the rendered instructions from the Github repo, placeholder values will appear.__
 
 * Your account id: `{user}`
 * Your password: `{password}`
@@ -19,12 +19,12 @@ In a new window or tab, open the following URL and log in:
 * Click on the `Login with OpenShift` button:
 +
 [.bordershadow]
-image::02/02-01-login3.png[width=50%]
+image::02/02-01-login3.png[]
 * Enter your credentials (as detailed above)
 * The result should look like:
 +
 [.bordershadow]
-image::02/02-01-login1.png[width=50%]
+image::02/02-01-login1.png[]
 
 * Because the password is so simple (`{password}`), your browser might display a scary message such as:
 +
@@ -41,15 +41,12 @@ If you got this far and saw all that, congratulations, you properly connected to
 
 We are now ready to start the {ic}.
 
-== Getting Support during Red Hat Summit
+== Getting Support
 
-* In the room:
+* If you attend in person, in the room:
 ** Some very kind colleagues of ours will be walking around in the room, to help and/or answer questions.
 ** If you run into a particular issue, call out to one of them and quietly explain what the issue is.
 
-// ** If they are unsure or if it's likely to be a long explanation, they might ask you to "post the question in slack" instead. (see below)
-// * Over Slack:
-// ** We have a dedicated Slack Channel where more colleagues (who kindly agreed to stay up late) will try to answer questions.
-// ** Head over to the slack channel called https://redhat.enterprise.slack.com/archives/C066EQ8LWBS[#rh1-insurance-claims-lab,window=_blank]
-// ** Post a message such as `I am userX and I have an issue with exercise number 2.4`
-// ** Use the https://slack.com/help/articles/115000769927-Use-threads-to-organize-discussions-[threads,window=_blank] feature in slack to then post a screenshot of a description of the issue, in-thread.
+* If you attend remotely:
+** The organizer will indicate the best way to ask questions, usually through the video conferencing tool.
+** Depending on the setup, a Slack channel (or similar) may also be available. Please check with the organizer.

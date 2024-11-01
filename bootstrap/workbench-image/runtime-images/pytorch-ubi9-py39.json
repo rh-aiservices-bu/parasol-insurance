@@ -1,9 +1,0 @@
-{
-    "display_name": "PyTorch with CUDA and Python 3.9 (UBI9)",
-    "metadata": {
-        "tags": [],
-        "display_name": "PyTorch with CUDA and Python 3.9 (UBI9)",
-        "image_name": "quay.io/opendatahub/workbench-images:runtime-pytorch-ubi9-python-3.9-6a6098d"
-    },
-    "schema_name": "runtime-image"
-}

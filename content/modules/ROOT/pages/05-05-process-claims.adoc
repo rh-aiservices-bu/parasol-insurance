@@ -15,13 +15,13 @@ For that, we will use a pipeline that can either be run ad-hoc or scheduled just
 
 == What's inside the pipeline?
 
-If you navigate to `parasol-insurance/lab-materials/05/05-05` you can see a variety of files. +
+Inside your VSCode workbench (if you have closed/stopped it, please restart it), if you navigate to `parasol-insurance/lab-materials/05/05-05` you can see a variety of files. +
 
 [.bordershadow]
-image::05/05-process-claims-yaml.jpg[]
+image::05/05-process-claims-yaml.png[]
 
 
-This time, we will use the **yaml definition** of a **pipeline**, `process_claims.yaml`, to process the claims. +
+This time, we will use the **yaml definition** of a **pipeline**, `process-claims-pipeline.yaml`, to process the claims. +
 
 Here are the main files of the pipeline and what they do:
 
@@ -33,64 +33,20 @@ Here are the main files of the pipeline and what they do:
 ** *get_sentiment* - Gets the sentiment of the text
 * *detect_objects* - Downloads the images of the claim and uses the served object-detection model to classify the damages in the image
 
-NOTE: In the folder, we still have for reference an Elyra version of the pipeline (`process_claims.pipeline`), but you cannot really use it from VSCode, which is the environment you should still be in.
+== Pipeline artefacts storage
 
-== Create a new Persistent Volume Claim (PVC)
+Before we can run the pipeline, we need a place to store intermediary files and results in. +
 
-Before we can run the pipeline, we need to create a PVC that will be used to store intermediary files and results in. +
+This storage has already been created for you. +
 
-* Go to the {ocp-short} Console
-* Make sure and change your view from **Developer** to **Administrator**
-+
+You can verify that the Cluster Storage `Data Pipeline` is available in the {rhoai} Dashboard, in the **Cluster Storage** section of your project. +
+
 [.bordershadow]
-image::05/05-switch-to-admin-view.jpg[]
-
-* Under the Administrator view, navigate to **Storage** -> **PersistentVolumeClaims**
-+
-[.bordershadow]
-image::05/05-PVC.png[go to PVC]
-
-* Make sure you are in the right project (your username) and then press **Create PersistentVolumeClaim**
-+
-[.bordershadow]
-image::05/05-create-pvc-button.jpg[Create PVC]
-
-* Use these settings:
-** StorageClass:
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-ocs-storagecluster-cephfs
-** PersistentVolumeClaim name:
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-processing-pipeline-storage
-** Access mode:
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-Shared access (RWX)
-** Size:
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-1 GiB
-
-* it should look like:
-+
-[.bordershadow]
-image::05/05-PVC-settings.png[PVC settings]
-
-* Then press **Create**
+image::05/05-data-pipeline-storage.png[]
 
 == Import the pipeline
 
-To import the pipeline, start by downloading the `process_claims.yaml` file locally.
+To import the pipeline, start by downloading the `process-claims-pipeline.yaml` file locally.
 Navigate to `parasol-insurance/lab-materials/05/05-05` to find it.
 
 
@@ -99,7 +55,7 @@ Navigate to `parasol-insurance/lab-materials/05/05-05` to find it.
 // image::05/05-download-process-yaml.png[download process claims yaml]
 // Then go to your Data Science project and press Import Pipeline.
 
-* Start by downloading the `process_claims.yaml` file locally to your laptop
+* Start by downloading the `process-claims-pipeline.yaml` file locally to your laptop
 ** In your VSCode Workbench, right-click on the file, and select **Download**
 ** Save the file somewhere on your laptop
 * Then go to the {rhoai} Dashboard
@@ -108,16 +64,19 @@ Navigate to `parasol-insurance/lab-materials/05/05-05` to find it.
 * Click **Import Pipeline**
 +
 [.bordershadow]
-image::05/05-import-pipeline.jpg[import pipeline]
+image::05/05-import-pipeline.png[import pipeline]
 
-* Now upload the `process_claims.yaml` file, either by drag-and-dropping or using the Upload button
+* Now upload the `process-claims-pipeline.yaml` file, either by drag-and-dropping or using the Upload button
 * Then make sure to give your pipeline a good name like `Process Claims Pipeline`
-* It should look something like this afterwards:
+* It should look something like this:
 +
 [.bordershadow]
-image::05/05-import-pipeline-highlighted.jpg[imported pipeline]
+image::05/05-import-pipeline-highlighted.png[imported pipeline]
 
-* Click  **Import Pipeline** and you should see it appear under the pipelines section of your Project
+* Click  **Import Pipeline** and you should see it appear under the Data Science Pipelines section:
++
+[.bordershadow]
+image::05/05-process-claims-pipeline-imported.png[]
 
 == Run the pipeline
 
@@ -125,7 +84,7 @@ image::05/05-import-pipeline-highlighted.jpg[imported pipeline]
 * Click **Create Run** to create a new run of the pipeline you just added
 +
 [.bordershadow]
-image::05/05-create-run.jpg[create run]
+image::05/05-create-run.png[create run]
 
 * Use these settings:
 ** Name:
@@ -165,19 +124,19 @@ image::05/05-run-settings-create-pipeline.png[run settings]
 * Click **Create** and watch it run
 +
 [.bordershadow]
-image::05/05-process-claims.jpg[process]
+image::05/05-process-claims.png[process]
 
 == Check the results
 
-* After the pipeline has finished running, you can go to the app and take a look at the claims
-* You will now see that all the claims are processed
+* After the pipeline has finished running, you can go to the app and take a look at the claims.
+* You will now see that all the claims are processed (you may need to refresh the page).
 +
 [.bordershadow]
 image::05/05-process-claim3-app.jpg[claim3processed]
 
-* Click on the last claim
-* Instead of just a long body, you will now see a summary, a location field, an accident time field, and a sentiment field
-* You can also see that we have new image(s) which have bounding boxes where the damage is
+* Click on the claim CLM502803 and you will see that it has been processed.
+* Instead of just a long body, you will now see a summary, a location field, an accident time field, and a sentiment field.
+* You can also see that we have new image(s) which have bounding boxes where the damage is:
 +
 [.bordershadow]
 image::05/05-processed-claim.jpg[claim3processed]

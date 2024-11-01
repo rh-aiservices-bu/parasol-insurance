@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ic-user-projects
+  labels:
+    app: ic-user-projects
+    argocd.argoproj.io/managed-by: openshift-gitops
+  annotations:
+    openshift.io/display-name: "Project Manager"
+    argocd.argoproj.io/sync-wave: "0"

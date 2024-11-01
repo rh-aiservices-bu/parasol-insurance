@@ -10,14 +10,16 @@ def send_request(endpoint):
     return response
 
 def test_responsetime():
-    TEMPLATE = """<s>[INST] <<SYS>>
-Answer below truthfully and in less than 10 words:
-<</SYS>>
+    TEMPLATE = """<|system|>
+Answer below in less than 10 words:
+<|user|>
+### QUESTION:
 {silly_question}
-[/INST]"""
+### ANSWER:
+<|assistant|>"""
     
     start = time.perf_counter()
-    response = infer_with_template("Who saw a saw saw a salsa?", TEMPLATE)
+    response = infer_with_template("Who saw a saw saw a salsa?", TEMPLATE, max_tokens=20)
     response_time = time.perf_counter() - start
 
     if response_time>max_response_time:

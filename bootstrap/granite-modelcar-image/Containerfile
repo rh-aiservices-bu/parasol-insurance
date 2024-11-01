@@ -1,0 +1,23 @@
+# Base image for the modelcar Granite image
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.4 as base
+
+# Install necessary Python dependencies
+RUN microdnf -y install git git-lfs python3-pip && \
+    microdnf clean all
+
+# Install Hugging Face libraries
+RUN pip3 install torch transformers huggingface-hub
+
+# Download the necessary model files (config.json, tokenizer.json, and safetensors)
+RUN python3 -c "\
+from huggingface_hub import snapshot_download; \
+snapshot_download(repo_id='ibm-granite/granite-7b-instruct', local_dir='/models', allow_patterns=['*.safetensors', '*.json', '*.txt'])"
+
+# Final image containing only the essential model files
+FROM registry.access.redhat.com/ubi9/ubi-minimal:9.4  
+
+# Copy only the necessary model files from the base image
+COPY --from=base /models /models
+
+# Set the user to 1001
+USER 1001

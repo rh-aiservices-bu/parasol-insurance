@@ -9,7 +9,26 @@ def test_response_quality():
     with open('summary_template.txt') as f:
         template = f.read()
 
-    expected_response = """On October 15, 2023, at around 2:30 PM, John Smith was involved in a car accident at the intersection of Elm Street and Maple Avenue in Springfield, Illinois (coordinates: 39.7476° N, 89.6960° W). He was driving his Honda Accord with a green light when a Ford Escape, which ran a red light, collided with the front passenger side of his vehicle. The accident occurred in overcast weather with light rain, and the road was wet. No serious injuries were reported, but both vehicles sustained significant damage. A police report was filed, and the officer's badge number is 12345. Witnesses to the accident include Sarah Johnson, Mark Williams, and Lisa Anderson, and their contact information has been provided. Photos of the accident scene, including the damage to both vehicles, traffic signals, and road conditions, have also been taken. John is requesting that a claim be initiated under his policy (ABC12345) for the damages to his vehicle and is asking for guidance on the claim process and required documentation."""
+    expected_response = """Dear John Smith,
+
+Thank you for contacting XYZ Insurance Company regarding your recent car accident. We are sorry to hear about the incident and are committed to assisting you through this process.
+
+To initiate a claim, please follow these steps:
+
+1. Gather all necessary documentation, including the accident report (with the officer's badge number), witness contact information, photos of the accident scene, and your vehicle's repair estimate.
+2. Log in to your policyholder account on our website or contact our customer service department at (800) 123-4567 to report the claim.
+3. Our representative will guide you through the claim process, asking for the required information and providing you with a claim number.
+4. Your insurance adjuster will be assigned to your case and will contact you to schedule an appointment to inspect the damage to your vehicle.
+5. Once the assessment is complete, your adjuster will provide you with a detailed repair estimate and discuss the next steps for claim settlement.
+
+Please note that the time it takes to process a claim can vary depending on the complexity of the accident and the amount of damage involved. We appreciate your patience and cooperation throughout this process.
+
+If you have any questions or need further assistance, please do not hesitate to contact us at (800) 123-4567 or email us at claims@xyzinsurance.com. We are here to help.
+
+Sincerely,
+
+XYZ Insurance Company
+Claims Department"""
 
     response = infer_with_template(input_text, template)
     print(f"Response: {response}")

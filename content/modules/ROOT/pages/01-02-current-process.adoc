@@ -3,16 +3,15 @@ include::_attributes.adoc[]
 :slide:
 
 * Claims can come in from multiple mediums:
-** email
-** fax
-** phone
-** web form
-* All formats will have to be transcribed into the web form for better uniformity
-
-* Claims have to be processed by (human) claims adjusters
-** They spend an aggregated average of 7 hours/claim
-** We estimate that human errors account for $2.5M/year in lost revenue
-** Another $3.5M/year is likely lost due to insurance fraud
+** email,
+** fax,
+** phone,
+** web form.
+* All formats have to be transcribed into the web form for better uniformity and processing.
+* Claims have to be processed by (human) claims adjusters.
+** They spend an aggregated average of 7 hours/claim.
+** We estimate that human errors account for $2.5M/year in lost revenue.
+** Another $3.5M/year is likely lost due to insurance fraud.
 * There are a lot of inefficiencies!
 ** Adjusters report "workload-fatigue", i.e. making mistakes due to the repetitive nature of the work.
 ** It also takes a long time to train new adjusters into the specific policies of the companies.

@@ -7,12 +7,12 @@ In order to make this {ic-lab} seem more realistic, we will be describing this i
 :slide:
 
 * We all work for a large multi-national insurance company called "{company-name}":
-** {company-name} is in the midst of digital transformation
-** It is looking at modernizing practices and leveraging new technologies
+** {company-name} is in the midst of digital transformation.
+** It is looking at modernizing practices and leveraging new technologies.
 * A small team was asked to:
-** Review the way insurance claims are currently being processed
-** Provide advice on potential improvements
+** Review the way insurance claims are currently being processed.
+** Provide advice on potential improvements.
 * That team is currently very small (about 4 people):
-** Findings will be presented to the board
-** If they are convincing, the team will be granted the resources to implement the recommendations
-* The next sections in this chapter are the materials that were presented to the board
+** Findings will be presented to the board.
+** If they are convincing, the team will be granted the resources to implement the recommendations.
+* The next sections in this chapter are the materials that were presented to the board.

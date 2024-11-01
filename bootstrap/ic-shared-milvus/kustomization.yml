@@ -13,8 +13,8 @@ resources:
 # wave 1
 - milvus-backup-config.yaml
 - milvus-config.yaml
-- milvus-pvc.yaml
 # wave 2
+- milvus-pvc.yaml
 - milvus-deployment.yaml
 - milvus-services.yaml
 - milvus-backup-deployment.yaml

@@ -10,13 +10,13 @@ asciidoc:
     page-pagination: true
     experimental:
     numbered:
-    lab_name: "OpenShift AI Unleashed: Transforming Claims Processing for Maximum Efficiency!"
+    lab_name: "Parasol Insurance AI Workshop"
     guid: my-guid
     ssh_user: lab-user
     ssh_password: lab-user
     ssh_command: ssh lab-user@bastion.{guid}.example.opentlc.com
     minio-user: minio
-    minio-pass: minio123
+    minio-pass: minio-parasol
     minio-endpoint: http://minio.ic-shared-minio.svc.cluster.local:9000/
     git-clone-repo-url: https://github.com/rh-aiservices-bu/parasol-insurance.git
     git-clone-repo-branch: dev

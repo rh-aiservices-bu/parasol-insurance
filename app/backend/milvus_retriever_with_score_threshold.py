@@ -1,15 +1,13 @@
 """Milvus Retriever with Score Threshold"""
-import warnings
 from typing import Any, Dict, List, Optional
 
 from langchain_core.callbacks import CallbackManagerForRetrieverRun
 from langchain_core.documents import Document
 from langchain_core.embeddings import Embeddings
-from langchain_core.pydantic_v1 import root_validator
-from langchain_community.vectorstores import Milvus
 from langchain_core.retrievers import BaseRetriever
+from langchain_milvus import Milvus
+from pydantic import model_validator
 
-from langchain_community.vectorstores.milvus import Milvus
 
 class MilvusRetrieverWithScoreThreshold(BaseRetriever):
     """`Milvus API` retriever."""
@@ -29,7 +27,8 @@ class MilvusRetrieverWithScoreThreshold(BaseRetriever):
     store: Milvus
     retriever: BaseRetriever
 
-    @root_validator(pre=True)
+    @model_validator(mode="before")
+    @classmethod
     def create_retriever(cls, values: Dict) -> Dict:
         """Create the Milvus store and retriever."""
         values["store"] = Milvus(
@@ -39,7 +38,7 @@ class MilvusRetrieverWithScoreThreshold(BaseRetriever):
             collection_properties=values["collection_properties"],
             connection_args=values["connection_args"],
             consistency_level=values["consistency_level"],
-            metadata_field="metadata",
+            enable_dynamic_field=True,
             text_field="page_content"
         )
         values["retriever"] = values["store"].as_retriever(

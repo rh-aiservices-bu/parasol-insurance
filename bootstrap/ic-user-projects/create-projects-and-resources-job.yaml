@@ -4,7 +4,7 @@ metadata:
   name: create-and-apply-resources
   namespace: ic-user-projects
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
     argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
     argocd.argoproj.io/compare-options: IgnoreExtraneous
@@ -41,12 +41,14 @@ spec:
           MINIO_ROOT_USER=$(oc get secret minio-root-user -n ic-shared-minio -o template --template '{{.data.MINIO_ROOT_USER|base64decode}}')
           MINIO_ROOT_PASSWORD=$(oc get secret minio-root-user -n ic-shared-minio -o template --template '{{.data.MINIO_ROOT_PASSWORD|base64decode}}')
           MINIO_HOST=https://$(oc get route minio-s3 -n ic-shared-minio -o template --template '{{.spec.host}}')
+          MINIO_ROUTE=$(oc get route minio-s3 -n ic-shared-minio -o template --template '{{.spec.host}}')
           DASHBOARD_ROUTE=https://$(oc get route rhods-dashboard -n redhat-ods-applications -o jsonpath='{.spec.host}')
 
           # Define some variables
           WORKBENCH_NAME="my-workbench"
-          WORKBENCH_IMAGE="ic-workbench:2.1.2"
-          PIPELINE_ENGINE="Tekton"
+          WORKBENCH_IMAGE="ic-workbench:1.2"
+          PIPELINE_ENGINE="Argo"
+          BRANCH_NAME="dev"
 
           for i in $(seq 1 $user_count);
           do
@@ -135,7 +137,7 @@ spec:
           roleRef:
             apiGroup: rbac.authorization.k8s.io
             kind: Role
-            name: ds-pipeline-user-access-pipelines-definition
+            name: ds-pipeline-user-access-dspa
           EOF
 
           # Create Data Science Connections
@@ -155,7 +157,7 @@ spec:
                   - |-
                     echo "Minio user: $MINIO_ROOT_USER"
                     echo "Minio pass: $MINIO_ROOT_PASSWORD"
-                    echo "Internal service url: http://minio.ic-shared-minio.svc.cluster.local:9000/"
+                    echo "Minio route: $MINIO_HOST"
                     cat << EOF | oc apply -f-
                     apiVersion: v1
                     kind: Secret
@@ -172,7 +174,7 @@ spec:
                       AWS_ACCESS_KEY_ID: $MINIO_ROOT_USER
                       AWS_SECRET_ACCESS_KEY: $MINIO_ROOT_PASSWORD
                       AWS_DEFAULT_REGION: us
-                      AWS_S3_ENDPOINT: http://minio.ic-shared-minio.svc:9000
+                      AWS_S3_ENDPOINT: $MINIO_HOST
                       AWS_S3_BUCKET: $USER_NAME
                     EOF
                   command:
@@ -192,42 +194,52 @@ spec:
           metadata:
             finalizers:
             - datasciencepipelinesapplications.opendatahub.io/finalizer
-            name: pipelines-definition
+            name: dspa
             namespace: $USER_PROJECT
           spec:
             apiServer:
-              applyTektonCustomResource: true
-              archiveLogs: false
-              autoUpdatePipelineDefaultVersion: true
-              collectMetrics: true
-              dbConfigConMaxLifetimeSec: 120
-              deploy: true
-              enableOauth: true
-              enableSamplePipeline: false
-              injectDefaultScript: true
+              caBundleFileMountPath: ''
               stripEOF: true
+              dbConfigConMaxLifetimeSec: 120
+              applyTektonCustomResource: true
+              caBundleFileName: ''
+              deploy: true
+              artifactSignedURLExpirySeconds: 60
+              enableSamplePipeline: false
+              autoUpdatePipelineDefaultVersion: true
+              archiveLogs: false
               terminateStatus: Cancelled
+              enableOauth: true
               trackArtifacts: true
+              collectMetrics: true
+              injectDefaultScript: true
             database:
+              disableHealthCheck: false
               mariaDB:
                 deploy: true
                 pipelineDBName: mlpipeline
                 pvcSize: 10Gi
                 username: mlpipeline
+            dspVersion: v2
             objectStorage:
+              disableHealthCheck: false
+              enableExternalRoute: false
               externalStorage:
+                basePath: ''
                 bucket: $USER_NAME
-                host: minio.ic-shared-minio.svc.cluster.local:9000
+                host: $MINIO_ROUTE
                 port: ''
+                region: us
                 s3CredentialsSecret:
                   accessKey: AWS_ACCESS_KEY_ID
                   secretKey: AWS_SECRET_ACCESS_KEY
                   secretName: aws-connection-shared-minio---pipelines
-                scheme: http
-                secure: false
+                scheme: https
+                secure: true
             persistenceAgent:
               deploy: true
               numWorkers: 2
+            podToPodTLS: true
             scheduledWorkflow:
               cronScheduleTimezone: UTC
               deploy: true
@@ -248,13 +260,13 @@ spec:
                 - args:
                   - -ec
                   - |-
-                    echo -n 'Waiting for ds-pipeline-pipelines-definition route'
-                    while ! oc get route ds-pipeline-pipelines-definition 2>/dev/null; do
+                    echo -n 'Waiting for ds-pipeline-dspa route'
+                    while ! oc get route ds-pipeline-dspa 2>/dev/null; do
                       echo -n .
                       sleep 5
                     done; echo
 
-                    PIPELINE_ROUTE=https://\$(oc get route ds-pipeline-pipelines-definition -o jsonpath='{.spec.host}')
+                    PIPELINE_ROUTE=https://\$(oc get route ds-pipeline-dspa -o jsonpath='{.spec.host}')
 
                     cat << EOF | oc apply -f-
                     apiVersion: v1
@@ -266,7 +278,7 @@ spec:
                       odh_dsp.json: '{"display_name": "Data Science Pipeline", "metadata": {"tags": [],
                         "display_name": "Data Science Pipeline", "engine": "$PIPELINE_ENGINE", "auth_type": "KUBERNETES_SERVICE_ACCOUNT_TOKEN",
                         "api_endpoint": "\$PIPELINE_ROUTE",
-                        "public_api_endpoint": "$DASHBOARD_ROUTE/pipelineRuns/$USER_PROJECT/pipelineRun/view/",
+                        "public_api_endpoint": "$DASHBOARD_ROUTE/experiments/$USER_PROJECT",
                         "cos_auth_type": "KUBERNETES_SECRET", "cos_secret": "aws-connection-shared-minio---pipelines",
                         "cos_endpoint": "$MINIO_HOST", "cos_bucket": "$USER_NAME",
                         "cos_username": "$MINIO_ROOT_USER", "cos_password": "$MINIO_ROOT_PASSWORD",
@@ -316,7 +328,7 @@ spec:
           metadata:
             annotations:
               notebooks.opendatahub.io/inject-oauth: 'true'
-              opendatahub.io/image-display-name: CUSTOM - Insurance Claim Processing Lab Workbench
+              opendatahub.io/image-display-name: CUSTOM - Parasol Insurance Claim Processing Lab Workbench
               notebooks.opendatahub.io/oauth-logout-url: >-
                 $DASHBOARD_ROUTE/projects/$USER_PROJECT?notebookLogout=$WORKBENCH_NAME
               opendatahub.io/accelerator-name: ''
@@ -516,8 +528,58 @@ spec:
                   args:
                   - -ec
                   - |-
-                    pod_name=\$(oc get pods --selector=app=$WORKBENCH_NAME -o jsonpath='{.items[0].metadata.name}') && oc exec \$pod_name -- git clone https://github.com/rh-aiservices-bu/parasol-insurance
+                    pod_name=\$(oc get pods --selector=app=$WORKBENCH_NAME -o jsonpath='{.items[0].metadata.name}') && oc exec \$pod_name -- bash -c "git clone https://github.com/rh-aiservices-bu/parasol-insurance && cd parasol-insurance && git checkout $BRANCH_NAME"
                 restartPolicy: Never
+          EOF
+
+          # Create the Data Pipeline PVC
+          cat << EOF | oc apply -f-
+          kind: PersistentVolumeClaim
+          apiVersion: v1
+          metadata:
+            annotations:
+              openshift.io/description: ''
+              openshift.io/display-name: Data Pipeline
+              volume.beta.kubernetes.io/storage-provisioner: openshift-storage.cephfs.csi.ceph.com
+              volume.kubernetes.io/storage-provisioner: openshift-storage.cephfs.csi.ceph.com
+            name: processing-pipeline-storage
+            namespace: $USER_PROJECT
+            finalizers:
+              - kubernetes.io/pvc-protection
+            labels:
+              opendatahub.io/dashboard: 'true'
+          spec:
+            accessModes:
+              - ReadWriteMany
+            resources:
+              requests:
+                storage: 1Gi
+            storageClassName: ocs-storagecluster-cephfs
+            volumeMode: Filesystem
+          EOF
+
+          # Create the ArgoCD Project
+          cat << EOF | oc apply -f-
+          apiVersion: argoproj.io/v1alpha1
+          kind: AppProject
+          metadata:
+            name: project-$USER_PROJECT
+            namespace: openshift-gitops
+          spec:
+            description: Application project for $USER_PROJECT
+            destinations:
+              - name: in-cluster
+                namespace: $USER_PROJECT
+                server: 'https://kubernetes.default.svc'
+            roles:
+              - description: Sync privileges for any application
+                groups:
+                  - $USER_PROJECT
+                name: ci-role
+                policies:
+                  - 'p, proj:project-$USER_PROJECT:ci-role, applications, *, project-$USER_PROJECT/*, allow'
+            sourceRepos:
+              - 'https://github.com/rh-aiservices-bu/parasol-insurance.git'
           EOF
 
           sleep 20

@@ -9,6 +9,8 @@ commonLabels:
 
 resources:
 # wave 0
-- project-manager.yaml
+- namespace.yaml
 # wave 1
+- project-manager.yaml
+# wave 2
 - create-projects-and-resources-job.yaml

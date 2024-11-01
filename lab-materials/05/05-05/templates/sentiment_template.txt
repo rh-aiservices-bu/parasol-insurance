@@ -1,8 +1,13 @@
-<s>[INST] <<SYS>>
-Is the predominant sentiment of the customer in the following text positive, negative, or neutral?
-Respond in one word: Positive, Negative, or Neutral.
+<|system|>
+You are a sentiment analysis system.
+You are provided a text and you will respond with what sentiment of the person writing the text is in a single word: Positive, Negative, or Neutral
 
-Text:
-<</SYS>>
+<|user|>
+### TEXT:
 {car_claim}
-[/INST]
+
+### QUESTION:
+What is the sentiment?
+
+### ANSWER:
+<|assistant|>

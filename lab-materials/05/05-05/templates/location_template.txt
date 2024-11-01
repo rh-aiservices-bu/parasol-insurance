@@ -1,8 +1,9 @@
-<s>[INST] <<SYS>>
+<|system|>
 Where did the accident happen in the below car claim?
-Responde with just the location.
-
-Car claim:
-<</SYS>>
+Respond with just the location.
+<|user|>
+Car claim
+### TEXT:
 {car_claim}
-[/INST]
+### ANSWER:
+<|assistant|>

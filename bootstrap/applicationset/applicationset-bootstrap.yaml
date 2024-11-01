@@ -5,66 +5,125 @@ metadata:
   namespace: openshift-gitops
 spec:
   generators:
-  - list:
-      elements:
-      - cluster: in-cluster
-        name: ic-shared-minio-app
-        repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
-        targetRevision: dev
-        path: bootstrap/ic-shared-minio
-      - cluster: in-cluster
-        name: ic-shared-database-app
-        repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
-        targetRevision: dev
-        path: bootstrap/ic-shared-database
-      - cluster: in-cluster
-        name: ic-shared-llm-app
-        repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
-        targetRevision: dev
-        path: bootstrap/ic-shared-llm
-      - cluster: in-cluster
-        name: ic-shared-img-det
-        repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
-        targetRevision: dev
-        path: bootstrap/ic-shared-img-det
-      - cluster: in-cluster
-        name: ic-rhoai-configuration
-        repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
-        targetRevision: dev
-        path: bootstrap/ic-rhoai-configuration
-      - cluster: in-cluster
-        name: ic-user-projects
-        repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
-        targetRevision: dev
-        path: bootstrap/ic-user-projects
-      - cluster: in-cluster
-        name: ic-shared-milvus
-        repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
-        targetRevision: dev
-        path: bootstrap/ic-shared-milvus
-      - cluster: in-cluster
-        name: ic-shared-app
-        repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
-        targetRevision: dev
-        path: bootstrap/ic-shared-app
+    - list:
+        elements:
+          - cluster: in-cluster
+            name: ic-rhoai-operator
+            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+            targetRevision: dev
+            path: bootstrap/ic-rhoai-operator
+          - cluster: in-cluster
+            name: ic-rhoai-installation
+            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+            targetRevision: dev
+            path: bootstrap/ic-rhoai-installation
+          - cluster: in-cluster
+            name: ic-rhoai-configuration
+            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+            targetRevision: dev
+            path: bootstrap/ic-rhoai-configuration
+          - cluster: in-cluster
+            name: ic-shared-minio-app
+            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+            targetRevision: dev
+            path: bootstrap/ic-shared-minio
+          - cluster: in-cluster
+            name: ic-shared-database-app
+            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+            targetRevision: dev
+            path: bootstrap/ic-shared-database
+          - cluster: in-cluster
+            name: ic-shared-milvus
+            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+            targetRevision: dev
+            path: bootstrap/ic-shared-milvus
+          - cluster: in-cluster
+            name: ic-shared-llm-app
+            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+            targetRevision: dev
+            path: bootstrap/ic-shared-llm
+          - cluster: in-cluster
+            name: ic-shared-img-det
+            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+            targetRevision: dev
+            path: bootstrap/ic-shared-img-det
+          - cluster: in-cluster
+            name: ic-user-projects
+            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+            targetRevision: dev
+            path: bootstrap/ic-user-projects
+          - cluster: in-cluster
+            name: ic-shared-app
+            repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+            targetRevision: dev
+            path: bootstrap/ic-shared-app
+  strategy:
+    type: RollingSync
+    rollingSync:
+      steps:
+        - matchExpressions:
+              - key: purpose
+                operator: In
+                values:
+                  - ic-rhoai-operator
+        - matchExpressions:
+              - key: purpose
+                operator: In
+                values:
+                  - ic-rhoai-installation
+        - matchExpressions:
+              - key: purpose
+                operator: In
+                values:
+                  - ic-rhoai-configuration
+        - matchExpressions:
+              - key: purpose
+                operator: In
+                values:
+                  - ic-shared-minio-app
+                  - ic-shared-database-app                
+        - matchExpressions:
+              - key: purpose
+                operator: In
+                values:
+                  - ic-shared-milvus
+        - matchExpressions:
+              - key: purpose
+                operator: In
+                values:
+                  - ic-shared-llm-app               
+        - matchExpressions:
+              - key: purpose
+                operator: In
+                values:
+                  - ic-shared-app
+                  - ic-user-projects
+                  - ic-shared-img-det
   template:
     metadata:
-      name: '{{name}}'
+      name: "{{name}}"
       namespace: openshift-gitops
       labels:
         component: bootstrap
-        purpose: '{{name}}'
+        purpose: "{{name}}"
     spec:
       project: default
       source:
-        repoURL: '{{repoURL}}'
-        targetRevision: '{{targetRevision}}'
-        path: '{{path}}'
+        repoURL: "{{repoURL}}"
+        targetRevision: "{{targetRevision}}"
+        path: "{{path}}"
       destination:
-        server: 'https://kubernetes.default.svc'
+        server: "https://kubernetes.default.svc"
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
         syncOptions:
           - RespectIgnoreDifferences=true
+          - Retry=true
+        retry:
+          limit: 50
+          backoff:
+            duration: 15s
+            factor: 2
+            maxDuration: 5m # Maximum retry interval

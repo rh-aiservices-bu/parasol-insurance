@@ -1,0 +1,54 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: patch-inferenceservice-config
+  namespace: rhods-notebooks
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  schedule: '*/5 * * * *'
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccount: modelcar-enable-sa
+          serviceAccountName: modelcar-enable-sa
+          containers:
+            - name: patch-configmap
+              image: 'registry.redhat.io/openshift4/ose-cli:v4.15.0'
+              command:
+                - /bin/sh
+                - '-c'
+              args:
+                - |
+                  # Wait for the inferenceservice-config configmap to be available
+                    echo "Waiting for the inferenceservice-config configmap to be available..."
+                    until oc get configmap -n redhat-ods-applications inferenceservice-config; do
+                      echo "inferenceservice-configmap not available retrying in 10s..."
+                      sleep 10
+                    done
+                    echo "Ready to proceed!"
+
+                    # Fetch current storageInitializer config
+                    config=$(oc get configmap inferenceservice-config -n redhat-ods-applications -o jsonpath='{.data.storageInitializer}')
+
+                    # Check if "enableModelcar" is already enabled
+                    if echo "$config" | grep '"enableModelcar": false'; then
+                      echo "Patching configmap to enable modelcar..."
+                      
+                      # Modify the config to enable modelcar using sed
+                      newValue=$(echo "$config" | sed 's/"enableModelcar": false/"enableModelcar": true/')
+                      newValueEscaped=$(echo "$newValue" | sed 's/\"/\\\"/g')
+
+                      # Patch the configmap with the new value
+                      oc patch configmap inferenceservice-config -n redhat-ods-applications --type='json' -p "[{\"op\": \"replace\", \"path\": \"/data/storageInitializer\", \"value\": \"$newValueEscaped\"}]"
+                      
+                      # Restart the KServe controller to apply changes
+                      oc delete pod -n redhat-ods-applications -l control-plane=kserve-controller-manager
+                    else
+                      echo "Modelcar is already enabled, no patching needed."
+                    fi
+          restartPolicy: OnFailure

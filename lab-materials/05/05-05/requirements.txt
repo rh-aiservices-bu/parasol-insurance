@@ -1,8 +1,0 @@
-langchain==0.0.340
-text_generation==0.6.1
-sentence_transformers==2.2.2
-opencv-python-headless==4.8.1.78
-python-dotenv==1.0.0
-psycopg2-binary==2.9.9
-boto3==1.26.165
-openai==1.13.3
