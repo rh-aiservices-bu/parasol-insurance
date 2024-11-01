@@ -13,14 +13,19 @@ In order to give you a feel for what "day 2" experience would be like, we have p
 image::02/02-02-ds-proj-nav.png[]
 
 * Then, open the project called {user}.
++
+[.bordershadow]
+image::02/02-02-open-project.png[]
 
-* Inside the project you should see a few items that already have been pre-created:
+* Inside the project, by clicking on the different tabs, you should see a few items that already have been pre-created or configured for you:
 +
 [.bordershadow]
 image::02/02-02-pre-created-components.png[]
 
 * These components are as follows:
-1. A Workbench - this is your environment that you can experiment and train in.
-2. A Cluster storage - this is a persistent storage for your workbench.
-3. A Data Connection - it contains all the information needed to talk with an existing S3 storage, we use that to store models and pipeline artifacts.
-4. A Pipeline Server - the pipeline server has already been set up here so you can import or run data science pipelines right away.
+1. Workbenches: a workbench has already been created - this is the environment that you can experiment and train models in.
+2. Pipelines: a pipeline server server has already been configured so you can import or run data science pipelines right away. At the moment, it is empty, but we will populate it with a pipeline in a next section.
+3. Models: the models panel is empty at the moment.
+4. Cluster storage: this is where you find a persistent storage for your workbench and one for the pipeline we will create later.
+5. Data Connections: it contains all the information needed to connect with an existing S3 storage. We use it to store models and pipeline artifacts.
+6. Permissions: this is where you can manage the permissions for the project.
