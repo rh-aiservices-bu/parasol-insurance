@@ -9,7 +9,7 @@ ui:
   supplemental_files: ./content/supplemental-ui
 
 content:
-  edit_url: 'https://github.com/rh-aiservices-bu/parasol-insurance/edit/dev/{path}'
+  edit_url: 'https://github.com/rh-aiservices-bu/parasol-insurance/edit/dev-rhoai-2.13/{path}'
   sources:
     - url: ./
       start_path: content

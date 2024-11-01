@@ -24,7 +24,9 @@ spec:
         args:
         - -ec
         - |-
-          git clone https://github.com/rh-aiservices-bu/parasol-insurance.git
+          BRANCH_NAME="dev-rhoai-2.13"
+          cd /opt/app-root/src
+          git clone https://github.com/rh-aiservices-bu/parasol-insurance.git && cd parasol-insurance && git checkout $BRANCH_NAME
 
           cat << 'EOF' | python3
           import boto3, os, botocore
@@ -38,13 +40,13 @@ spec:
           bucket_name = os.getenv("NAMESPACE")
 
           # Upload original images to minio
-          for filename in os.listdir("parasol-insurance/bootstrap/ic-shared-database/images/original_images"):
-              with open(f"parasol-insurance/bootstrap/ic-shared-database/images/original_images/{filename}", "rb") as f:
+          for filename in os.listdir("/opt/app-root/src/parasol-insurance/bootstrap/ic-shared-database/images/original_images"):
+              with open(f"/opt/app-root/src/parasol-insurance/bootstrap/ic-shared-database/images/original_images/{filename}", "rb") as f:
                   s3.upload_fileobj(f, bucket_name, f"original_images/{filename}")
 
           # Upload processed images to minio
-          for filename in os.listdir("parasol-insurance/bootstrap/ic-shared-database/images/processed_images"):
-              with open(f"parasol-insurance/bootstrap/ic-shared-database/images/processed_images/{filename}", "rb") as f:
+          for filename in os.listdir("/opt/app-root/src/parasol-insurance/bootstrap/ic-shared-database/images/processed_images"):
+              with open(f"/opt/app-root/src/parasol-insurance/bootstrap/ic-shared-database/images/processed_images/{filename}", "rb") as f:
                   s3.upload_fileobj(f, bucket_name, f"processed_images/{filename}")
 
           EOF

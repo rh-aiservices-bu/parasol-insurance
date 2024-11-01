@@ -20,7 +20,7 @@ def initialize():
             rm -r * 2>/dev/null
             git clone https://github.com/rh-aiservices-bu/parasol-insurance
             cd parasol-insurance
-            git checkout dev
+            git checkout dev-rhoai-2.13
             ls
             ''',
         ],

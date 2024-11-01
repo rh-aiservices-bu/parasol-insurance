@@ -67,7 +67,7 @@ spec:
             cpu: 10m
             memory: 10Mi
       - name: model-server
-        image: quay.io/opendatahub/openvino_model_server@sha256:2cbe8a48ab0bc6fe7fb76919bf33253e83a6218a9c4b486b744c3dcf30679616
+        image: quay.io/modh/openvino_model_server@sha256:9086c1ba1ba30d358194c534f0563923aab02d03954e43e9f3647136b44a5daf
         command: ["tail"]
         args: ["-f", "/dev/null"]
         resources:
@@ -77,7 +77,7 @@ spec:
             cpu: 10m
             memory: 10Mi
       - name: runtime-adapter
-        image: registry.redhat.io/rhoai/odh-modelmesh-runtime-adapter-rhel8@sha256:3d4e39039afe33ae7841258cc4bfe986755b9faefedf8a964f2c3826626d6d09
+        image: registry.redhat.io/rhoai/odh-modelmesh-runtime-adapter-rhel8@sha256:7d085942e4da73c2ff4885c62f10b904dc70fd08e819e62f925eb1b4ddfa1554
         command: ["tail"]
         args: ["-f", "/dev/null"]
         resources:
@@ -87,7 +87,7 @@ spec:
             cpu: 10m
             memory: 10Mi
       - name: modelmesh
-        image: registry.redhat.io/rhoai/odh-modelmesh-rhel8@sha256:2eb179e9cd22bf4a85d990508ede72fe279ec92f9ac60dbfe4dbc43f7d444b09
+        image: registry.redhat.io/rhoai/odh-modelmesh-rhel8@sha256:bf25fce160dd7b8cce11e68a501006e4fa81a7858645038cdefdbba03df7ecdb
         command: ["tail"]
         args: ["-f", "/dev/null"]
         resources:
@@ -125,7 +125,7 @@ spec:
               cpu: 10m
               memory: 10Mi
         - name: ds-pipeline-scheduledworkflow-pipelines-definition
-          image: registry.redhat.io/rhoai/odh-ml-pipelines-scheduledworkflow-v2-rhel8@sha256:bd3c7607b526720ab63adc2e84be145ad186575c8ebe4bae99b93292aab6f530
+          image: registry.redhat.io/rhoai/odh-ml-pipelines-scheduledworkflow-v2-rhel8@sha256:c2bd493e9345eccd124bbe0440e45cce8cf57588827d8eb9533f8bbadaa3ebbe
           command: ["tail"]
           args: ["-f", "/dev/null"]
           resources:
@@ -135,7 +135,7 @@ spec:
               cpu: 10m
               memory: 10Mi
         - name: ds-pipeline-pipelines-definition
-          image: registry.redhat.io/rhoai/odh-ml-pipelines-api-server-v2-rhel8@sha256:57c0aca35e6ca40f0d2db044decabdd5244c749da1233a04ed585f37566e5caa
+          image: registry.redhat.io/rhoai/odh-ml-pipelines-api-server-v2-rhel8@sha256:5d6354e65106460ab9285b42124faf288298387a8b16317565bd591f009c39a6
           command: ["tail"]
           args: ["-f", "/dev/null"]
           resources:
