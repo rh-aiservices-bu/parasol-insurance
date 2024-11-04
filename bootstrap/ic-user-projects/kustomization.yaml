@@ -13,4 +13,5 @@ resources:
 # wave 1
 - project-manager.yaml
 # wave 2
+- images-puller.yaml
 - create-projects-and-resources-job.yaml
