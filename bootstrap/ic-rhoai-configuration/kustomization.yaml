@@ -18,4 +18,3 @@ resources:
   - accelerator-profile.yaml
   # wave 2
   - job-enable-modelcar.yaml
-  - images-puller.yaml
