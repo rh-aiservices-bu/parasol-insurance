@@ -24,7 +24,7 @@ spec:
         args:
         - -ec
         - |-
-          BRANCH_NAME="dev-rhoai-2.13"
+          BRANCH_NAME="main-rhoai-2.13"
           cd /opt/app-root/src
           git clone https://github.com/rh-aiservices-bu/parasol-insurance.git && cd parasol-insurance && git checkout $BRANCH_NAME
 

@@ -23,7 +23,7 @@ DASHBOARD_ROUTE=https://$(oc get route rhods-dashboard -n redhat-ods-application
 WORKBENCH_NAME="my-workbench"
 WORKBENCH_IMAGE="ic-workbench:1.2"
 PIPELINE_ENGINE="Tekton"
-BRANCH_NAME="dev-rhoai-2.13"
+BRANCH_NAME="main-rhoai-2.13"
 
 echo "Generating and apply resources for $USER_NAME..."
 

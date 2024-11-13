@@ -3,7 +3,7 @@ manually
 ```bash
 GITEA_INT_URL="http://gitea.gitea.svc:3000/"
 GITEA_REPO="opentlc-mgr/parasol-insurance-mirror/"
-GITEA_BRANCH="dev-rhoai-2.13/"
+GITEA_BRANCH="main-rhoai-2.13/"
 GITEA_APP_PATH="bootstrap/applications/ic-shared-minio-app.yaml"
 
 CMD=" oc apply -f ${GITEA_INT_URL}${GITEA_REPO}raw/branch/${GITEA_BRANCH}${GITEA_APP_PATH}"
