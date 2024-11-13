@@ -1,7 +1,7 @@
 name: Publish to GitHub Pages
 on:
   push:
-    branches: [main]
+    branches: [main-rhoai-2.13]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 concurrency:
@@ -21,8 +21,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: main-rhoai-2.13
       - name: Install Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
       - name: Install Antora
@@ -31,15 +33,15 @@ jobs:
         run: npx antora default-site.yml
         # run: npx antora content/default-site.yml
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v4
       - name: find where the files are
         run: |
           pwd
           #ls -alR .
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: content/www/
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
