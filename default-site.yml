@@ -1,6 +1,6 @@
 site:
-  title: "OpenShift AI Unleashed: Transforming Claims Processing for Maximum Efficiency!"
-  url: https://redhat-scholars.github.io/course-template
+  title: "Parasol Insurance AI Workshop"
+  url: https://github.com/rh-aiservices-bu/parasol-insurance
   start_page: modules::index.adoc
 
 ui:
