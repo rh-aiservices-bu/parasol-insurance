@@ -27,6 +27,7 @@ cd
 centric
 cephfs
 Chase
+chatbot
 ChatGPT
 ChatOps
 Chris
@@ -146,7 +147,9 @@ mistralai
 mn
 mockups
 modelCar
+Modelcar
 ModelCar
+Modelcars
 ModelCars
 modelmesh
 ModelMesh
