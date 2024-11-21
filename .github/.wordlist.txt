@@ -27,6 +27,7 @@ cd
 centric
 cephfs
 Chase
+chatbot
 ChatGPT
 ChatOps
 Chris
