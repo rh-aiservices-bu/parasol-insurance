@@ -34,7 +34,7 @@ image::05/05-edit-as-yaml.png[]
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: claim-insurance-app
+  name: claim-insurance-app-{user}
 spec:
   destination:
     server: https://kubernetes.default.svc
