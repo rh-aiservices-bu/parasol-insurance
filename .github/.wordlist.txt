@@ -38,6 +38,7 @@ cls
 CMD
 config
 Config
+Containerfile
 courseware
 cpu
 CreateNamespace
@@ -126,6 +127,7 @@ Jupyter
 JupyterLab
 KServe
 kubectl
+Kubeflow
 kubernetes
 linter
 llm
@@ -167,6 +169,7 @@ ods
 ojsonpath
 ok
 onnx
+OpenAI
 opencv
 OpenCV
 openshift
@@ -223,6 +226,7 @@ RoboFlow
 rollout
 runtime
 RWX
+SDK
 selfHeal
 Serverless
 src
