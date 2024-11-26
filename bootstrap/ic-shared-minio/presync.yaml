@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: check-default-storageclass-minio
+  namespace: redhat-ods-operator
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: phase-check
+          image: 'image-registry.openshift-image-registry.svc:5000/openshift/tools:latest'
+          command:
+            - /bin/sh
+            - -c
+            - |
+              while true; do
+              echo "Checking default StorageClass..."
+              SC=$(oc get StorageClass ocs-storagecluster-ceph-rbd -o jsonpath='{.metadata.annotations.storageclass\.kubernetes\.io/is-default-class}')
+              if [ "$SC" = "true" ]; then
+                echo "Storage class is ready."
+                exit 0
+              else
+                echo "Storage class is not ready yet."
+              fi
+              sleep 5
+              done
+      serviceAccountName: presync-monitoring-sa
