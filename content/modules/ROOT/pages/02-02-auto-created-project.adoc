@@ -24,7 +24,7 @@ image::02/02-02-pre-created-components.png[]
 
 * These components are as follows:
 1. Workbenches: a workbench has already been created - this is the environment that you can experiment and train models in.
-2. Pipelines: a pipeline server server has already been configured so you can import or run data science pipelines right away. At the moment, it is empty, but we will populate it with a pipeline in a next section.
+2. Pipelines: a pipeline server has already been configured so you can import or run data science pipelines right away. At the moment, it is empty, but we will populate it with a pipeline in a next section.
 3. Models: the models panel is empty at the moment.
 4. Cluster storage: this is where you find a persistent storage for your workbench and one for the pipeline we will create later.
 5. Data Connections: it contains all the information needed to connect with an existing S3 storage. We use it to store models and pipeline artifacts.
