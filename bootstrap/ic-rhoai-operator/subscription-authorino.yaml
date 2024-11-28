@@ -4,7 +4,7 @@ metadata:
   name: authorino-operator
   namespace: openshift-operators
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   channel: tech-preview-v1
   installPlanApproval: Automatic

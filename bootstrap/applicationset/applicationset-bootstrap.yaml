@@ -57,48 +57,6 @@ spec:
             repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
             targetRevision: main-rhoai-2.13
             path: bootstrap/ic-shared-app
-  strategy:
-    type: RollingSync
-    rollingSync:
-      steps:
-        - matchExpressions:
-              - key: purpose
-                operator: In
-                values:
-                  - ic-rhoai-operator
-        - matchExpressions:
-              - key: purpose
-                operator: In
-                values:
-                  - ic-rhoai-installation
-        - matchExpressions:
-              - key: purpose
-                operator: In
-                values:
-                  - ic-rhoai-configuration
-        - matchExpressions:
-              - key: purpose
-                operator: In
-                values:
-                  - ic-shared-minio-app
-                  - ic-shared-database-app                
-        - matchExpressions:
-              - key: purpose
-                operator: In
-                values:
-                  - ic-shared-milvus
-        - matchExpressions:
-              - key: purpose
-                operator: In
-                values:
-                  - ic-shared-llm-app               
-        - matchExpressions:
-              - key: purpose
-                operator: In
-                values:
-                  - ic-shared-app
-                  - ic-user-projects
-                  - ic-shared-img-det
   template:
     metadata:
       name: "{{name}}"
