@@ -24,6 +24,7 @@ spec:
         - |-
           # Get user count
           user_count=$(oc get namespaces | grep showroom | wc -l)
+          USER_BATCH_SIZE=5
 
           echo -n 'Waiting for minio-root-user secret'
           while [ -z "\$(oc get secret -n ic-shared-minio minio-root-user -oname 2>/dev/null)" ]; do
@@ -582,7 +583,9 @@ spec:
               - 'https://github.com/rh-aiservices-bu/parasol-insurance.git'
           EOF
 
-          sleep 20
+          if (( i % USER_BATCH_SIZE == 0 )); then
+            sleep 20
+          fi
           
           done
       restartPolicy: Never
