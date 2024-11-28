@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: check-inferenceservice-configmap
+  namespace: redhat-ods-operator
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: phase-check
+          image: 'image-registry.openshift-image-registry.svc:5000/openshift/tools:latest'
+          command:
+            - /bin/sh
+            - -c
+            - |
+              while true; do
+              echo "Checking default InferenceService ConfigMap..."
+              # Fetch current storageInitializer config
+              config=$(oc get configmap inferenceservice-config -n redhat-ods-applications -o jsonpath='{.data.storageInitializer}')
+
+              # Check if "enableModelcar" is already enabled
+              if echo "$config" | grep '"enableModelcar": true'; then
+                echo "ModelCar enabled!"
+                exit 0
+              else
+                echo "ModelCar not enabled yet."
+              fi
+              sleep 5
+              done
+      serviceAccountName: presync-monitoring-sa
