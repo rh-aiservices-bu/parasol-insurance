@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  channel: tech-preview-v1
+  channel: stable
   installPlanApproval: Automatic
   name: authorino-operator
   source: redhat-operators
