@@ -39,7 +39,7 @@ If you want to read what **we** thought could be improved, read below! (response
 ** Mismatch in license plate, if visible in the picture.
 * We've only scratched the surface with gitops and Data Science pipelines here
 ** There was no performance testing done. If too many users connect at the same time, it might overwhelm either the app, the database, the LLM, etc...
-* Currently, most simple changes would probably end up breaking the application. And the person who, for example decides to change Mistral7B for Flan-T5-Large would not necessarily realize that.
+* Currently, most simple changes would probably end up breaking the application. And the person who, for example decides to change Granite-7B for Flan-T5-Large would not necessarily realize that.
 ** It would be critical to have multiple instances (Dev/Test/UAT/Prod) of the application.
 ** It would also be required to have integration pipelines run in these environments to confirm that changes made do not break the overall application.
 * We could ask the LLM to start writing a response to the customer.
