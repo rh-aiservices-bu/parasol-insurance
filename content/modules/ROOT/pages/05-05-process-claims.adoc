@@ -9,7 +9,7 @@ image::05/05-new-app-claim-unprocessed.jpg[]
 
 Of course, we want to execute this processing, and it's even better if it can be fully automated!
 
-For that, we will use a pipeline that can either be run ad-hoc or scheduled just like, the confidence check pipeline. However, in this case, it won't technically be a Data Science Pipeline. It will be more of a raw Tekton Pipeline.
+For that, we will use a pipeline that can either be run ad-hoc or scheduled just like, the confidence check pipeline. However, in this case, it won't technically be a Data Science Pipeline. It will be more of a raw Argo Workflow.
 
 // This pipeline is also a good starting point for creating an ArgoCD or Tekton pipeline which can be automatically triggered.
 
