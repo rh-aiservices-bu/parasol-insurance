@@ -38,7 +38,7 @@ spec:
           kind: Secret
           metadata:
             name: minio-root-user
-          type: Opqaue
+          type: Opaque
           stringData:
             MINIO_ROOT_USER: ${id}
             MINIO_ROOT_PASSWORD: ${secret}
