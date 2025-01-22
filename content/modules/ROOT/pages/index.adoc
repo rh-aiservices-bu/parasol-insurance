@@ -23,34 +23,34 @@ This is a tentative timetable for the materials that will be presented.
 |=========================================================
 | Name |Duration |Type |Description
 
-|Background |5 | Presentation
+|Background |5 minutes | Presentation
 a|- We describe what the desired end state looks like.
 - Describe overall user experience and underlying architecture.
 - Share mockups for better visualization
 
-|Connection and Setup |5 | Hands-On
+|Connection and Setup |5 minutes | Hands-On
 a|- Attendees get connected
 - help validate environment health
 - access the playpen project
 
-|LLM |20 | Hands-On
+|LLM |20 minutes | Hands-On
 a|- summarization check
 - sentiment check
 - Model Comparison check and choice
 - prompt engineering exercise
 - confidence-check pipeline
 
-|Image Processing |20 | Hands-On
+|Image Processing |20 minutes | Hands-On
 a|- car recognition checks
 - re-training exercise
 - model deployment
 
-|Web App  |20 | Hands-On
+|Web App  |20 minutes | Hands-On
 a|- deployment
 - update
 - RAG
 
-|Productization  |5 | Presentation + discussion
+|Productization  |5 minutes | Presentation + discussion
 a|- What else could we add that would have value?
 - What else could we do following the same patterns?
 
