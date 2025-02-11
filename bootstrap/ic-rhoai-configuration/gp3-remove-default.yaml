@@ -1,7 +1,0 @@
-kind: StorageClass
-apiVersion: storage.k8s.io/v1
-metadata:
-  name: gp3-csi
-  annotations:
-    storageclass.kubernetes.io/is-default-class: 'false'
-    argocd.argoproj.io/sync-wave: "0"
