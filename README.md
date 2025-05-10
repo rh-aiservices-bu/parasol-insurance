@@ -1,122 +1,232 @@
-# OpenShift AI Unleashed: Transforming Claims Processing for Maximum Efficiency!
+# IT Staffing Sales Opportunity Assessment Backend
 
-## Introduction
+This is the backend service for the IT Staffing Sales Opportunity Assessment application. It provides APIs for managing sales opportunities, candidates, and sales representatives, along with AI-powered analysis and matching capabilities.
 
-This repository contains the code, instructions, resources and materials associated with the Lab called **OpenShift AI Unleashed: Transforming Claims Processing for Maximum Efficiency!**.
+## Features
 
-To consult the static version of the instructions, please use [this URL](https://rh-aiservices-bu.github.io/parasol-insurance/)
+### Opportunity Management
+- Create and track sales opportunities with detailed requirements
+- Analyze opportunity potential and qualification
+- Match opportunities with suitable candidates
+- Track opportunity stages and probability
+- Manage client company information and project details
 
-If you want to participate in the creation and update of this content, please consult the sections below.
+### Candidate Management
+- Store comprehensive candidate profiles
+- Track skills, experience, and certifications
+- Manage candidate availability and preferences
+- Match candidates with opportunities
+- Track candidate rates and location preferences
 
-<details>
-  <summary>Display Development-centric information</summary>
+### Sales Representative Management
+- Track sales performance metrics
+- Manage territories and quotas
+- Monitor win rates and YTD sales
+- Track opportunity pipeline
+- Analyze performance trends
 
-## General Development Information
+### AI-Powered Analysis
+- Opportunity scoring and qualification
+- Candidate matching with skill analysis
+- Rate matching and availability checking
+- Sales performance predictions
+- Automated candidate recommendations
 
-### Working with this repo
+## Technical Stack
 
-- `main` branch is the one used for production. That's where the Prod and Test catalog items from [demo.redhat.com](https://demo.redhat.com) point to (instructions, materials used,...).
-- `dev` branch is for development. That's where the Dev catalog item points to.
-- Branches are made from `dev` (hot fixes could be made from `main` if really needed).
-- When ready, PRs should be made to `dev`. Once all features, bug fixes,... are checked in and tested for a new release, another PR will be made from `dev` to `main`.
-- Branches must be prefixed with `/feature` (example `feature/new-pipeline-instructions`), `bugfix`, or other meaningful info.
-- Add your name/handle in the branch name if needed to avoid confusion.
-- If your development relates to an Issue or a Feature Request, add its reference in the branch name.
-- Try to stash your changes before submitting a PR.
+- **Framework**: FastAPI
+- **Database**: PostgreSQL with SQLAlchemy ORM
+- **Authentication**: JWT-based authentication
+- **AI/ML**: OpenAI integration for analysis
+- **Storage**: AWS S3 for file storage
+- **Containerization**: Docker support
 
-## How to update the **Instructions**
+## Setup Instructions
 
-Useful link: [https://redhat-scholars.github.io/build-course/rhs-build-course/develop.html](https://redhat-scholars.github.io/build-course/rhs-build-course/develop.html)
+### Prerequisites
 
-### Requirements
-
-- Podman or Docker
-
-### Development
-
-- Add/Modify/Delete content in [content/modules/ROOT](content/modules/ROOT).
-- Navigation is handled in `nav.adoc`.
-- Content pages are in the `pages` folder.
-- To build the site, from the root of the repo, run `./content/utilities/lab-build`.
-- To serve the site for previewing, from the root of the repo, run `./content/utilities/lab-serve`.
-- The site will be visible at [http://localhost:8443/](http://localhost:8443/)
-- When finished, you can stop serving the site by running from the root of the repo `./content/utilities/lab-stop`.
-
-## How to update the **Application**
-
-### Requirements
-
-- Python 3.11
-- Nodejs > 18
-- An existing instance of Hugging Face TGI with a loaded model available at `INFERENCE_SERVER_URL`. This application is based on Mistral-TB Prompt format. You will need to modify this format if you are using a different model.
+- Python 3.8+
+- PostgreSQL 12+
+- AWS Account (for S3 storage)
+- OpenAI API Key
+- CRM and ATS API credentials
 
 ### Installation
 
-Run `npm install` from the main folder.
-
-If you want to install packages manually:
-
-- In the `frontend` folder, install the node modules with `npm install`.
-- In the `backend` folder, create a venv and install packages with the provided Pipfile/Pipfile.lock files.
-- In the `backend` folder, create the file `.env` base on the example `.env.example` and enter the configuration for the Inference server.
-
-### Development
-
-From the main folder, launch `npm run dev` or `./start-dev.sh`. This will launch both backend and frontend.
-
-- Frontend is accessible at `http://localhost:9000`
-- Backend is accessible at `http://localhost:5000`, with Swagger API doc at `http://localhost:5000/docs`
-
+1. Create a virtual environment:
 ```bash
-#!/bin/bash
-
-# Script to restart all showroom pods - You must be logged in as a cluster admin to run this script
-
-# Get all namespaces
-namespaces=$(oc get namespaces -o jsonpath='{.items[*].metadata.name}' \
-    | tr ' ' '\n' \
-    | grep '^showroom')
-
-# Stop all the pods
-for namespace in $namespaces; do
-    # Check if the deployment "showroom" exists in the namespace
-    if oc -n $namespace get deployment showroom &> /dev/null; then
-        # If it exists, restart the rollout
-        # oc -n $namespace rollout restart deployment/showroom
-        oc -n $namespace scale deploy showroom --replicas=0
-    fi
-done
-
-
-# wait for them all to fully stop
-# start all the pods
-for namespace in $namespaces; do
-    # Check if the deployment "showroom" exists in the namespace
-    if oc -n $namespace get deployment showroom &> /dev/null; then
-        # If it exists, restart the rollout
-        # oc -n $namespace rollout restart deployment/showroom
-        oc -n $namespace scale deploy showroom --replicas=1
-    fi
-done
-
-
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-## How to graduate code from dev to main
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-- From `dev`, create a new branch, like `feature/prepare-for-main-merge`.
-- Modify the following files to make their relevant content point to `main`:
-  - `bootstrap/applicationset/applicationset-bootstrap.yaml`
-  - `content/antora.yml`
-  - `content/modules/ROOT/pages/05-03-web-app-deploy-application.adoc`
-- Make a pull request from this branch to `main`, review and merge
+3. Set up environment variables:
+Create a `.env` file in the `app/backend` directory with the following variables:
+```
+# Database Configuration
+DATABASE_URL=postgresql://user:password@localhost:5432/it_staffing_db
 
-</details>
+# AWS Configuration
+AWS_ACCESS_KEY_ID=your_access_key
+AWS_SECRET_ACCESS_KEY=your_secret_key
+AWS_REGION=us-east-1
+S3_BUCKET_NAME=your-bucket-name
 
-<details>
-  <summary>Links for Summit event environment assignment</summary>
+# API Configuration
+API_HOST=0.0.0.0
+API_PORT=8000
+DEBUG=True
 
-- URL for all labs: [https://one.demo.redhat.com/](https://one.demo.redhat.com/)
-- Search for `parasol`
+# Security
+SECRET_KEY=your-secret-key-here
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
 
-</details>
+# External Services
+OPENAI_API_KEY=your-openai-api-key
+CRM_API_KEY=your-crm-api-key
+ATS_API_KEY=your-ats-api-key
+```
+
+4. Run database migrations:
+```bash
+python run_migration.py
+```
+
+5. Start the server:
+```bash
+uvicorn app:app --reload --host 0.0.0.0 --port 8000
+```
+
+## API Documentation
+
+Once the server is running, you can access the API documentation at:
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
+
+### Key API Endpoints
+
+#### Opportunities
+- `GET /api/opportunities` - List opportunities
+- `POST /api/opportunities` - Create opportunity
+- `GET /api/opportunities/{id}` - Get opportunity details
+- `PUT /api/opportunities/{id}` - Update opportunity
+- `GET /api/opportunities/{id}/analyze` - Analyze opportunity
+- `GET /api/opportunities/{id}/candidates` - Get matching candidates
+
+#### Candidates
+- `GET /api/candidates` - List candidates
+- `POST /api/candidates` - Create candidate
+- `GET /api/candidates/{id}` - Get candidate details
+- `PUT /api/candidates/{id}` - Update candidate
+- `GET /api/candidates/{id}/opportunities` - Get matching opportunities
+
+#### Sales Representatives
+- `GET /api/sales-reps` - List sales reps
+- `POST /api/sales-reps` - Create sales rep
+- `GET /api/sales-reps/{id}` - Get sales rep details
+- `PUT /api/sales-reps/{id}` - Update sales rep
+- `GET /api/sales-reps/{id}/performance` - Get performance metrics
+
+## Project Structure
+
+```
+app/backend/
+├── models/                 # SQLAlchemy models
+│   ├── opportunity.py     # Opportunity model
+│   ├── candidate.py       # Candidate model
+│   ├── candidate_match.py # Candidate matching model
+│   └── sales_representative.py # Sales rep model
+├── routes/                # API route handlers
+│   ├── opportunity_api.py # Opportunity endpoints
+│   ├── candidate_api.py   # Candidate endpoints
+│   └── sales_rep_api.py   # Sales rep endpoints
+├── services/             # Business logic
+│   └── opportunity_analysis.py # AI analysis service
+├── migrations/           # Database migrations
+├── tests/               # Test suite
+├── app.py              # Main application file
+├── db_utils.py         # Database utilities
+├── data_classes.py     # Pydantic models
+└── requirements.txt    # Python dependencies
+```
+
+## Development
+
+### Running Tests
+
+```bash
+pytest
+```
+
+### Code Style
+
+The project follows PEP 8 style guidelines. Use `black` for code formatting:
+
+```bash
+black .
+```
+
+### Database Migrations
+
+To create a new migration:
+
+1. Make changes to the models
+2. Create a new migration file in `migrations/`
+3. Run the migration script
+
+## Deployment
+
+### Docker Deployment
+
+Build and run using Docker:
+
+```bash
+docker build -t it-staffing-backend .
+docker run -p 8000:8000 it-staffing-backend
+```
+
+### Environment Variables
+
+Make sure to set all required environment variables in your deployment environment:
+
+- Database connection string
+- AWS credentials
+- API keys for external services
+- Security settings
+
+## Security Considerations
+
+- All API endpoints are protected with JWT authentication
+- Sensitive data is encrypted at rest
+- API keys and credentials are stored in environment variables
+- Regular security audits are performed
+- Input validation using Pydantic models
+- SQL injection prevention with SQLAlchemy
+- CORS protection enabled
+
+## Monitoring and Logging
+
+- Application logs are captured and can be forwarded to your preferred logging service
+- Performance metrics are available through the API
+- Error tracking and monitoring can be integrated
+
+## Support
+
+For support, please contact the development team or create an issue in the repository.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
