@@ -1,4 +1,4 @@
-""" Backend for Insurance Claims Processing App """
+""" Backend for IT Staffing Sales Opportunity Assessment App """
 import hashlib
 import logging
 import os
@@ -21,6 +21,15 @@ from fastapi.staticfiles import StaticFiles
 from uvicorn import run
 from fastapi import HTTPException
 from starlette.exceptions import HTTPException as StarletteHTTPException
+
+# Import our new models and routes
+from app.backend.models.opportunity import Opportunity
+from app.backend.models.candidate import Candidate
+from app.backend.models.candidate_match import CandidateMatch
+from app.backend.models.sales_representative import SalesRepresentative
+from app.backend.routes.opportunity_api import opportunity_bp
+from app.backend.routes.candidate_api import candidate_bp
+from app.backend.routes.sales_rep_api import sales_rep_bp
 
 # Load local env vars if present
 load_dotenv()
@@ -71,6 +80,12 @@ async def health():
     """ Basic status """
     return {"message": "Status:OK"}
 
+# Register our new blueprints
+app.include_router(opportunity_bp, prefix="/api")
+app.include_router(candidate_bp, prefix="/api")
+app.include_router(sales_rep_bp, prefix="/api")
+
+# Database API
 @app.get("/api/db/tables")
 async def db_list_tables():
     """

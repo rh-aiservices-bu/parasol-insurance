@@ -1,458 +1,225 @@
-import psycopg2
-from psycopg2.extras import RealDictCursor
-import sys
+from datetime import datetime
 import logging
+import os
+from typing import List, Optional, Dict, Any
+
+from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, ForeignKey, Boolean, Text
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy.sql import text
+
+from app.backend.models.opportunity import Opportunity
+from app.backend.models.candidate import Candidate
+from app.backend.models.candidate_match import CandidateMatch
+from app.backend.models.sales_representative import SalesRepresentative
+
+Base = declarative_base()
 
 class Database:
-    def __init__(self, config, logger):
+    def __init__(self, config: Dict[str, str], logger: logging.Logger):
         self.logger = logger
-        self.conn = self.connect(config)
+        self.engine = create_engine(config["DATABASE_URL"])
+        self.Session = sessionmaker(bind=self.engine)
         
-    def connect(self, config):
-            """
-            Connect to the PostgreSQL database using the provided configuration and return the connection object.
-
-            Args:
-                config (dict): A dictionary containing the configuration parameters for the database connection.
-
-            Returns:
-                conn (psycopg2.extensions.connection): A connection object representing the database connection.
-            """
-            self.logger.info(f"Connecting to PostgreSQL Database...")
-            try:
-                conn = psycopg2.connect(
-                        host = config["POSTGRES_HOST"],
-                        dbname = config["POSTGRES_DB"],
-                        user = config["POSTGRES_USER"],
-                        password = config["POSTGRES_PASSWORD"],
-                        port = config["POSTGRES_PORT"]
-                    )
-                self.logger.info(f"Connection successful!")
-            except psycopg2.OperationalError as e:
-                self.logger.info(f"Could not connect to Database: {e}")
-
-            return conn
-
-    def list_tables(self):
-        """
-        Returns a list of table names in the 'claims' schema of the database.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
-        try:
-            cur.execute("SELECT tablename from pg_catalog.pg_tables WHERE schemaname='claims';")
-            result = cur.fetchall()
-            self.conn.commit()
-            return result
-        except Exception as e:
-            self.conn.rollback()
-            raise e
-        finally:
-            cur.close()
-
-    def list_claims(self):
-        """
-        Returns a list of all claims in the database.
-
-        Returns:
-        list: A list of dictionaries representing each claim, with keys 'id' and 'subject'.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
-        try:
-            query = """
-            SET schema 'claims';
-            SELECT claims.id, claims.claim_number, claims.category, claims.policy_number, claims.client_name, claims.subject, claims.summary
-            FROM claims
-            ORDER BY claims.id
-            """
-            cur.execute(query)
-            result = cur.fetchall()
-            self.conn.commit()
-            return result
-        except Exception as e:
-            self.conn.rollback()
-            raise e
-        finally:
-            cur.close()
-
-    def list_claims_unprocessed(self):
-        """
-        Returns a list of all claims in the database that have an empty summary.
-
-        Returns:
-        list: A list of dictionaries representing each claim, with keys 'id' and 'subject'.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
-        try:
-            query = """
-            SET schema 'claims';
-            SELECT claims.id, claims.subject
-            FROM claims
-            WHERE claims.summary IS NULL OR claims.summary = ''
-            """
-            cur.execute(query)
-            result = cur.fetchall()
-            self.conn.commit()
-            return result
-        except Exception as e:
-            self.conn.rollback()
-            raise e
-        finally:
-            cur.close()
+    def init_db(self):
+        """Initialize the database with all tables"""
+        Base.metadata.create_all(self.engine)
         
-    def get_claim_base_info(self, claim_id):
-        """
-        Retrieves base information about a claim from the database.
-
-        Args:
-            claim_id (int): The ID of the claim to retrieve.
-
-        Returns:
-            dict: A dictionary containing information about the claim, including its ID, subject, and summary.
-
-        Example:
-            {
-                "id": 1,
-                "subject": "Car accident",
-                "summary": "I was involved in a car accident on the highway.",
-            }
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+    def list_tables(self) -> List[str]:
+        """List all tables in the database"""
+        with self.engine.connect() as conn:
+            result = conn.execute(text("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"))
+            return [row[0] for row in result]
+            
+    # Opportunity methods
+    def create_opportunity(self, opportunity_data: Dict[str, Any]) -> int:
+        """Create a new opportunity"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            SELECT claims.id, claims.subject, claims.summary
-            FROM claims WHERE claims.id = %s;
-            """
-            cur.execute(query, (claim_id,))
-            result = cur.fetchone()
-            self.conn.commit()
-            return result
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            opportunity = Opportunity(**opportunity_data)
+            session.add(opportunity)
+            session.commit()
+            return opportunity.id
         finally:
-            cur.close()
-
-    def get_claim_info(self, claim_id):
-        """
-        Retrieves information about a claim from the database.
-
-        Args:
-            claim_id (int): The ID of the claim to retrieve.
-
-        Returns:
-            dict: A dictionary containing information about the claim, including its ID, subject, body, sentiment, and images.
-
-        Example:
-            {
-                "id": 1,
-                "subject": "Car accident",
-                "body": "I was involved in a car accident on the highway.",
-                "sentiment": "positive",
-                "location": "New York",
-                "time": "2020-10-10 10:10:10",
-                "original_images": [
-                    {"image_name": "image1.jpg", "image_key": "key1"},
-                    {"image_name": "image2.jpg", "image_key": "key2"}
-                ],
-                "processed_images": [
-                    {"image_name": "image1.png", "image_key": "key1"},
-                    {"image_name": "image2.png", "image_key": "key2"}
-                ]
-            }
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+            session.close()
+            
+    def get_opportunity(self, opportunity_id: int) -> Optional[Opportunity]:
+        """Get an opportunity by ID"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            SELECT claims.id, claims.claim_number, claims.category, claims.policy_number, claims.client_name, claims.subject, claims.body, claims.sentiment, claims.summary, claims.location, claims.time,
-            (SELECT json_agg(
-                json_build_object('image_name',original_images.image_name,'image_key',original_images.image_key)) AS original_images
-            FROM original_images WHERE claim_id = claims.id
-            ),
-            (SELECT json_agg(
-                json_build_object('image_name',processed_images.image_name,'image_key',processed_images.image_key)) AS processed_images
-            FROM processed_images WHERE claim_id = claims.id
-            )
-            FROM claims WHERE claims.id = %s;
-            """
-            cur.execute(query, (claim_id,))
-            result = cur.fetchone()
-            self.conn.commit()
-            return result
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            return session.query(Opportunity).get(opportunity_id)
         finally:
-            cur.close()
-
-    def create_claim(self, subject, body):
-        """
-        Creates a new claim in the database.
-
-        Args:
-            subject (str): The subject of the claim.
-            body (str): The body of the claim.
-
-        Returns:
-            int: The ID of the claim that was created.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+            session.close()
+            
+    def list_opportunities(self, filters: Dict[str, Any] = None) -> List[Opportunity]:
+        """List opportunities with optional filtering"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            INSERT INTO claims (subject, body) VALUES (%s, %s) RETURNING id;
-            """
-            cur.execute(query, (subject, body))
-            result = cur.fetchone()
-            self.conn.commit()
-            return result["id"]
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            query = session.query(Opportunity)
+            if filters:
+                for key, value in filters.items():
+                    if hasattr(Opportunity, key):
+                        query = query.filter(getattr(Opportunity, key) == value)
+            return query.all()
         finally:
-            cur.close()
-
-    def update_claim_summary(self, claim_id, summary):
-        """
-        Updates the summary of a claim in the database.
-
-        Args:
-            claim_id (int): The ID of the claim to update.
-            summary (str): The summary to update the claim with.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+            session.close()
+            
+    def update_opportunity(self, opportunity_id: int, opportunity_data: Dict[str, Any]) -> bool:
+        """Update an opportunity"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            UPDATE claims SET summary = %s WHERE id = %s;
-            """
-            cur.execute(query, (summary, claim_id))
-            self.conn.commit()
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            opportunity = session.query(Opportunity).get(opportunity_id)
+            if opportunity:
+                for key, value in opportunity_data.items():
+                    if hasattr(opportunity, key):
+                        setattr(opportunity, key, value)
+                session.commit()
+                return True
+            return False
         finally:
-            cur.close()
-
-    def update_claim_location(self, claim_id, location):
-        """
-        Updates the location of a claim in the database.
-
-        Args:
-            claim_id (int): The ID of the claim to update.
-            location (str): The location to update the claim with.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+            session.close()
+            
+    # Candidate methods
+    def create_candidate(self, candidate_data: Dict[str, Any]) -> int:
+        """Create a new candidate"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            UPDATE claims SET location = %s WHERE id = %s;
-            """
-            cur.execute(query, (location, claim_id))
-            self.conn.commit()
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            candidate = Candidate(**candidate_data)
+            session.add(candidate)
+            session.commit()
+            return candidate.id
         finally:
-            cur.close()
-
-    def update_claim_time(self, claim_id, time):
-        """
-        Updates the time of a claim in the database.
-
-        Args:
-            claim_id (int): The ID of the claim to update.
-            time (str): The time to update the claim with.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+            session.close()
+            
+    def get_candidate(self, candidate_id: int) -> Optional[Candidate]:
+        """Get a candidate by ID"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            UPDATE claims SET time = %s WHERE id = %s;
-            """
-            cur.execute(query, (time, claim_id))
-            self.conn.commit()
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            return session.query(Candidate).get(candidate_id)
         finally:
-            cur.close()
-
-    def update_claim_body(self, claim_id, body):
-        """
-        Updates the body of a claim in the database.
-
-        Args:
-            claim_id (int): The ID of the claim to update.
-            body (str): The body to update the claim with.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+            session.close()
+            
+    def list_candidates(self, filters: Dict[str, Any] = None) -> List[Candidate]:
+        """List candidates with optional filtering"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            UPDATE claims SET body = %s WHERE id = %s;
-            """
-            cur.execute(query, (body, claim_id))
-            self.conn.commit()
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            query = session.query(Candidate)
+            if filters:
+                for key, value in filters.items():
+                    if hasattr(Candidate, key):
+                        query = query.filter(getattr(Candidate, key) == value)
+            return query.all()
         finally:
-            cur.close()
-
-    def update_claim_subject(self, claim_id, subject):
-        """
-        Updates the subject of a claim in the database.
-
-        Args:
-            claim_id (int): The ID of the claim to update.
-            subject (str): The subject to update the claim with.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+            session.close()
+            
+    def update_candidate(self, candidate_id: int, candidate_data: Dict[str, Any]) -> bool:
+        """Update a candidate"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            UPDATE claims SET subject = %s WHERE id = %s;
-            """
-            cur.execute(query, (subject, claim_id))
-            self.conn.commit()
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            candidate = session.query(Candidate).get(candidate_id)
+            if candidate:
+                for key, value in candidate_data.items():
+                    if hasattr(candidate, key):
+                        setattr(candidate, key, value)
+                session.commit()
+                return True
+            return False
         finally:
-            cur.close()
-
-    def update_claim_sentiment(self, claim_id, sentiment):
-        """
-        Updates the sentiment of a claim in the database.
-
-        Args:
-            claim_id (int): The ID of the claim to update.
-            sentiment (str): The sentiment to update the claim with.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+            session.close()
+            
+    # Sales Representative methods
+    def create_sales_rep(self, sales_rep_data: Dict[str, Any]) -> int:
+        """Create a new sales representative"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            UPDATE claims SET sentiment = %s WHERE id = %s;
-            """
-            cur.execute(query, (sentiment, claim_id))
-            self.conn.commit()
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            sales_rep = SalesRepresentative(**sales_rep_data)
+            session.add(sales_rep)
+            session.commit()
+            return sales_rep.id
         finally:
-            cur.close()
-
-    def delete_claim(self, claim_id):
-        """
-        Deletes a claim from the database.
-
-        Args:
-            claim_id (int): The ID of the claim to delete.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+            session.close()
+            
+    def get_sales_rep(self, sales_rep_id: int) -> Optional[SalesRepresentative]:
+        """Get a sales representative by ID"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            DELETE FROM claims WHERE id = %s;
-            """
-            cur.execute(query, (claim_id,))
-            self.conn.commit()
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            return session.query(SalesRepresentative).get(sales_rep_id)
         finally:
-            cur.close()
-
-    def upload_original_image(self, claim_id, image_name, image_key):
-        """
-        Creates a new original image in the database.
-
-        Args:
-            claim_id (int): The ID of the claim the image belongs to.
-            image_name (str): The name of the image.
-            image_key (str): The key of the image.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+            session.close()
+            
+    def list_sales_reps(self, filters: Dict[str, Any] = None) -> List[SalesRepresentative]:
+        """List sales representatives with optional filtering"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            INSERT INTO original_images (claim_id, image_name, image_key) VALUES (%s, %s, %s);
-            """
-            cur.execute(query, (claim_id, image_name, image_key))
-            self.conn.commit()
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            query = session.query(SalesRepresentative)
+            if filters:
+                for key, value in filters.items():
+                    if hasattr(SalesRepresentative, key):
+                        query = query.filter(getattr(SalesRepresentative, key) == value)
+            return query.all()
         finally:
-            cur.close()
-
-    def upload_processed_image(self, claim_id, image_name, image_key):
-        """
-        Creates a new processed image in the database.
-
-        Args:
-            claim_id (int): The ID of the claim the image belongs to.
-            image_name (str): The name of the image.
-            image_key (str): The key of the image.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+            session.close()
+            
+    def update_sales_rep(self, sales_rep_id: int, sales_rep_data: Dict[str, Any]) -> bool:
+        """Update a sales representative"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            INSERT INTO processed_images (claim_id, image_name, image_key) VALUES (%s, %s, %s);
-            """
-            cur.execute(query, (claim_id, image_name, image_key))
-            self.conn.commit()
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            sales_rep = session.query(SalesRepresentative).get(sales_rep_id)
+            if sales_rep:
+                for key, value in sales_rep_data.items():
+                    if hasattr(sales_rep, key):
+                        setattr(sales_rep, key, value)
+                session.commit()
+                return True
+            return False
         finally:
-            cur.close()
-
-    def delete_original_image(self, claim_id, image_key):
-        """
-        Deletes an original image from the database.
-
-        Args:
-            claim_id (int): The ID of the claim the image belongs to.
-            image_key (str): The key of the image.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+            session.close()
+            
+    # Candidate Match methods
+    def create_candidate_match(self, match_data: Dict[str, Any]) -> int:
+        """Create a new candidate match"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            DELETE FROM original_images WHERE claim_id = %s AND image_key = %s;
-            """
-            cur.execute(query, (claim_id, image_key))
-            self.conn.commit()
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            match = CandidateMatch(**match_data)
+            session.add(match)
+            session.commit()
+            return match.id
         finally:
-            cur.close()
-
-    def delete_processed_image(self, claim_id, image_key):
-        """
-        Deletes a processed image from the database.
-
-        Args:
-            claim_id (int): The ID of the claim the image belongs to.
-            image_key (str): The key of the image.
-        """
-        cur = self.conn.cursor(cursor_factory=RealDictCursor)
+            session.close()
+            
+    def get_candidate_match(self, match_id: int) -> Optional[CandidateMatch]:
+        """Get a candidate match by ID"""
+        session = self.Session()
         try:
-            query = """
-            SET schema 'claims';
-            DELETE FROM processed_images WHERE claim_id = %s AND image_key = %s;
-            """
-            cur.execute(query, (claim_id, image_key))
-            self.conn.commit()
-        except Exception as e:
-            self.conn.rollback()
-            raise e
+            return session.query(CandidateMatch).get(match_id)
         finally:
-            cur.close()
+            session.close()
+            
+    def list_candidate_matches(self, filters: Dict[str, Any] = None) -> List[CandidateMatch]:
+        """List candidate matches with optional filtering"""
+        session = self.Session()
+        try:
+            query = session.query(CandidateMatch)
+            if filters:
+                for key, value in filters.items():
+                    if hasattr(CandidateMatch, key):
+                        query = query.filter(getattr(CandidateMatch, key) == value)
+            return query.all()
+        finally:
+            session.close()
+            
+    def update_candidate_match(self, match_id: int, match_data: Dict[str, Any]) -> bool:
+        """Update a candidate match"""
+        session = self.Session()
+        try:
+            match = session.query(CandidateMatch).get(match_id)
+            if match:
+                for key, value in match_data.items():
+                    if hasattr(match, key):
+                        setattr(match, key, value)
+                session.commit()
+                return True
+            return False
+        finally:
+            session.close()
     
