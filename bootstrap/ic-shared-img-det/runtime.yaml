@@ -43,7 +43,7 @@ spec:
         - '--grpc_bind_address=127.0.0.1'
         - '--rest_bind_address=127.0.0.1'
       image: >-
-        quay.io/opendatahub/openvino_model_server@sha256:2cbe8a48ab0bc6fe7fb76919bf33253e83a6218a9c4b486b744c3dcf30679616
+        quay.io/modh/openvino_model_server@sha256:9086c1ba1ba30d358194c534f0563923aab02d03954e43e9f3647136b44a5daf
       name: ovms
       resources:
         limits:

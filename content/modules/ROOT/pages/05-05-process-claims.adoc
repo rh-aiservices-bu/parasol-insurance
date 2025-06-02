@@ -9,7 +9,7 @@ image::05/05-new-app-claim-unprocessed.jpg[]
 
 Of course, we want to execute this processing, and it's even better if it can be fully automated!
 
-For that, we will use a pipeline that can either be run ad-hoc or scheduled just like, the confidence check pipeline. However, in this case, it won't technically be a Data Science Pipeline. It will be more of a raw Tekton Pipeline.
+For that, we will use a pipeline that can either be run ad-hoc or scheduled just like, the confidence check pipeline. However, in this case, it won't technically be a Data Science Pipeline. It will be more of a raw Argo Workflow.
 
 // This pipeline is also a good starting point for creating an ArgoCD or Tekton pipeline which can be automatically triggered.
 
@@ -50,11 +50,6 @@ To import the pipeline, start by downloading the `process-claims-pipeline.yaml` 
 Navigate to `parasol-insurance/lab-materials/05/05-05` to find it.
 
 
-// * To do this, Select the menu in the top left of the VSCode environment and navigate to *File -> Save As...*.
-// [.bordershadow]
-// image::05/05-download-process-yaml.png[download process claims yaml]
-// Then go to your Data Science project and press Import Pipeline.
-
 * Start by downloading the `process-claims-pipeline.yaml` file locally to your laptop
 ** In your VSCode Workbench, right-click on the file, and select **Download**
 ** Save the file somewhere on your laptop
@@ -80,32 +75,25 @@ image::05/05-process-claims-pipeline-imported.png[]
 
 == Run the pipeline
 
-* Now go into the settings at the right side
-* Click **Create Run** to create a new run of the pipeline you just added
+* From the drop-down menu `Actions` on the top right, select `Create Run` (don't mind the popup about the Kubeflow v1 SDK, it is just a warning if you were to use a previous version):
 +
 [.bordershadow]
 image::05/05-create-run.png[create run]
 
-* Use these settings:
-** Name:
+* Use these settings (leave the others with their default values):
+** Run details->Name:
 [.lines_space]
 [.console-input]
 [source, text]
 [subs=attributes+]
 Process Claim Run
-** Run type:
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-Run once immediately after creation
-** claim_id:
+** Parameters->claim_id:
 [.lines_space]
 [.console-input]
 [source, text]
 [subs=attributes+]
 0
-** detection_endpoint:
+** Parameters->detection_endpoint:
 [.lines_space]
 [.console-input]
 [source, text]
@@ -121,7 +109,7 @@ image::05/05-run-settings-create-pipeline.png[run settings]
 
 * Note that by changing claim_id you can change which claim to process. We set it to 0 to process all unprocessed claims
 
-* Click **Create** and watch it run
+* Click **Create** and watch it run (it will take 5-15 seconds to start):
 +
 [.bordershadow]
 image::05/05-process-claims.png[process]

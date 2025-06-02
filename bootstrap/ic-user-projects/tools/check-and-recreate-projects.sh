@@ -11,6 +11,7 @@ WORKBENCH_NAME="my-workbench"
 WORKBENCH_IMAGE="ic-workbench:1.2"
 PIPELINE_ENGINE="Tekton"
 projects_without_running_pods=()
+BRANCH_NAME="dev-rhoai-2.13"
 
 for i in $(seq 1 $user_count);
 do
@@ -518,7 +519,7 @@ spec:
         args:
         - -ec
         - |-
-          pod_name=\$(oc get pods --selector=app=$WORKBENCH_NAME -o jsonpath='{.items[0].metadata.name}') && oc exec \$pod_name -- git clone https://github.com/rh-aiservices-bu/parasol-insurance
+          pod_name=\$(oc get pods --selector=app=$WORKBENCH_NAME -o jsonpath='{.items[0].metadata.name}') && oc exec \$pod_name -- git clone https://github.com/rh-aiservices-bu/parasol-insurance && cd parasol-insurance && git checkout $BRANCH_NAME
       restartPolicy: Never
 EOF
 

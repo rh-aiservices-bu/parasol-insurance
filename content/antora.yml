@@ -6,7 +6,7 @@ nav:
 
 asciidoc:
   attributes:
-    release-version: dev
+    release-version: dev-rhoai-2.13
     page-pagination: true
     experimental:
     numbered:
@@ -19,7 +19,7 @@ asciidoc:
     minio-pass: minio-parasol
     minio-endpoint: http://minio.ic-shared-minio.svc.cluster.local:9000/
     git-clone-repo-url: https://github.com/rh-aiservices-bu/parasol-insurance.git
-    git-clone-repo-branch: dev
+    git-clone-repo-branch: dev-rhoai-2.13
     user: userX
     password: openshift
     openshift_console_url: https://PLACEHOLDER-URL.com/

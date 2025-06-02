@@ -1,0 +1,29 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+#namespace: ic-shared-milvus
+# replaced by transformer
+
+commonLabels:
+  component: milvus
+
+resources:
+  # presync
+  - presync.yaml
+  # wave 0
+  - namespace.yaml
+  # wave 1
+  - milvus-backup-config.yaml
+  - milvus-config.yaml
+  # wave 2
+  - milvus-pvc.yaml
+  - milvus-deployment.yaml
+  - milvus-services.yaml
+  - milvus-backup-deployment.yaml
+  - milvus-backup-service.yaml
+  # wave 3
+  - restore-collection.yaml
+
+transformers:
+  - namespace-transformer.yaml
