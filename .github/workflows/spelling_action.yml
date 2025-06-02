@@ -3,7 +3,6 @@ name: Spellcheck Action
 on:
   pull_request:
     branches:
-      - dev-rhoai-2.13
       - dev
 
 jobs:

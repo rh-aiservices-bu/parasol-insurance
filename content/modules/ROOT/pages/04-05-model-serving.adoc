@@ -6,12 +6,17 @@ include::_attributes.adoc[]
 .. With almost identical information
 .. But we will change the bucket name from `{user}` to `models`
 
-== Create a Data Connection
+== Create a Connection
 
-* In your Data Science project, on the Data Connection tab, click on **Add data connection** to create one that refers to the shared storage (Minio) where a copy of the model is stored.
+* In your Data Science project, on the Connections tab, click on **Create connection** to create one that refers to the shared storage (Minio) where a copy of the model is stored.
 +
 [.bordershadow]
 image::04/04-add-data-connection.png[]
+
+* Select **S3 compatible object storage - v1** option.
+
+[.bordershadow]
+image::04/04-add-data-connection-2.png[]
 
 * Here is the info you need to enter:
 ** Name:
@@ -53,19 +58,24 @@ models
 
 * The result should look like:
 +
-[.bordershadow]
+// [.bordershadow]
 image::04/model-data-connection.png[model connection]
+image::04/model-data-connection-2.png[model connection]
 
 == Create a Model Server
 
 In your project, select the **Models** tab to create a model server:
 
-**VERY IMPORTANT**: in the following step, pay attention and select the right type of model server. Otherwise we would have to reset your project.
-
-* In the **Multi-model serving platform** type of model, the one on the right, click **Add model server**:
+* Select the **Multi-model serving platform** type of model serving:
 +
 [.bordershadow]
 image::04/add-model-server.png[]
+
+* Then click **Add model server**:
++
+[.bordershadow]
+image::04/add-model-server-2.png[width=75%]
+
 
 * Here is the info you need to enter:
 
@@ -98,7 +108,7 @@ Standard
 [.console-input]
 [source, text]
 [subs=attributes+]
-None (bug: even when selecting `None`, the drop down will still show `Select...`)
+None
 ** Model route
 [.lines_space]
 [.console-input]

@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: populate-images
+spec:
+  template:
+    spec:
+      containers:
+        - name: add-images-to-bucket
+          env:
+            - name: BRANCH_NAME
+              value: main

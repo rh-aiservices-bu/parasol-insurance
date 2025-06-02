@@ -7,10 +7,10 @@ In order to give you a feel for what "day 2" experience would be like, we have p
 
 == Go to your project
 
-* First, in the {rhoai} Dashboard application, navigate to the Data Science Projects menu on the left:
+* First, in the {rhoai} Dashboard application, navigate to the Data Science projects menu on the left:
 +
 [.bordershadow]
-image::02/02-02-ds-proj-nav.png[]
+image::02/02-02-ds-proj-nav.png[width=70%]
 
 * Then, open the project called {user}.
 +
@@ -27,5 +27,5 @@ image::02/02-02-pre-created-components.png[]
 2. Pipelines: a pipeline server has already been configured so you can import or run data science pipelines right away. At the moment, it is empty, but we will populate it with a pipeline in a next section.
 3. Models: the models panel is empty at the moment.
 4. Cluster storage: this is where you find a persistent storage for your workbench and one for the pipeline we will create later.
-5. Data Connections: it contains all the information needed to connect with an existing S3 storage. We use it to store models and pipeline artifacts.
+5. Connections: it contains all the information needed to connect with an existing S3 storage. We use it to store models and pipeline artifacts.
 6. Permissions: this is where you can manage the permissions for the project.

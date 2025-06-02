@@ -10,7 +10,7 @@ One of the components that was pre-created for you is the workbench.
 [.bordershadow]
 image::02/02-03-pre-created-workbench-info.png[]
 
-* To connect to the workbench, click the **Open** link:
+* To connect to the workbench, click the workbench name:
 +
 [.bordershadow]
 image::02/02-03-open-link.png[]

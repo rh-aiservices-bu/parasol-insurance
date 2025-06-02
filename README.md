@@ -15,9 +15,9 @@ If you want to participate in the creation and update of this content, please co
 
 ### Working with this repo
 
-- `main-...` branches are the one used for production. That's where the Prod and Test catalog items from [demo.redhat.com](https://demo.redhat.com) point to (instructions, materials used,...). There can be multiple ones, as different versions of the workshop can coexist in the demo catalog. Each version is tied to a version of OpenShift AI.
-- `dev-...` branches are for development. That's where the Dev catalog items points to. Each version is tied to a version of OpenShift AI, and matches the production branch (`main-...`).
-- Branches are made from their respective `dev` (hot fixes could be made from `main` if really needed).
+- `main` branch is the one used for production. That's where the Prod and Test catalog items from [demo.redhat.com](https://demo.redhat.com) point to (instructions, materials used,...).
+- `dev` branch is for development. That's where the Dev catalog item points to.
+- Use a branch from `dev`as much as possible for feature development or bug fixes.
 - When ready, PRs should be made to `dev`. Once all features, bug fixes,... are checked in and tested for a new release, another PR will be made from `dev` to `main`.
 - Branches must be prefixed with `/feature` (example `feature/new-pipeline-instructions`), `bugfix`, or other meaningful info.
 - Add your name/handle in the branch name if needed to avoid confusion.
@@ -48,7 +48,7 @@ Useful link: [https://redhat-scholars.github.io/build-course/rhs-build-course/de
 
 - Python 3.11
 - Nodejs > 18
-- An existing instance of an LLM served through an OpenAI compatible API at `INFERENCE_SERVER_URL`. This application is based on Granite-7b-Instruct Prompt format. You will need to modify this format if you are using a different model.
+- An existing instance of an LLM served through an OpenAI compatible API at `INFERENCE_SERVER_URL`. This application is based on Granite-3.1-8B-Instruct Prompt format. You will need to modify this format if you are using a different model.
 
 ### Installation
 

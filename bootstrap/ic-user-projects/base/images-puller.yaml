@@ -1,0 +1,206 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: image-puller-workbench
+  namespace: rhods-notebooks
+  labels:
+    k8s-app: image-puller
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  selector:
+    matchLabels:
+      name: image-puller
+  template:
+    metadata:
+      labels:
+        name: image-puller
+    spec:
+      containers:
+      - name: ic-workbench
+        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/ic-workbench:3.0.4
+        command: ["tail"]
+        args: ["-f", "/dev/null"]
+        resources:
+          limits:
+            memory: 20Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
+      - name: ic-code-server
+        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/ic-code-server:2025.1
+        command: ["tail"]
+        args: ["-f", "/dev/null"]
+        resources:
+          limits:
+            memory: 20Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: image-puller-ovms
+  namespace: rhods-notebooks
+  labels:
+    k8s-app: image-puller
+spec:
+  selector:
+    matchLabels:
+      name: image-puller
+  template:
+    metadata:
+      labels:
+        name: image-puller
+    spec:
+      containers:
+      - name: oauth-proxy
+        image: registry.redhat.io/openshift4/ose-oauth-proxy@sha256:8507daed246d4d367704f7d7193233724acf1072572e1226ca063c066b858ecf
+        command: ["tail"]
+        args: ["-f", "/dev/null"]
+        resources:
+          limits:
+            memory: 20Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
+      - name: model-server
+        image: quay.io/modh/openvino_model_server@sha256:53b7fcf95de9b81e4c8652d0bf4e84e22d5b696827a5d951d863420c68b9cfe8
+        command: ["tail"]
+        args: ["-f", "/dev/null"]
+        resources:
+          limits:
+            memory: 20Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
+      - name: runtime-adapter
+        image: registry.redhat.io/rhoai/odh-modelmesh-runtime-adapter-rhel8@sha256:12d75776a60c119d938dec28625f574f5d55a2616c49bb8773e5b87ba3141280
+        command: ["tail"]
+        args: ["-f", "/dev/null"]
+        resources:
+          limits:
+            memory: 20Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
+      - name: modelmesh
+        image: registry.redhat.io/rhoai/odh-modelmesh-rhel8@sha256:43d98c254ad76c2eefc48a56e84e4083281c72e8b9ae38e49dfb6d5751bdb895
+        command: ["tail"]
+        args: ["-f", "/dev/null"]
+        resources:
+          limits:
+            memory: 20Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: image-puller-pipelines
+  namespace: rhods-notebooks
+  labels:
+    k8s-app: image-puller
+spec:
+  selector:
+    matchLabels:
+      name: image-puller
+  template:
+    metadata:
+      labels:
+        name: image-puller
+    spec:
+      containers:
+        - name: mariadb
+          image: registry.redhat.io/rhel8/mariadb-103@sha256:f0ee0d27bb784e289f7d88cc8ee0e085ca70e88a5d126562105542f259a1ac01
+          command: ["tail"]
+          args: ["-f", "/dev/null"]
+          resources:
+            limits:
+              memory: 20Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+        - name: ds-pipeline-scheduledworkflow-pipelines-definition
+          image: registry.redhat.io/rhoai/odh-ml-pipelines-scheduledworkflow-v2-rhel8@sha256:99ca5a981184f0dd3f94105172b20494328c5c7a762fb027905e108710b7b5d4
+          command: ["tail"]
+          args: ["-f", "/dev/null"]
+          resources:
+            limits:
+              memory: 20Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+        - name: ds-pipeline-pipelines-definition
+          image: registry.redhat.io/rhoai/odh-ml-pipelines-api-server-v2-rhel8@sha256:da649491f5112763d9f563d64ca3455ed5e4309b15adab0886ae16e0bb367b0c
+          command: ["tail"]
+          args: ["-f", "/dev/null"]
+          resources:
+            limits:
+              memory: 20Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+        - name: oauth-proxy
+          image: registry.redhat.io/openshift4/ose-oauth-proxy@sha256:8ce44de8c683f198bf24ba36cd17e89708153d11f5b42c0a27e77f8fdb233551
+          command: ["tail"]
+          args: ["-f", "/dev/null"]
+          resources:
+            limits:
+              memory: 20Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+        - name: ds-pipeline-persistenceagent-pipelines-definition
+          image: registry.redhat.io/rhoai/odh-ml-pipelines-persistenceagent-v2-rhel8@sha256:4e0c858d68f925a307ee53498aa6019563254c5b27f5d7635debc0195db2c5bd
+          command: ["tail"]
+          args: ["-f", "/dev/null"]
+          resources:
+            limits:
+              memory: 20Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+        - name: ds-pipeline-runtime-image-confidence
+          image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-confidence-pipeline:2.0
+          command: ["tail"]
+          args: ["-f", "/dev/null"]
+          resources:
+            limits:
+              memory: 20Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: image-puller-app
+  namespace: rhods-notebooks
+  labels:
+    k8s-app: image-puller
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  selector:
+    matchLabels:
+      name: image-puller
+  template:
+    metadata:
+      labels:
+        name: image-puller
+    spec:
+      containers:
+      - name: ic-app
+        image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-app:2.1.2
+        command: ["tail"]
+        args: ["-f", "/dev/null"]
+        resources:
+          limits:
+            memory: 20Mi
+          requests:
+            cpu: 10m
+            memory: 10Mi

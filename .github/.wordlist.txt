@@ -204,11 +204,14 @@ py
 pytorch
 Pytorch
 quantized
+Qwen
+qwen
 rbac
 README
 readonly
 recog
 redhat
+RedHatAI
 repo
 repoURL
 RespectIgnoreDifferences
