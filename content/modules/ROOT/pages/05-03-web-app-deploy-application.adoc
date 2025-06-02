@@ -43,7 +43,7 @@ spec:
   source:
     path: lab-materials/05/app
     repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
-    targetRevision: dev-rhoai-2.13
+    targetRevision: dev
   syncPolicy:
     automated:
       prune: true
