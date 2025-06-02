@@ -2,12 +2,10 @@ name: Publish to GitHub Pages
 on:
   push:
     branches: [main]
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 concurrency:
   group: pages
   cancel-in-progress: true
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -21,25 +19,33 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+
       - name: Install Antora
         run: npm i antora
+
       - name: Generate Site
         run: npx antora default-site.yml
-        # run: npx antora content/default-site.yml
+
+      - name: Debug directory structure
+        run: |
+          echo "Current working directory:"
+          pwd
+          echo "List all files and directories:"
+          ls -alR .
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
-      - name: find where the files are
-        run: |
-          pwd
-          #ls -alR .
+
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: content/www/
+          path: content/www
+
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
