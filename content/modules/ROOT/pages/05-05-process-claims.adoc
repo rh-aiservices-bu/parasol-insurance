@@ -104,8 +104,10 @@ This is the same route to the object detection endpoint that was used earlier in
 
 * When done it should look something like this:
 +
-[.bordershadow]
+// [.bordershadow]
 image::05/05-run-settings-create-pipeline.png[run settings]
+image::05/05-run-settings-create-pipeline-2.png[run settings]
+
 
 * Note that by changing claim_id you can change which claim to process. We set it to 0 to process all unprocessed claims
 

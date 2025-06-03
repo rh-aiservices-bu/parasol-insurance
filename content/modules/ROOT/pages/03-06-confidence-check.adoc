@@ -75,8 +75,9 @@ image::03/07-create-schedule.png[create schedule]
     - keep the `confidence-pipeline` **Pipeline** and **Version**,
     - and click **Create**:
 +
-[.bordershadow]
-image::03/03-06-dailyrun.png[]
+image::03/03-06-dailyrun-1.png[width=65%]
+image::03/03-06-dailyrun-2.png[width=65%]
+image::03/03-06-dailyrun-3.png[width=65%]
 
 
 . We can now leave the confidence-check pipeline alone.

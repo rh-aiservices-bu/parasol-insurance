@@ -24,7 +24,7 @@ If you want to have a look at the code of the application, you can do it directl
 
 - Close the different Jupyter tabs that may still be opened in your browser.
 - Go back to the {rhoai} Dashboard.
-- Stop your Workbench by using the toggle.
+- Stop your Workbench by clicking **Stop**.
 
 +
 [.bordershadow]
@@ -51,7 +51,7 @@ image::05/05-change-to-vscode.png[]
 image::05/update-workbench.png[]
 
 - You can now start your Workbench again by using the toggle.
-- Once the Workbench is started, click on the **Open** Link.
+- Once the Workbench is started, click the name of the workbench to open.
 - You will be redirected to the VSCode IDE (Code Server is the open source implementation of VSCode).
 - After logging in and accepting the authorization, VSCode will open.
 - The first time you connect to it, you must indicate that you trust the workspace.
