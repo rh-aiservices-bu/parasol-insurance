@@ -14,9 +14,9 @@ resources:
   - odf-config-nvidia.yaml
   - namespace-notebooks.yaml
   # wave 1
-  - rbac-job-enable-modelcar.yaml
+  # - rbac-job-enable-modelcar.yaml
   - workbench-imagestream.yaml
   - odhdashboardconfig.yaml
   - accelerator-profile.yaml
   # wave 2
-  - job-enable-modelcar.yaml
+  # - job-enable-modelcar.yaml
