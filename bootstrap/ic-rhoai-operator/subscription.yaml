@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  channel: stable-2.13
+  channel: stable-2.19
   installPlanApproval: Automatic
   name: rhods-operator
   source: redhat-operators
