@@ -39,7 +39,7 @@ deploymentSpec:
         - "detection_endpoint=\"$0\"\n            export detection_endpoint=$detection_endpoint\n\
           \            export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local\n\
           \            export IMAGES_BUCKET=$NAMESPACE\n            cd /shared-data\n\
-          \            cd parasol-insurance/lab-materials/05/05-05\n            python\
+          \            cd parasol-insurance/lab-materials/05/05-04\n            python\
           \ detect_objects.py\n            "
         image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2
     exec-get-accident-time:
@@ -49,7 +49,7 @@ deploymentSpec:
         - -c
         - "export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local\n           \
           \ export IMAGES_BUCKET=$NAMESPACE\n            cd /shared-data\n       \
-          \     cd parasol-insurance/lab-materials/05/05-05\n            python get_accident_time.py\n\
+          \     cd parasol-insurance/lab-materials/05/05-04\n            python get_accident_time.py\n\
           \            "
         image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2
     exec-get-claims:
@@ -62,7 +62,7 @@ deploymentSpec:
         - "claim_id=\"$0\"\n            export claim_id=$claim_id\n            export\
           \ POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local\n            export\
           \ IMAGES_BUCKET=$NAMESPACE\n            cd /shared-data\n            cd\
-          \ parasol-insurance/lab-materials/05/05-05\n            python get_claims.py\n\
+          \ parasol-insurance/lab-materials/05/05-04\n            python get_claims.py\n\
           \            "
         image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2
     exec-get-location:
@@ -72,7 +72,7 @@ deploymentSpec:
         - -c
         - "export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local\n           \
           \ export IMAGES_BUCKET=$NAMESPACE\n            cd /shared-data\n       \
-          \     cd parasol-insurance/lab-materials/05/05-05\n            python get_location.py\n\
+          \     cd parasol-insurance/lab-materials/05/05-04\n            python get_location.py\n\
           \            "
         image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2
     exec-get-sentiment:
@@ -82,7 +82,7 @@ deploymentSpec:
         - -c
         - "export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local\n           \
           \ export IMAGES_BUCKET=$NAMESPACE\n            cd /shared-data\n       \
-          \     cd parasol-insurance/lab-materials/05/05-05\n            python get_sentiment.py\n\
+          \     cd parasol-insurance/lab-materials/05/05-04\n            python get_sentiment.py\n\
           \            "
         image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2
     exec-initialize:
@@ -102,7 +102,7 @@ deploymentSpec:
         - -c
         - "export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local\n           \
           \ export IMAGES_BUCKET=$NAMESPACE\n            cd /shared-data\n       \
-          \     cd parasol-insurance/lab-materials/05/05-05\n            python summarize_text.py\n\
+          \     cd parasol-insurance/lab-materials/05/05-04\n            python summarize_text.py\n\
           \            "
         image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-processing-pipeline:1.2
 pipelineInfo:

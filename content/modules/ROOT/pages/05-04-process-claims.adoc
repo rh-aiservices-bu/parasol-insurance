@@ -15,7 +15,7 @@ For that, we will use a pipeline that can either be run ad-hoc or scheduled just
 
 == What's inside the pipeline?
 
-Inside your VSCode workbench (if you have closed/stopped it, please restart it), if you navigate to `parasol-insurance/lab-materials/05/05-05` you can see a variety of files. +
+Inside your VSCode workbench (if you have closed/stopped it, please restart it), if you navigate to `parasol-insurance/lab-materials/05/05-04` you can see a variety of files. +
 
 [.bordershadow]
 image::05/05-process-claims-yaml.png[]
@@ -47,7 +47,7 @@ image::05/05-data-pipeline-storage.png[]
 == Import the pipeline
 
 To import the pipeline, start by downloading the `process-claims-pipeline.yaml` file locally.
-Navigate to `parasol-insurance/lab-materials/05/05-05` to find it.
+Navigate to `parasol-insurance/lab-materials/05/05-04` to find it.
 
 
 * Start by downloading the `process-claims-pipeline.yaml` file locally to your laptop
