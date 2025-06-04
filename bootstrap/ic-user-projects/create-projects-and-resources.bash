@@ -490,7 +490,7 @@ spec:
           echo "Workbench pod is running in $USER_PROJECT namespace"
       containers:
       - name: git-clone
-        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/s2i-generic-data-science-notebook:1.2
+        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/s2i-generic-data-science-notebook:2025.1
         imagePullPolicy: IfNotPresent
         command: ["/bin/bash"]
         args:

@@ -38,7 +38,7 @@ spec:
             targetRevision: dev
             path: bootstrap/ic-shared-milvus
           - cluster: in-cluster
-            name: ic-shared-llm-app
+            name: ic-shared-llm
             repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
             targetRevision: dev
             path: bootstrap/ic-shared-llm

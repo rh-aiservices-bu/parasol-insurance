@@ -27,7 +27,7 @@ spec:
           echo "Milvus-backup pod is running in ic-shared-milvus namespace"
       containers:
       - name: add-model
-        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/s2i-generic-data-science-notebook:1.2
+        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/s2i-generic-data-science-notebook:2025.1
         imagePullPolicy: IfNotPresent
         command: ["/bin/bash"]
         args:
