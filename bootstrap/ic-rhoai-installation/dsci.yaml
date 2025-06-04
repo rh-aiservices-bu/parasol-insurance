@@ -9,29 +9,42 @@ spec:
     codeflare:
       devFlags: {}
       managementState: Managed
-    dashboard:
-      devFlags: {}
-      managementState: Managed
-    datasciencepipelines:
-      devFlags: {}
-      managementState: Managed
     kserve:
-      devFlags: {}
       managementState: Managed
+      nim:
+        managementState: Managed
+      rawDeploymentServiceConfig: Headless
       serving:
         ingressGateway:
           certificate:
             type: OpenshiftDefaultIngress
         managementState: Managed
         name: knative-serving
-    modelmeshserving:
-      devFlags: {}
+    modelregistry:
+      managementState: Managed
+      registriesNamespace: rhoai-model-registries
+    trustyai:
+      devFlags:
+        manifests:
+          - contextDir: config
+            sourcePath: ''
+            uri: 'https://api.github.com/repos/trustyai-explainability/trustyai-service-operator/tarball/main'
       managementState: Managed
     ray:
       devFlags: {}
       managementState: Managed
-    trustyai:
-      devFlags: {}
-      managementState: Removed
+    kueue:
+      managementState: Managed
     workbenches:
       managementState: Managed
+    dashboard:
+      devFlags: {}
+      managementState: Managed
+    modelmeshserving:
+      devFlags: {}
+      managementState: Managed
+    datasciencepipelines:
+      devFlags: {}
+      managementState: Managed
+    trainingoperator:
+      managementState: Removed

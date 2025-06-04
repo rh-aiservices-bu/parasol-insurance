@@ -20,13 +20,13 @@ spec:
       #   - -ec
       #   - |-
       #     echo -n 'Waiting for RHODS to deploy ImageStreams'
-      #     while ! oc get istag -n redhat-ods-applications 2>/dev/null | grep -qF s2i-generic-data-science-notebook:1.2; do
+      #     while ! oc get istag -n redhat-ods-applications 2>/dev/null | grep -qF s2i-generic-data-science-notebook:2025.1; do
       #       echo -n .
       #       sleep 5
       #     done; echo
       containers:
       - name: add-model
-        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/s2i-generic-data-science-notebook:1.2
+        image: image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/s2i-generic-data-science-notebook:2025.1
         imagePullPolicy: IfNotPresent
         command: ["/bin/bash"]
         args:
