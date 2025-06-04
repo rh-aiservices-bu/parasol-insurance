@@ -39,7 +39,7 @@ def get_claims(claim_ids: int):
             export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local
             export IMAGES_BUCKET=$NAMESPACE
             cd /shared-data
-            cd parasol-insurance/lab-materials/05/05-05
+            cd parasol-insurance/lab-materials/05/05-04
             python get_claims.py
             ''',
         ],
@@ -56,7 +56,7 @@ def get_accident_time():
             '''export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local
             export IMAGES_BUCKET=$NAMESPACE
             cd /shared-data
-            cd parasol-insurance/lab-materials/05/05-05
+            cd parasol-insurance/lab-materials/05/05-04
             python get_accident_time.py
             ''',
         ],
@@ -73,7 +73,7 @@ def get_location():
             '''export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local
             export IMAGES_BUCKET=$NAMESPACE
             cd /shared-data
-            cd parasol-insurance/lab-materials/05/05-05
+            cd parasol-insurance/lab-materials/05/05-04
             python get_location.py
             ''',
         ],
@@ -90,7 +90,7 @@ def get_sentiment():
             '''export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local
             export IMAGES_BUCKET=$NAMESPACE
             cd /shared-data
-            cd parasol-insurance/lab-materials/05/05-05
+            cd parasol-insurance/lab-materials/05/05-04
             python get_sentiment.py
             ''',
         ],
@@ -109,7 +109,7 @@ def detect_objects(detection_endpoint: str):
             export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local
             export IMAGES_BUCKET=$NAMESPACE
             cd /shared-data
-            cd parasol-insurance/lab-materials/05/05-05
+            cd parasol-insurance/lab-materials/05/05-04
             python detect_objects.py
             ''',
         ],
@@ -126,7 +126,7 @@ def summarize_text():
             '''export POSTGRES_HOST=claimdb.$NAMESPACE.svc.cluster.local
             export IMAGES_BUCKET=$NAMESPACE
             cd /shared-data
-            cd parasol-insurance/lab-materials/05/05-05
+            cd parasol-insurance/lab-materials/05/05-04
             python summarize_text.py
             ''',
         ],
