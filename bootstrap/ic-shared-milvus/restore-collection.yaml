@@ -38,7 +38,7 @@ spec:
           mkdir -p backup && tar xvzf backup.tar.gz -C ./backup
 
           # Install the pymilvus package
-          pip install -q pymilvus==2.3.7
+          pip install -q pymilvus==2.3.7 marshmallow==3.26.1
 
           cat << 'EOF' | python3
           import boto3, os, requests
