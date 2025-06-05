@@ -209,6 +209,7 @@ README
 readonly
 recog
 redhat
+RedHatAI
 repo
 repoURL
 RespectIgnoreDifferences

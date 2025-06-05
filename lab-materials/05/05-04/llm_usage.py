@@ -4,7 +4,7 @@ from langchain.prompts import PromptTemplate
 from langchain_community.llms import VLLMOpenAI
 
 
-INFERENCE_SERVER_URL = "http://granite-7b-instruct-predictor.ic-shared-llm.svc.cluster.local:8080"
+INFERENCE_SERVER_URL = "http://granite-3-1-8b-instruct-predictor.ic-shared-llm.svc.cluster.local:8080"
 MAX_NEW_TOKENS = 512
 TOP_P = 0.95
 TEMPERATURE = 0.01
@@ -14,7 +14,7 @@ def infer_with_template(input_text, template):
     llm = VLLMOpenAI(
         openai_api_key="EMPTY",
         openai_api_base= f"{INFERENCE_SERVER_URL}/v1",
-        model_name="granite-7b-instruct",
+        model_name="granite-3-1-8b-instruct",
         max_tokens=MAX_NEW_TOKENS,
         top_p=TOP_P,
         temperature=TEMPERATURE,

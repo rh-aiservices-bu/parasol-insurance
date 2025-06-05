@@ -48,7 +48,7 @@ Useful link: [https://redhat-scholars.github.io/build-course/rhs-build-course/de
 
 - Python 3.11
 - Nodejs > 18
-- An existing instance of an LLM served through an OpenAI compatible API at `INFERENCE_SERVER_URL`. This application is based on Granite-7b-Instruct Prompt format. You will need to modify this format if you are using a different model.
+- An existing instance of an LLM served through an OpenAI compatible API at `INFERENCE_SERVER_URL`. This application is based on Granite-3.1-8B-Instruct Prompt format. You will need to modify this format if you are using a different model.
 
 ### Installation
 
