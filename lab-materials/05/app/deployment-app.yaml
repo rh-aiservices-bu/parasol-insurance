@@ -29,9 +29,9 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: INFERENCE_SERVER_URL
-              value: http://granite-7b-instruct-predictor.ic-shared-llm.svc.cluster.local:8080/v1
+              value: http://granite-3-1-8b-instruct-predictor.ic-shared-llm.svc.cluster.local:8080/v1
             - name: MODEL_NAME
-              value: 'granite-7b-instruct'
+              value: 'granite-3-1-8b-instruct'
             - name: MAX_TOKENS
               value: '512'
             - name: TOP_P
