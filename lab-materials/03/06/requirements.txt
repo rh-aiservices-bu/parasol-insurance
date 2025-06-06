@@ -1,8 +1,12 @@
-langchain==0.3.1
-langchain-community==0.3.1
-langchain-core==0.3.6
-langchain-huggingface==0.1.0
-langchain-text-splitters==0.3.0
-text_generation==0.6.1
-sentence-transformers==3.1.1
-openai==1.47.1
+-i https://pypi.org/simple
+--extra-index-url https://download.pytorch.org/whl/cpu
+langchain==0.3.25
+langchain-community==0.3.24
+langchain-core==0.3.65
+langchain-huggingface==0.1.2
+langchain-text-splitters==0.3.8
+text_generation==0.7.0
+sentence-transformers==3.4.1
+openai==1.84.0
+torch==2.6.0+cpu
+torchvision==0.21.0+cpu

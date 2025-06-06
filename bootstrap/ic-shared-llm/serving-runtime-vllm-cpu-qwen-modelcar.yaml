@@ -1,0 +1,38 @@
+apiVersion: serving.kserve.io/v1alpha1
+kind: ServingRuntime
+labels:
+  opendatahub.io/dashboard: "true"
+metadata:
+  annotations:
+    openshift.io/display-name: vLLM-CPU
+    opendatahub.io/apiProtocol: REST
+    opendatahub.io/recommended-accelerators: '[]'
+    opendatahub.io/template-display-name: vLLM ServingRuntime for KServe
+    opendatahub.io/template-name: vllm-runtime-cpu
+    argocd.argoproj.io/sync-wave: "1"
+  name: vllm-cpu
+spec:
+  builtInAdapter:
+    modelLoadingTimeoutMillis: 90000
+  containers:
+    - command:
+        - python
+        - '-m'
+        - vllm.entrypoints.openai.api_server
+      image: public.ecr.aws/q9t5s3a7/vllm-cpu-release-repo:v0.9.1
+      env:
+        - name: VLLM_CPU_KVCACHE_SPACE
+          value: "2"
+        - name: OMP_NUM_THREADS
+          value: "1"
+        - name: VLLM_CPU_OMP_THREADS_BIND
+          value: "all"
+      name: kserve-container
+      ports:
+        - containerPort: 8080
+          name: http1
+          protocol: TCP
+  multiModel: false
+  supportedModelFormats:
+    - autoSelect: true
+      name: vLLM

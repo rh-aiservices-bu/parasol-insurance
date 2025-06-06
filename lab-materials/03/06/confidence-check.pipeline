@@ -281,7 +281,7 @@
             "mounted_volumes": [],
             "kubernetes_secrets": [],
             "env_vars": [],
-            "runtime_image": "quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-confidence-pipeline:1.2"
+            "runtime_image": "quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-confidence-pipeline:2.0"
           }
         }
       },
