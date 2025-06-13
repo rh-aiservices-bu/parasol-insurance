@@ -3,7 +3,7 @@ include::_attributes.adoc[]
 
 So far, for this {ic-lab}, we have used the model https://huggingface.co/RedHatAI/granite-3.1-8b-instruct[Granite 3.1 8B Instruct,window=_blank]. Although lighter than other models, it is still quite heavy and we need a large GPU to run it. Would we get as good results with a smaller model running on a CPU only? Let's try!
 
-In this exercise, we'll pitch our previous model against a much smaller LLM called https://huggingface.co/google/flan-t5-large[flan-t5-large,window=_blank]. We'll compare the results and see if the smaller model is good enough for our use case.
+In this exercise, we'll pitch our previous model against a much smaller LLM called https://huggingface.co/RedHatAI/Qwen2.5-0.5B-quantized.w8a8[Qwen2.5 0.5B Quantized-w8a8,window=_blank]. We'll compare the results and see if the smaller model is good enough for our use case.
 
 From the `parasol-insurance/lab-materials/03` folder, please open the notebook called `03-04-comparing-model-servers.ipynb` and follow the instructions.
 

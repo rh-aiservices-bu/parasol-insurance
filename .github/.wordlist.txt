@@ -204,6 +204,8 @@ py
 pytorch
 Pytorch
 quantized
+Qwen
+qwen
 rbac
 README
 readonly
