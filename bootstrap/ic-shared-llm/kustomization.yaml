@@ -17,9 +17,6 @@ resources:
   # wave 2
   - inference-service-granite-modelcar.yaml
   - inference-service-qwen-modelcar.yaml
-  - pvc-hftgi.yaml
-  - deployment-hftgi.yaml
-  - service-hftgi.yaml
 
 transformers:
   - namespace-transformer.yaml
