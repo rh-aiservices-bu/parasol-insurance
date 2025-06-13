@@ -1,4 +1,5 @@
-FROM quay.io/modh/odh-generic-data-science-notebook:v2-2024a-20240829
+FROM quay.io/modh/odh-generic-data-science-notebook:v3-20250320-3fa2d83
+
 
 ##########################
 # Deploy Python packages #
@@ -16,6 +17,11 @@ COPY --chown=1001:0 requirements.txt ./
 RUN echo "Installing packages" && \
     # Install Python packages \
     pip install --no-cache-dir --no-dependencies -r requirements.txt
+
+# Copy pycodestyle configuration
+COPY --chown=1001:0 pycodestyle /opt/app-root/etc/pycodestyle
+# Copy the custom start script
+COPY --chown=1001:0 start-notebook.sh /opt/app-root/bin/start-notebook.sh
 
 WORKDIR /opt/app-root/src
 

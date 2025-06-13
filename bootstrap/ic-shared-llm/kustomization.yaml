@@ -13,8 +13,10 @@ resources:
   - namespace.yaml
   # wave 1
   - serving-runtime-vllm-granite-modelcar.yaml
+  - serving-runtime-vllm-cpu-qwen-modelcar.yaml
   # wave 2
   - inference-service-granite-modelcar.yaml
+  - inference-service-qwen-modelcar.yaml
   - pvc-hftgi.yaml
   - deployment-hftgi.yaml
   - service-hftgi.yaml
