@@ -1,7 +1,5 @@
 apiVersion: serving.kserve.io/v1alpha1
 kind: ServingRuntime
-labels:
-  opendatahub.io/dashboard: "true"
 metadata:
   annotations:
     openshift.io/display-name: vLLM-CPU
@@ -11,6 +9,8 @@ metadata:
     opendatahub.io/template-name: vllm-runtime-cpu
     argocd.argoproj.io/sync-wave: "1"
   name: vllm-cpu
+  labels:
+    opendatahub.io/dashboard: "true"
 spec:
   builtInAdapter:
     modelLoadingTimeoutMillis: 90000
