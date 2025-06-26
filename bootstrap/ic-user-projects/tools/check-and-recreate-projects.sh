@@ -8,7 +8,7 @@ DASHBOARD_ROUTE=https://$(oc get route rhods-dashboard -n redhat-ods-application
 
 # Define some variables
 WORKBENCH_NAME="my-workbench"
-WORKBENCH_IMAGE="ic-workbench:1.2"
+WORKBENCH_IMAGE="ic-workbench:3.0.4"
 PIPELINE_ENGINE="Tekton"
 projects_without_running_pods=()
 BRANCH_NAME="dev"
