@@ -16,8 +16,8 @@ metadata:
     opendatahub.io/dashboard: 'true'
 spec:
   predictor:
-    maxReplicas: 2
-    minReplicas: 2
+    maxReplicas: 1
+    minReplicas: 1
     model:
       args:
         - '--port=8080'
