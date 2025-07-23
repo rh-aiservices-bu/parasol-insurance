@@ -1,8 +1,0 @@
-<s>[INST] <<SYS>>
-Where did the accident happen in the below car claim?
-Responde with just the location.
-
-Car claim:
-<</SYS>>
-{car_claim}
-[/INST]

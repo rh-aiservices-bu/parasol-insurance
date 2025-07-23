@@ -1,0 +1,28 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+#namespace: ic-shared-minio
+# replaced by transformer
+
+commonLabels:
+  component: minio
+
+resources:
+  # presync
+  - presync.yaml
+  # wave 0
+  - namespace.yaml
+  # wave 1
+  - pvc.yaml
+  - serviceaccount.yaml
+  - create-root-user-job.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+  # wave 2
+  - create-data-connection.yaml
+  - create-buckets.yaml
+
+transformers:
+  - namespace-transformer.yaml

@@ -1,15 +1,15 @@
-# OpenShift AI Unleashed: Transforming Claims Processing for Maximum Efficiency!
+# Parasol Insurance Workshop
 
 ## Introduction
 
-This repository contains the code, instructions, resources and materials associated with the Lab called **OpenShift AI Unleashed: Transforming Claims Processing for Maximum Efficiency!**.
+This repository contains the code, instructions, resources and materials associated with the Lab called **Parasol Insurance Workshop**.
 
 To consult the static version of the instructions, please use [this URL](https://rh-aiservices-bu.github.io/parasol-insurance/)
 
 If you want to participate in the creation and update of this content, please consult the sections below.
 
 <details>
-  <summary>Display Development-centric information</summary>
+  <summary>Workshop development information</summary>
 
 ## General Development Information
 
@@ -17,7 +17,7 @@ If you want to participate in the creation and update of this content, please co
 
 - `main` branch is the one used for production. That's where the Prod and Test catalog items from [demo.redhat.com](https://demo.redhat.com) point to (instructions, materials used,...).
 - `dev` branch is for development. That's where the Dev catalog item points to.
-- Branches are made from `dev` (hot fixes could be made from `main` if really needed).
+- Use a branch from `dev`as much as possible for feature development or bug fixes.
 - When ready, PRs should be made to `dev`. Once all features, bug fixes,... are checked in and tested for a new release, another PR will be made from `dev` to `main`.
 - Branches must be prefixed with `/feature` (example `feature/new-pipeline-instructions`), `bugfix`, or other meaningful info.
 - Add your name/handle in the branch name if needed to avoid confusion.
@@ -48,7 +48,7 @@ Useful link: [https://redhat-scholars.github.io/build-course/rhs-build-course/de
 
 - Python 3.11
 - Nodejs > 18
-- An existing instance of Hugging Face TGI with a loaded model available at `INFERENCE_SERVER_URL`. This application is based on Mistral-TB Prompt format. You will need to modify this format if you are using a different model.
+- An existing instance of an LLM served through an OpenAI compatible API at `INFERENCE_SERVER_URL`. This application is based on Granite-3.1-8B-Instruct Prompt format. You will need to modify this format if you are using a different model.
 
 ### Installation
 
@@ -114,9 +114,9 @@ done
 </details>
 
 <details>
-  <summary>Links for Summit event environment assignment</summary>
+  <summary>Demo environment information</summary>
 
-- URL for all labs: [https://one.demo.redhat.com/](https://one.demo.redhat.com/)
+- URL: [https://catalog.demo.redhat.com/](https://catalog.demo.redhat.com/)
 - Search for `parasol`
 
 </details>

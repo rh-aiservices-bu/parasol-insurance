@@ -1,0 +1,48 @@
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  annotations:
+    openshift.io/display-name: granite-3-1-8b-instruct
+    serving.knative.openshift.io/enablePassthrough: 'true'
+    sidecar.istio.io/inject: 'true'
+    sidecar.istio.io/rewriteAppHTTPProbers: 'true'
+    argocd.argoproj.io/sync-wave: "2"
+    serving.kserve.io/deploymentMode: RawDeployment
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    argocd.argoproj.io/sync-options: Prune=false
+  name: granite-3-1-8b-instruct
+  namespace: ic-shared-llm
+  labels:
+    opendatahub.io/dashboard: 'true'
+spec:
+  predictor:
+    maxReplicas: 1
+    minReplicas: 1
+    model:
+      args:
+        - '--port=8080'
+        - '--model=/mnt/models'
+        - '--served-model-name=granite-3-1-8b-instruct'
+        - '--max-model-len=15000'
+        - '--dtype=half'
+        - '--enable-auto-tool-choice'
+        - '--tool-call-parser'
+        - granite
+      modelFormat:
+        name: vLLM
+      name: ''
+      resources:
+        limits:
+          cpu: '6'
+          memory: 24Gi
+          nvidia.com/gpu: '1'
+        requests:
+          cpu: '1'
+          memory: 8Gi
+          nvidia.com/gpu: '1'
+      runtime: vllm
+      storageUri: oci://registry.redhat.io/rhelai1/modelcar-granite-3-1-8b-instruct:1.5
+    tolerations:
+      - effect: NoSchedule
+        key: nvidia.com/gpu
+        operator: Exists

@@ -1,9 +1,0 @@
-<s>[INST] <<SYS>>
-What time and date did the accident described in the text happen?
-Responde with just the time and date.
-If unknown, simply write Unknown.
-
-Text:
-<</SYS>>
-{car_claim}
-[/INST]

@@ -1,0 +1,68 @@
+---
+apiVersion: serving.kserve.io/v1alpha1
+kind: ServingRuntime
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+    enable-route: 'true'
+    opendatahub.io/accelerator-name: ''
+    opendatahub.io/template-display-name: OpenVINO Model Server
+    opendatahub.io/template-name: ovms
+    openshift.io/display-name: ovms
+  name: ovms
+  namespace: ic-shared-img-det
+  labels:
+    name: ovms
+    opendatahub.io/dashboard: 'true'
+spec:
+  supportedModelFormats:
+    - autoSelect: true
+      name: openvino_ir
+      version: opset1
+    - autoSelect: true
+      name: onnx
+      version: '1'
+    - autoSelect: true
+      name: tensorflow
+      version: '2'
+  builtInAdapter:
+    env:
+      - name: OVMS_FORCE_TARGET_DEVICE
+        value: AUTO
+    memBufferBytes: 134217728
+    modelLoadingTimeoutMillis: 90000
+    runtimeManagementPort: 8888
+    serverType: ovms
+  multiModel: true
+  containers:
+    - args:
+        - '--port=8001'
+        - '--rest_port=8888'
+        - '--config_path=/models/model_config_list.json'
+        - '--file_system_poll_wait_seconds=0'
+        - '--grpc_bind_address=127.0.0.1'
+        - '--rest_bind_address=127.0.0.1'
+      image: >-
+        quay.io/modh/openvino_model_server@sha256:9086c1ba1ba30d358194c534f0563923aab02d03954e43e9f3647136b44a5daf
+      name: ovms
+      resources:
+        limits:
+          cpu: '1'
+          memory: 1Gi
+        requests:
+          cpu: '1'
+          memory: 1Gi
+      volumeMounts:
+        - mountPath: /dev/shm
+          name: shm
+  protocolVersions:
+    - grpc-v1
+  grpcEndpoint: 'port:8085'
+  volumes:
+    - emptyDir:
+        medium: Memory
+        sizeLimit: 2Gi
+      name: shm
+  replicas: 1
+  tolerations: []
+  grpcDataEndpoint: 'port:8001'

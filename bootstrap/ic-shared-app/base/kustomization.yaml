@@ -1,0 +1,25 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+#namespace: ic-shared-app
+# replaced by transformer
+
+commonLabels:
+  component: ic-claim-app
+
+resources:
+  # presync
+  - presync-database.yaml
+  - presync-minio.yaml
+  # wave 0
+  - namespace.yaml
+  - secret-db.yaml
+  - secret-minio.yaml
+  # wave 1
+  - deployment-app.yaml
+  - service-app.yaml
+  - route-app.yaml
+
+transformers:
+  - namespace-transformer.yaml

@@ -1,0 +1,49 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: create-data-connection
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+      serviceAccount: sa-img-det-gitops-setup
+      serviceAccountName: sa-img-det-gitops-setup
+      containers:
+      - name: create-data-connection
+        image: image-registry.openshift-image-registry.svc:5000/openshift/tools:latest
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/bash"]
+        args:
+        - -ec
+        - |-
+          echo -n "Waiting for minio-root-user."
+          while [ -z "$(oc get secret -n ic-shared-minio minio-root-user -oname 2>/dev/null)" ]; do
+            echo -n '.'
+            sleep 1
+          done; echo
+          id=$(oc get secret -n ic-shared-minio minio-root-user -ogo-template='{{.data.MINIO_ROOT_USER|base64decode}}')
+          secret=$(oc get secret -n ic-shared-minio minio-root-user -ogo-template='{{.data.MINIO_ROOT_PASSWORD|base64decode}}')
+          echo "Creating secret for ${id}"
+          cat << EOF | oc apply -f-
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: aws-connection-minio
+            labels:
+              opendatahub.io/dashboard: "true"
+              opendatahub.io/managed: "true"
+            annotations:
+              opendatahub.io/connection-type: s3
+              openshift.io/display-name: MinIO
+          type: Opaque
+          stringData:
+            AWS_ACCESS_KEY_ID: ${id}
+            AWS_SECRET_ACCESS_KEY: ${secret}
+            AWS_DEFAULT_REGION: us
+            AWS_S3_ENDPOINT: http://minio.ic-shared-minio.svc:9000
+            AWS_S3_BUCKET: models
+          EOF
+      restartPolicy: Never

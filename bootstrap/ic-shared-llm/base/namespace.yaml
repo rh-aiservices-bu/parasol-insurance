@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/display-name: "Shared LLM"
+    argocd.argoproj.io/sync-wave: "0"
+  labels:
+    app: ic-shared-llm
+  name: ic-shared-llm

@@ -1,0 +1,24 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+#namespace: ic-user-projects
+# replaced by transformer
+
+commonLabels:
+  component: projects
+
+resources:
+  # presync
+  - presync-rhoai-ready.yaml
+  - presync-minio.yaml
+  # wave 0
+  - namespace.yaml
+  # wave 1
+  - project-manager.yaml
+  # wave 2
+  - images-puller.yaml
+  - create-projects-and-resources-job.yaml
+
+transformers:
+  - namespace-transformer.yaml

@@ -1,4 +1,4 @@
-""" Backend for Insurance Claims Processing App """
+""" Backend for Parasol Insurance Claims Processing App """
 import hashlib
 import logging
 import os

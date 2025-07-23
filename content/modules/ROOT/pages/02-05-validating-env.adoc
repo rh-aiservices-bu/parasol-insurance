@@ -30,7 +30,7 @@ Success: Minio is reachable on minio.ic-shared-minio.svc.cluster.local:9000
 Success: Gitea is reachable on gitea.gitea.svc.cluster.local:3000
 Success: Postgres Database is reachable on claimdb.ic-shared-db.svc.cluster.local:5432
 Success: LLM Service is reachable on llm.ic-shared-llm.svc.cluster.local:8000
-Success: LLM Service-FlanT5 is reachable on llm-flant5.ic-shared-llm.svc.cluster.local:3000
+Success: LLM Service-Qwen2.5 is reachable on qwen-predictor.ic-shared-llm.svc.cluster.local:8080
 Success: ModelMesh is reachable on modelmesh-serving.ic-shared-img-det.svc.cluster.local:8033
 Success: Milvus Vector DB is reachable on vectordb-milvus.ic-shared-milvus.svc.cluster.local:19530
 ----

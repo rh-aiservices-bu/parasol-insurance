@@ -11,55 +11,97 @@ name = "pytorch"
 [dev-packages]
 
 [packages]
-# Basic datascience packages and useful extensions
-boto3 = "~=1.34.65"
-kubernetes = "~=25.3.0" # Fixed by kfp@1.8.22 needed by elyra@3.15.0
-matplotlib = "~=3.8.3"
-numpy = "~=1.26.4"
-pandas = "~=2.2.1"
-plotly = "~=5.20.0"
-scikit-learn = "~=1.4.1.post1"
-scipy = "~=1.12.0"
+# Using and fixing the same versions as the Pytorch 2024.1 image from RHOAI 2.19, but with torch on CPU
+# PyTorch packages
+tensorboard = "==2.19.0"
+torch = {version = "==2.6.0+cpu", index = "pytorch"}
+torchvision = {version = "==0.21.0+cpu", index = "pytorch"}
 
-# PyTorch
-torch = {version = "==2.2.2+cpu", index = "pytorch"}
+# Datascience and useful extensions
+boto3 = "==1.37.15"
+kafka-python-ng = "==2.2.3"
+kfp = "==2.12.1"
+matplotlib = "==3.10.1"
+numpy = "==2.2.4"
+pandas = "==2.2.3"
+plotly = "==6.0.1"
+scikit-learn = "==1.6.1"
+scipy = "==1.15.2"
+skl2onnx = "==1.18.0"
+onnxconverter-common = "==1.13.0" # Required for skl2onnx, as upgraded version is not compatible with protobuf
+kubeflow-training = "==1.9.0"
 
-# LLM section - Langchain
-langchain = "==0.1.12"
-openai = "==1.14.1"
-text_generation = "==0.6.1"
-sentence_transformers = "==2.6.1"
-pymilvus = "==2.3.7"
-einops = "==0.7.0"
-
-# Image recognition section - YOLO
-Flask = "~=3.0.2"
-gunicorn = "~=21.2.0"
-onnx = "~=1.15.0"
-onnxruntime = "~=1.17.1"
-opencv-python-headless = "~=4.9.0.80"
-ultralytics = "~=8.1.29"
-
-
-# Base packages
-pip = "~=24.0"
-setuptools = "~=69.2.0"
-wheel = "~=0.43.0"
+# DB connectors
+pymongo = "==4.11.3"
+psycopg = "==3.2.6"
+pyodbc = "==5.2.0"
+mysql-connector-python = "==9.2.0"
 
 # JupyterLab packages
-elyra-pipeline-editor-extension = "~=3.15.0"
-elyra-python-editor-extension = "~=3.15.0"
-elyra-code-snippet-extension = "~=3.15.0"
-kfp-tekton = "<1.6.0"
-jupyterlab = "~=3.6.7"
-jupyter-bokeh = "~=3.0.7"
-jupyter-resource-usage = "~=1.0.2"
-jupyter-server-proxy = "~=4.1.2"
-jupyter-server-terminals = "~=0.5.3"
-jupyterlab-git = "~=0.44.0"
-jupyterlab-lsp = "~=4.3.0"
-jupyterlab-widgets = "~=3.0.10"
-nbdime = "~=3.2.1"
+
+odh-elyra = "==4.2.0"
+
+jupyterlab = "==4.2.7"
+jupyter-bokeh = "==4.0.5"
+jupyter-server = "==2.15.0"
+jupyter-server-proxy = "==4.4.0"
+jupyter-server-terminals = "==0.5.3"
+jupyterlab-git = "==0.50.2"
+jupyterlab-lsp = "==5.1.0"
+jupyterlab-widgets = "==3.0.13"
+jupyter-resource-usage = "==1.1.1"
+nbdime = "==4.0.2"
+nbgitpuller = "==1.2.2"
+
+# Base packages
+wheel = "==0.45.1"
+setuptools = "==75.8.2"
+
+# Fixing packages as they are in the Pytorch 2024.1 image from RHOAI 2.13
+anyio = "==4.9.0"
+certifi = "==2025.1.31"
+contourpy = "==1.3.1"
+filelock = "==3.18.0"
+fonttools = "==4.56.0"
+fsspec = "==2025.3.0"
+google-auth = "==2.38.0"
+#grpcio = "==1.71.0"
+grpcio = "==1.67.1"  # Note: grpcio is pinned to a specific version due to compatibility issues with other packages
+idna = "==3.10"
+kiwisolver = "==1.4.8"
+kubernetes = "==30.1.0"
+multidict = "==6.2.0"
+protobuf = "==4.25.6"
+psutil = "==5.9.8"
+pyasn1 = "==0.6.1"
+pyasn1-modules = "==0.4.1"
+pydantic = "==2.9.2"
+pytz = "==2025.1"
+sympy = "==1.13.1"
+tenacity = "==9.0.0"
+tzdata = "==2025.1"
+urllib3 = "==1.26.20"
+yarl = "==1.18.3"
+
+# LLM section - Langchain
+einops = "==0.8.1"
+langchain = "==0.3.25"
+langchain-openai = "==0.3.22"
+langchain-community = "==0.3.24"
+langchain-milvus = "==0.1.7"
+langchain-huggingface = "==0.1.2"
+openai = "==1.84.0"
+pymilvus = "==2.4.15"
+sentence_transformers = "==3.4.1"
+text_generation = "==0.7.0"
+
+# Image recognition section - YOLO
+Flask = "==3.1.1"
+gunicorn = "==23.0.0"
+onnx = "==1.17.0"
+onnxruntime = "==1.22.0"
+opencv-python-headless = "==4.11.0.86"
+ultralytics = "==8.3.151"
 
 [requires]
 python_version = "3.11"

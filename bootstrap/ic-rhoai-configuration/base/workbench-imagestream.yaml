@@ -1,0 +1,76 @@
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  annotations:
+    opendatahub.io/notebook-image-creator: admin
+    opendatahub.io/notebook-image-desc: >-
+      Jupyter notebook image with all the libraries needed for the OpenShift AI Parasol Insurance Lab.
+    opendatahub.io/notebook-image-name: CUSTOM - Parasol Insurance Claim Processing Lab Workbench
+    opendatahub.io/notebook-image-order: "01"
+    opendatahub.io/notebook-image-url: >-
+      https://github.com/rh-aiservices-bu/parasol-insurance/tree/main/bootstrap/workbench-image
+    opendatahub.io/recommended-accelerators: "[]"
+    argocd.argoproj.io/sync-wave: "1"
+  name: ic-workbench
+  namespace: redhat-ods-applications
+  labels:
+    app.kubernetes.io/created-by: byon
+    opendatahub.io/dashboard: "true"
+    opendatahub.io/notebook-image: "true"
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: "3.0.4"
+      annotations:
+        opendatahub.io/notebook-python-dependencies: >-
+          [{"name":"PyTorch","version":"2.6.0"},{"name":"Langchain","version":"0.3.25"},{"name":"Ultralytics","version":"8.3.151"},]
+        opendatahub.io/notebook-software: >-
+          [{"name":"Python","version":"v3.11"}]
+        openshift.io/imported-from: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-workbench
+      from:
+        kind: DockerImage
+        name: >-
+          quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-workbench:3.0.4
+      importPolicy:
+        importMode: Legacy
+      referencePolicy:
+        type: Source
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  annotations:
+    opendatahub.io/notebook-image-creator: admin
+    opendatahub.io/notebook-image-desc: >-
+      Code-server workbench image to use in the Parasol Insurance workshop.
+    opendatahub.io/notebook-image-name: CUSTOM - Code Server for Parasol Insurance Lab
+    opendatahub.io/notebook-image-order: "02"
+    opendatahub.io/notebook-image-url: >-
+      https://github.com/red-hat-data-services/notebooks/tree/main/codeserver
+    opendatahub.io/recommended-accelerators: "[]"
+    argocd.argoproj.io/sync-wave: "2"
+  name: ic-code-server
+  namespace: redhat-ods-applications
+  labels:
+    app.kubernetes.io/created-by: byon
+    opendatahub.io/dashboard: "true"
+    opendatahub.io/notebook-image: "true"
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: "2025.1"
+      annotations:
+        opendatahub.io/notebook-python-dependencies: '[{"name":"code-server","version":"4.98"}]'
+        opendatahub.io/notebook-software: '[{"name":"Python","version":"v3.11"}]'
+        openshift.io/imported-from: quay.io/modh/codeserver
+      from:
+        kind: DockerImage
+        name: >-
+          quay.io/modh/codeserver@sha256:38460e3b5536d903add40869714512e2c3a993c3dfe4a8010688e4e3b79bf090
+      importPolicy:
+        importMode: Legacy
+      referencePolicy:
+        type: Source

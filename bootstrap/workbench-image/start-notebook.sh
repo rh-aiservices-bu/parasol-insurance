@@ -33,13 +33,14 @@ if [ -n "${NOTEBOOK_ARGS}" ]; then
     NOTEBOOK_PROGRAM_ARGS+=${NOTEBOOK_ARGS}
 fi
 
-# Add .bashrc for custom promt if not present
-if [ ! -f "/opt/app-root/src/.bashrc" ]; then
-  echo 'PS1="\[\033[34;1m\][\$(pwd)]\[\033[0m\]\n\[\033[1;0m\]$ \[\033[0m\]"' > /opt/app-root/src/.bashrc
+# Copy the PyCodeStyle configuration file if it does not exist
+if [ ! -f "${HOME}/.config/pycodestyle" ]; then
+    mkdir -p "${HOME}/.config"
+    cp /opt/app-root/etc/pycodestyle ${HOME}/.config/pycodestyle
 fi
 
 # Start the JupyterLab notebook
 start_process jupyter lab ${NOTEBOOK_PROGRAM_ARGS} \
-    --ServerApp.ip=0.0.0.0 \
+    --ServerApp.ip="" \
     --ServerApp.allow_origin="*" \
     --ServerApp.open_browser=False

@@ -1,0 +1,9 @@
+<|system|>
+Where did the accident happen in the below car claim?
+Respond with just the location.
+<|user|>
+Car claim
+### TEXT:
+{car_claim}
+### ANSWER:
+<|assistant|>

@@ -27,6 +27,7 @@ cd
 centric
 cephfs
 Chase
+chatbot
 ChatGPT
 ChatOps
 Chris
@@ -37,6 +38,7 @@ cls
 CMD
 config
 Config
+Containerfile
 courseware
 cpu
 CreateNamespace
@@ -123,7 +125,9 @@ jsonpath
 jupyter
 Jupyter
 JupyterLab
+KServe
 kubectl
+Kubeflow
 kubernetes
 linter
 llm
@@ -144,6 +148,11 @@ MinIO
 mistralai
 mn
 mockups
+modelCar
+Modelcar
+ModelCar
+Modelcars
+ModelCars
 modelmesh
 ModelMesh
 modelresults
@@ -160,6 +169,7 @@ ods
 ojsonpath
 ok
 onnx
+OpenAI
 opencv
 OpenCV
 openshift
@@ -194,11 +204,14 @@ py
 pytorch
 Pytorch
 quantized
+Qwen
+qwen
 rbac
 README
 readonly
 recog
 redhat
+RedHatAI
 repo
 repoURL
 RespectIgnoreDifferences
@@ -216,6 +229,7 @@ RoboFlow
 rollout
 runtime
 RWX
+SDK
 selfHeal
 Serverless
 src
@@ -249,6 +263,7 @@ unopinionated
 url
 userX
 vectordb
+VectorDB
 venv
 vscode
 VSCode
