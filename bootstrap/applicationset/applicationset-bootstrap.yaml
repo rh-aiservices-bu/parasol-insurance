@@ -10,33 +10,43 @@ spec:
           - cluster: in-cluster
             name: ic-rhoai-operator
             path: bootstrap/ic-rhoai-operator/overlays/main
+            syncTimeout: 300s
           - cluster: in-cluster
             name: ic-rhoai-installation
             path: bootstrap/ic-rhoai-installation/overlays/main
+            syncTimeout: 600s
           - cluster: in-cluster
             name: ic-rhoai-configuration
             path: bootstrap/ic-rhoai-configuration/overlays/main
+            syncTimeout: 300s
           - cluster: in-cluster
             name: ic-shared-minio-app
             path: bootstrap/ic-shared-minio/overlays/main
+            syncTimeout: 900s
           - cluster: in-cluster
             name: ic-shared-database-app
             path: bootstrap/ic-shared-database/overlays/main
+            syncTimeout: 300s
           - cluster: in-cluster
             name: ic-shared-milvus
             path: bootstrap/ic-shared-milvus/overlays/main
+            syncTimeout: 900s
           - cluster: in-cluster
             name: ic-shared-llm
             path: bootstrap/ic-shared-llm/overlays/main
+            syncTimeout: 600s
           - cluster: in-cluster
             name: ic-shared-img-det
             path: bootstrap/ic-shared-img-det/overlays/main
+            syncTimeout: 300s
           - cluster: in-cluster
             name: ic-user-projects
             path: bootstrap/ic-user-projects/overlays/main
+            syncTimeout: 900s
           - cluster: in-cluster
             name: ic-shared-app
             path: bootstrap/ic-shared-app/overlays/main
+            syncTimeout: 1800s
   template:
     metadata:
       name: "{{name}}"
@@ -59,6 +69,7 @@ spec:
         syncOptions:
           - RespectIgnoreDifferences=true
           - Retry=true
+          - syncTimeout="{{syncTimeout}}"
         retry:
           limit: 50
           backoff:
