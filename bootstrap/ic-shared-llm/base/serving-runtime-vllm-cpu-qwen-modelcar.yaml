@@ -19,7 +19,7 @@ spec:
         - python
         - '-m'
         - vllm.entrypoints.openai.api_server
-      image: public.ecr.aws/q9t5s3a7/vllm-cpu-release-repo:v0.9.1
+      image: quay.io/rh-aiservices-bu/rhoai-lab-insurance-claim-vllm-cpu:v0.9.1
       env:
         - name: VLLM_CPU_KVCACHE_SPACE
           value: "2"
