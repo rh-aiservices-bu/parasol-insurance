@@ -37,7 +37,3 @@ spec:
           memory: 5Gi
       runtime: vllm-cpu
       storageUri: oci://quay.io/rh-aiservices-bu/qwen2.5-0.5b-quantized.w8a8-modelcar:0.0.1
-    tolerations:
-      - effect: NoSchedule
-        key: nvidia.com/gpu
-        operator: Exists
