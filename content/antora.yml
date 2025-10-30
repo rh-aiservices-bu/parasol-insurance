@@ -18,7 +18,7 @@ asciidoc:
     minio-user: minio
     minio-pass: minio-parasol
     minio-endpoint: http://minio.ic-shared-minio.svc.cluster.local:9000/
-    git-clone-repo-url: https://github.com/rh-aiservices-bu/parasol-insurance.git
+    git-clone-repo-url: https://github.com/TroyNelson11/parasol-insurance.git
     git-clone-repo-branch: main
     user: userX
     password: openshift

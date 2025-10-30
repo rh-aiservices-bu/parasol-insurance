@@ -15,21 +15,21 @@
 ** xref:02-05-validating-env.adoc[2.5 Validating the environment]
 
 * 3. Image Processing
-** xref:03-01-over-approach.adoc[4.1 Overall Approach]
-** xref:03-02-car-recog.adoc[4.2 Car recognition (Optional)]
-** xref:03-03-model-retraining.adoc[4.3 Model retraining (Optional)]
-** xref:03-04-accident-recog.adoc[4.4 Accident/Damage recognition (Optional)]
-** xref:03-05-model-serving.adoc[4.5 Model Serving]
+** xref:03-01-over-approach.adoc[3.1 Overall Approach]
+** xref:03-02-car-recog.adoc[3.2 Car recognition (Optional)]
+** xref:03-03-model-retraining.adoc[3.3 Model retraining (Optional)]
+** xref:03-04-accident-recog.adoc[3.4 Accident/Damage recognition (Optional)]
+** xref:03-05-model-serving.adoc[3.5 Model Serving]
 
 * 4. Web App Deployment
-** xref:04-01-application.adoc[5.1 Application overview]
-** xref:04-02-web-app-deploy-application.adoc[5.3 Deploying the application via GitOps]
-** xref:04-03-web-app-validating.adoc[5.4 Validating the application]
-** xref:04-04-process-claims.adoc[5.5 Process claims with a pipeline]
+** xref:04-01-application.adoc[4.1 Application overview]
+** xref:04-02-web-app-deploy-application.adoc[4.3 Deploying the application via GitOps]
+** xref:04-03-web-app-validating.adoc[4.4 Validating the application]
+** xref:04-04-process-claims.adoc[4.5 Process claims with a pipeline]
 
 * 5. Productization and Extrapolations
-** xref:05-01-potential-imp-ref.adoc[6.1 Potential improvements and refinements]
-** xref:05-02-applicability-other.adoc[6.2 Applicability to other industries]
+** xref:05-01-potential-imp-ref.adoc[5.1 Potential improvements and refinements]
+** xref:05-02-applicability-other.adoc[5.2 Applicability to other industries]
 
 * 6. End of Lab
-** xref:06-01-end-of-lab.adoc[7.1 Thanks]
+** xref:06-01-end-of-lab.adoc[6.1 Thanks]

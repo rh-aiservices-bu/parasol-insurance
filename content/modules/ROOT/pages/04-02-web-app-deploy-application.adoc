@@ -42,7 +42,7 @@ spec:
   project: project-{user}
   source:
     path: lab-materials/05/app/overlays/main
-    repoURL: https://github.com/rh-aiservices-bu/parasol-insurance.git
+    repoURL: https://github.com/TroyNelson11/parasol-insurance.git
     targetRevision: main
   syncPolicy:
     automated:
