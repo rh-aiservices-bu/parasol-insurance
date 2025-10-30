@@ -14,31 +14,22 @@
 ** xref:02-04-first-jupyter-notebook.adoc[2.4 Your first Jupyter Notebook]
 ** xref:02-05-validating-env.adoc[2.5 Validating the environment]
 
-* 3. Working with an LLM
-** xref:03-01-notebook-based-llm.adoc[3.1 Notebook-Based LLM Example]
-** xref:03-02-summarization.adoc[3.2 Text Summarization]
-** xref:03-03-information-extractions.adoc[3.3 Information Extraction]
-** xref:03-04-comparing-model-servers.adoc[3.4 Comparing Model Servers]
-** xref:03-05-retrieval-augmented-generation.adoc[3.5 Retrieval-Augmented Generation]
-** xref:03-06-confidence-check.adoc[3.6 Confidence-check pipeline]
-** xref:03-07-prompt-engineering.adoc[3.7 Prompt Engineering Exercise (Optional)]
+* 3. Image Processing
+** xref:03-01-over-approach.adoc[4.1 Overall Approach]
+** xref:03-02-car-recog.adoc[4.2 Car recognition (Optional)]
+** xref:03-03-model-retraining.adoc[4.3 Model retraining (Optional)]
+** xref:03-04-accident-recog.adoc[4.4 Accident/Damage recognition (Optional)]
+** xref:03-05-model-serving.adoc[4.5 Model Serving]
 
-* 4. Image Processing
-** xref:04-01-over-approach.adoc[4.1 Overall Approach]
-** xref:04-02-car-recog.adoc[4.2 Car recognition (Optional)]
-** xref:04-03-model-retraining.adoc[4.3 Model retraining (Optional)]
-** xref:04-04-accident-recog.adoc[4.4 Accident/Damage recognition (Optional)]
-** xref:04-05-model-serving.adoc[4.5 Model Serving]
+* 4. Web App Deployment
+** xref:04-01-application.adoc[5.1 Application overview]
+** xref:04-02-web-app-deploy-application.adoc[5.3 Deploying the application via GitOps]
+** xref:04-03-web-app-validating.adoc[5.4 Validating the application]
+** xref:04-04-process-claims.adoc[5.5 Process claims with a pipeline]
 
-* 5. Web App Deployment
-** xref:05-01-application.adoc[5.1 Application overview]
-** xref:05-02-web-app-deploy-application.adoc[5.3 Deploying the application via GitOps]
-** xref:05-03-web-app-validating.adoc[5.4 Validating the application]
-** xref:05-04-process-claims.adoc[5.5 Process claims with a pipeline]
+* 5. Productization and Extrapolations
+** xref:05-01-potential-imp-ref.adoc[6.1 Potential improvements and refinements]
+** xref:05-02-applicability-other.adoc[6.2 Applicability to other industries]
 
-* 6. Productization and Extrapolations
-** xref:06-01-potential-imp-ref.adoc[6.1 Potential improvements and refinements]
-** xref:06-02-applicability-other.adoc[6.2 Applicability to other industries]
-
-* 7. End of Lab
-** xref:07-01-end-of-lab.adoc[7.1 Thanks]
+* 6. End of Lab
+** xref:06-01-end-of-lab.adoc[7.1 Thanks]
