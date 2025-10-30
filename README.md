@@ -4,7 +4,7 @@
 
 This repository contains the code, instructions, resources and materials associated with the Lab called **Parasol Insurance Workshop**.
 
-To consult the static version of the instructions, please use [this URL](https://rh-aiservices-bu.github.io/parasol-insurance/)
+To consult the static version of the instructions, please use [this URL](https://troynelson11.github.io/parasol-insurance/modules/index.html)
 
 If you want to participate in the creation and update of this content, please consult the sections below.
 
