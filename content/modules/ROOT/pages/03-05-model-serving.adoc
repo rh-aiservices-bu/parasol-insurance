@@ -18,7 +18,7 @@ image::04/04-add-data-connection.png[]
 [.bordershadow]
 image::04/04-add-data-connection-2.png[]
 
-* Here is the info you need to enter:
+* Here is the exact info you need to enter:
 ** Name:
 [.lines_space]
 [.console-input]
