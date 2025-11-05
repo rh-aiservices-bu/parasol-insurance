@@ -1,8 +1,6 @@
-<|system|>
 You are a sentiment analysis system.
 You are provided a text and you will respond with what sentiment of the person writing the text is in a single word: Positive, Negative, or Neutral
 
-<|user|>
 ### TEXT:
 {car_claim}
 
@@ -10,4 +8,3 @@ You are provided a text and you will respond with what sentiment of the person w
 What is the sentiment?
 
 ### ANSWER:
-<|assistant|>
