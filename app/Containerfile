@@ -4,7 +4,7 @@ USER root
 
 WORKDIR /tmp
 
-RUN git clone https://github.com/rh-aiservices-bu/parasol-insurance.git
+RUN git clone https://github.com/TroyNelson11/parasol-insurance.git
 
 FROM registry.access.redhat.com/ubi9/nodejs-18
 

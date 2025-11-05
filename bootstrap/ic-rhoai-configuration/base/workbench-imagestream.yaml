@@ -9,7 +9,7 @@ metadata:
     opendatahub.io/notebook-image-name: CUSTOM - Parasol Insurance Claim Processing Lab Workbench
     opendatahub.io/notebook-image-order: "01"
     opendatahub.io/notebook-image-url: >-
-      https://github.com/rh-aiservices-bu/parasol-insurance/tree/main/bootstrap/workbench-image
+      https://github.com/TroyNelson11/parasol-insurance/tree/main/bootstrap/workbench-image
     opendatahub.io/recommended-accelerators: "[]"
     argocd.argoproj.io/sync-wave: "1"
   name: ic-workbench

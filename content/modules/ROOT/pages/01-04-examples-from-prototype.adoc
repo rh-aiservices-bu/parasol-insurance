@@ -3,26 +3,6 @@ include::_attributes.adoc[]
 
 The examples below are what we hope to achieve through our prototype version of the improved process.
 
-== Using an LLM for text summarization
-
-* Allows for faster reading by the claims adjuster:
-+
-[.bordershadow]
-image::01/proto-summary.png[test image]
-
-== Using an LLM for information extraction
-
-* Extract key pieces of information for better population of database:
-+
-[.bordershadow]
-image::01/proto-info-extract.png[ info extraction]
-
-== Using an LLM for sentiment analysis
-
-* Detect tone of text, and potentially act on it:
-+
-[.bordershadow]
-image::01/proto-sentiment-analysis.png[]
 
 == Using image recognition to frame vehicle(s) in pictures
 
@@ -37,6 +17,13 @@ image::01/proto-car-recog.png[]
 +
 [.bordershadow]
 image::01/proto-accident-grading.png[]
+
+== EXTRA - Using an LLM for information extraction
+
+* Extract key pieces of information for better population of database:
++
+[.bordershadow]
+image::01/proto-info-extract.png[ info extraction]
 
 == Web Application to review/process claims
 

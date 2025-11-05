@@ -25,7 +25,7 @@ spec:
         - -ec
         - |-
           cd /opt/app-root/src
-          git clone https://github.com/rh-aiservices-bu/parasol-insurance.git && cd parasol-insurance && git checkout $BRANCH_NAME
+          git clone https://github.com/TroyNelson11/parasol-insurance.git && cd parasol-insurance && git checkout $BRANCH_NAME
 
           cat << 'EOF' | python3
           import boto3, os, botocore

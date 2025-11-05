@@ -1,0 +1,396 @@
+* [33m50fd15c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m modelmesh-enabled = 'false'
+* [33m249dd3f[m first round of tweaks
+* [33m4543148[m Update publish.yml
+* [33m185062d[m rh-aiservices-bu -> TroyNelson11
+* [33ma1aa532[m remove nav llm section
+*   [33m4fd3c4c[m Merge branch 'dev'
+[32m|[m[33m\[m  
+[32m|[m * [33m398795f[m[33m ([m[1;31morigin/dev[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mdev[m[33m)[m delete vllm section
+[32m|[m * [33mc2c313b[m Update README.md
+[32m|[m * [33m92c34d6[m Update publish.yml
+[32m|[m * [33mf41e353[m Update publish.yml
+[32m|[m * [33m69971d8[m Update publish.yml
+[32m|[m * [33mba357a6[m Update publish.yml
+[32m|[m *   [33m749e602[m Merge pull request #223 from alexknop/modelServingImport
+[32m|[m [34m|[m[35m\[m  
+[32m|[m [34m|[m * [33mc098f7a[m remove extra hash character
+[32m|[m [34m|[m * [33md9b013c[m remove unused import
+[32m|[m [34m|[m[34m/[m  
+* [34m/[m [33m7a38863[m Update publish.yml
+[34m|[m[34m/[m  
+*   [33m0011a2e[m Merge pull request #222 from rh-aiservices-bu/dev
+[36m|[m[1;31m\[m  
+[36m|[m * [33m36e3df9[m Adds sync timeout for applications
+[36m|[m * [33m89ef78b[m Merge remote-tracking branch 'origin/dev' into dev
+[36m|[m[36m/[m[1;33m|[m 
+[36m|[m * [33m431b0b3[m Updates vLLM CPU image (#220)
+* [1;33m|[m [33m7bc99f0[m Updates vLLM CPU image (#220) (#221)
+[1;33m|[m[1;33m/[m  
+*   [33m6be3da0[m Merge branch 'dev'
+[1;34m|[m[1;35m\[m  
+[1;34m|[m * [33m18a93b1[m ✨update to 2.19✨ (#208)
+[1;34m|[m *   [33ma8b9007[m Merge branch 'dev-rhoai-2.13' into dev
+[1;34m|[m [1;36m|[m[31m\[m  
+[1;34m|[m [1;36m|[m * [33m82ebc5a[m[33m ([m[1;31morigin/dev-rhoai-2.13[m[33m)[m Update create-root-user-job.yaml (#193)
+[1;34m|[m [1;36m|[m * [33m34082c5[m Fix a few mistakes in the workshop instructions (#195)
+[1;34m|[m [1;36m|[m * [33m6f01675[m test stable channel (#196)
+[1;34m|[m [1;36m|[m * [33mc8387b7[m Fix typo in 02-02-auto-created-project.adoc (#191)
+[1;34m|[m [1;36m|[m * [33m54efd35[m remove rolling sync strategy (#190)
+[1;34m|[m [1;36m|[m * [33mde99c8a[m Create user projects in batches of 5 (#188)
+[1;34m|[m [1;36m|[m * [33md79c23c[m Add missing words (#187)
+[1;34m|[m [1;36m|[m * [33mf0c1207[m ✨add username to argo app name✨ (#186)
+[1;34m|[m [1;36m|[m * [33m0794f9b[m workflows updates
+[1;34m|[m [1;36m|[m * [33m641e4f3[m update spellcheck wordlist
+[1;34m|[m [1;36m|[m * [33m64304be[m last fixes
+[1;34m|[m [1;36m|[m * [33mb1ee75f[m move images puller to last workload (#184)
+[1;34m|[m [1;36m|[m * [33mcdd8a12[m new branch name fixes
+[1;34m|[m [1;36m|[m *   [33m5ef0f2e[m Merge branch 'dev' into dev-rhoai-2.13
+[1;34m|[m [1;36m|[m [32m|[m[33m\[m  
+[1;34m|[m * [32m|[m [33m|[m [33me6cd701[m Fix typo in 02-02-auto-created-project.adoc (#191)
+[1;34m|[m [33m|[m [32m|[m[33m/[m  
+[1;34m|[m [33m|[m[33m/[m[32m|[m   
+[1;34m|[m * [32m|[m [33mae00791[m review lab content (#183)
+[1;34m|[m * [32m|[m [33m32714e3[m app deployment using shared ArgoCD (#182)
+[1;34m|[m * [32m|[m   [33m9615f43[m Merge pull request #181 from rh-aiservices-bu/fix/better-templates
+[1;34m|[m [34m|[m[35m\[m [32m\[m  
+[1;34m|[m [34m|[m * [32m|[m [33mcece9cc[m Improved templates after format changes
+[1;34m|[m [34m|[m[34m/[m [32m/[m  
+[1;34m|[m * [32m|[m [33mf1813f5[m add data pipeline PVC (#180)
+[1;34m|[m * [32m|[m [33m00ba7c1[m imagestream addition to bump code-server in second place (#179)
+[1;34m|[m * [32m|[m [33m5361cbb[m generic support instructions (#178)
+[1;34m|[m * [32m|[m [33m1892c4a[m modify minio pass (#177)
+[1;34m|[m * [32m|[m [33m5d46174[m correct t5-small references (#176)
+[1;34m|[m * [32m|[m [33m0efbab5[m switch to Parasol Insurance (#175)
+[1;34m|[m * [32m|[m [33m3b02cb4[m add enablemodelcar as presync
+[1;34m|[m * [32m|[m [33m34d5ad9[m appset reorg (#174)
+[1;34m|[m * [32m|[m [33m247ad28[m move sync-wave
+[1;34m|[m * [32m|[m [33m4c5b8fa[m add retries to apps
+[1;34m|[m * [32m|[m [33ma2d91c5[m Fix image version and working with new templates (#172)
+[1;34m|[m * [32m|[m [33md355509[m change order and split projects (#173)
+[1;34m|[m * [32m|[m [33m29aefe1[m App and prompts fixes (#169)
+[1;34m|[m * [32m|[m [33mdb541f2[m fix demo app
+[1;34m|[m * [32m|[m [33m59791d1[m change deployment order
+[1;34m|[m * [32m|[m [33m8edf0e2[m switch to cronjob
+[1;34m|[m * [32m|[m [33m6518c79[m add modelcar enablement backup
+[1;34m|[m * [32m|[m [33m49d804e[m spellcheck list and fixes (#168)
+[1;34m|[m * [32m|[m [33ma05ccac[m change check process (#167)
+[1;34m|[m * [32m|[m [33mb342220[m refactor+fixes (#166)
+[1;34m|[m * [32m|[m [33m089ce95[m rolling bootstrap (#165)
+[1;34m|[m * [32m|[m [33m46307d5[m Review section one and Antora config (#164)
+[1;34m|[m * [32m|[m [33me450be0[m fix authorino (#163)
+[1;34m|[m * [32m|[m [33m885b6a6[m optimization for the granite modelcar container image (#160)
+[1;34m|[m * [32m|[m [33me199f29[m add authorino operator (#161)
+[1;34m|[m * [32m|[m [33m057f210[m Pipelines working with granite (#154)
+[1;34m|[m * [32m|[m [33m75990d1[m Checkout a specific workbench branch (#157)
+[1;34m|[m * [32m|[m [33m6b36cd0[m added granite modelcar image (#158)
+[1;34m|[m * [32m|[m [33m5b8fc51[m Moved back to the ic-workbench (#152)
+[1;34m|[m * [32m|[m [33mcbf25c8[m Update notebooks and containers (#151)
+[1;34m|[m * [32m|[m [33m8d2c05e[m added modelcar job, rbac and is/sr (#150)
+[1;34m|[m * [32m|[m [33mcd60a58[m Initial updated pipeline (#133)
+[1;34m|[m * [32m|[m [33m1b39692[m RHOAI bootstrap gitops installation (#128)
+[1;34m|[m * [32m|[m [33m135f81f[m Automated project now working (#127)
+[1;34m|[m [32m|[m[32m/[m  
+[1;34m|[m *   [33m9cc25fc[m Merge pull request #123 from rh-aiservices-bu/hotfix-token
+[1;34m|[m [36m|[m[1;31m\[m  
+[1;34m|[m [36m|[m * [33mda798e0[m fine-grained token
+[1;34m|[m [36m|[m[36m/[m  
+[1;34m|[m *   [33mc8bd7e1[m Merge pull request #110 from rh-aiservices-bu/fix/llm-deployment
+[1;34m|[m [1;32m|[m[1;33m\[m  
+[1;34m|[m [1;32m|[m * [33mad7acd0[m Fix LLM deployment
+[1;34m|[m [1;32m|[m[1;32m/[m  
+* [1;32m|[m [33m9596f30[m added fix for issue #198 (#199)
+* [1;32m|[m   [33meb991ee[m Merge pull request #125 from rh-aiservices-bu/fine-grained-token
+[1;34m|[m[1;35m\[m [1;32m\[m  
+[1;34m|[m * [1;32m|[m [33mdad4ec5[m fine-grained token
+[1;34m|[m[1;34m/[m [1;32m/[m  
+* [1;32m|[m   [33mc709d47[m Merge pull request #111 from rh-aiservices-bu/hotfix-vllm
+[1;36m|[m[31m\[m [1;32m\[m  
+[1;36m|[m * [1;32m|[m [33m205a82a[m Hotfix vllm
+[1;36m|[m[1;36m/[m [1;32m/[m  
+* [1;32m|[m   [33m2a18b38[m Merge pull request #108 from rh-aiservices-bu/prepare-for-main
+[32m|[m[33m\[m [1;32m\[m  
+[32m|[m * [1;32m|[m [33mf14314b[m change dev for main in relevant files
+[32m|[m [1;32m|[m[1;32m/[m  
+[32m|[m *   [33mf38426f[m Merge pull request #107 from rh-aiservices-bu/image-puller-update
+[32m|[m [34m|[m[35m\[m  
+[32m|[m [34m|[m * [33mafd9e36[m update oauth-proxy (2 versions)
+[32m|[m [34m|[m[34m/[m  
+[32m|[m *   [33m8b06147[m Merge pull request #106 from rh-aiservices-bu/feat/add_milvus_to_architecture
+[32m|[m [36m|[m[1;31m\[m  
+[32m|[m [36m|[m * [33m0e03139[m Milvus: Updated diagram and added bullet
+[32m|[m * [1;31m|[m   [33m8e63693[m Merge pull request #105 from rh-aiservices-bu/fix/pacific_shield_to_parasol
+[32m|[m [1;31m|[m[1;33m\[m [1;31m\[m  
+[32m|[m [1;31m|[m [1;33m|[m[1;31m/[m  
+[32m|[m [1;31m|[m[1;31m/[m[1;33m|[m   
+[32m|[m [1;31m|[m * [33mfbae5ca[m Changed all insurance company names to parasol
+[32m|[m [1;31m|[m[1;31m/[m  
+[32m|[m *   [33m566d48f[m Merge pull request #85 from rh-aiservices-bu/feat/what-is-elyra
+[32m|[m [1;34m|[m[1;35m\[m  
+[32m|[m [1;34m|[m * [33m1a61639[m Short explanation of Elyra and the side-menu
+[32m|[m * [1;35m|[m   [33m95ce442[m Merge pull request #102 from rh-aiservices-bu/fix/1.4-app-image
+[32m|[m [1;35m|[m[31m\[m [1;35m\[m  
+[32m|[m [1;35m|[m [31m|[m[1;35m/[m  
+[32m|[m [1;35m|[m[1;35m/[m[31m|[m   
+[32m|[m [1;35m|[m * [33m48fb535[m Updated 1.4 app image
+[32m|[m [1;35m|[m[1;35m/[m  
+[32m|[m *   [33m8382b71[m Merge pull request #104 from rh-aiservices-bu/feat/3.6-unsaved-warning
+[32m|[m [32m|[m[33m\[m  
+[32m|[m [32m|[m * [33m09cc9f9[m Added text and image for save and submit pipeline
+[32m|[m [32m|[m[32m/[m  
+[32m|[m *   [33mc11e54d[m Merge pull request #103 from rh-aiservices-bu/fix/2.3-workbench-info-image
+[32m|[m [34m|[m[35m\[m  
+[32m|[m [34m|[m * [33mca1edff[m Updated to image without CUDA
+[32m|[m [34m|[m[34m/[m  
+[32m|[m *   [33md6132d4[m Merge pull request #101 from rh-aiservices-bu/fix/#90-fix-auth-login
+[32m|[m [36m|[m[1;31m\[m  
+[32m|[m [36m|[m * [33md209d5b[m fix auth login
+[32m|[m [36m|[m[36m/[m  
+[32m|[m *   [33mfc1687f[m Merge pull request #96 from rh-aiservices-bu/fix/auto-project-cleanup
+[32m|[m [1;32m|[m[1;33m\[m  
+[32m|[m [1;32m|[m * [33m19d0a62[m Cleanup and added tools for managing failing users
+[32m|[m * [1;33m|[m   [33m94675db[m Merge pull request #99 from rh-aiservices-bu/fix/ignore_HuggingFaceTextGenInference_warning
+[32m|[m [1;33m|[m[1;35m\[m [1;33m\[m  
+[32m|[m [1;33m|[m [1;35m|[m[1;33m/[m  
+[32m|[m [1;33m|[m[1;33m/[m[1;35m|[m   
+[32m|[m [1;33m|[m * [33m70b8933[m Ignores warnings
+[32m|[m [1;33m|[m[1;33m/[m  
+[32m|[m *   [33mfe8effb[m Merge pull request #98 from rh-aiservices-bu/fix/#88-various-corrections
+[32m|[m [1;36m|[m[31m\[m  
+[32m|[m [1;36m|[m * [33m13b0135[m fixes various corrections
+[32m|[m * [31m|[m   [33m5465bd5[m Merge pull request #97 from rh-aiservices-bu/fix/remove-transformer-warnings
+[32m|[m [31m|[m[33m\[m [31m\[m  
+[32m|[m [31m|[m [33m|[m[31m/[m  
+[32m|[m [31m|[m[31m/[m[33m|[m   
+[32m|[m [31m|[m * [33m4df9d63[m Remove warnings from downloading transformer
+[32m|[m [31m|[m[31m/[m  
+[32m|[m * [33m9e190e3[m adding milvus check. (#84)
+* [33m|[m   [33m5a1f828[m Merge pull request #83 from rh-aiservices-bu/main-staging
+[34m|[m[35m\[m [33m\[m  
+[34m|[m * [33m|[m [33m23e4f74[m Merge branch 'prepare-for-main-merge' into main-staging
+[34m|[m[34m/[m[1;31m|[m [33m|[m 
+[34m|[m * [33m|[m [33m38e3d09[m prepare for main
+[34m|[m [33m|[m[33m/[m  
+[34m|[m * [33m21a3798[m typos and wording. (from friday dry-run) (#81)
+[34m|[m * [33m46e2b04[m change icon (#80)
+[34m|[m * [33m76eed82[m 05-05 updated for new app (#78)
+[34m|[m * [33m32b8037[m Check if no images exist and then skip that claim (#79)
+[34m|[m * [33m4dae790[m Correct new lines (#77)
+[34m|[m * [33m9ac38d1[m update documentation for 5.4 (#76)
+[34m|[m * [33m022e58b[m Add 3 new claims (#75)
+[34m|[m * [33m490f68e[m Review/erwan apr 18 (#64)
+[34m|[m * [33m40f9e11[m single-user-project (#72)
+[34m|[m * [33mddbfc6e[m Fixes #58 (#70)
+[34m|[m * [33m53483a8[m Slice prompt (#69)
+[34m|[m * [33m8654da7[m add demo app (#55)
+[34m|[m * [33m822662e[m New App (#54)
+[34m|[m * [33m8b4cd8e[m add token to vllm deployment (#53)
+[34m|[m *   [33mc51c13e[m Merge pull request #51 from rh-aiservices-bu/fix/04-05-userx-change
+[34m|[m [1;32m|[m[1;33m\[m  
+[34m|[m [1;32m|[m * [33m02c361a[m Change userX to variable
+[34m|[m [1;32m|[m[1;32m/[m  
+[34m|[m *   [33md49bee2[m Merge pull request #50 from rh-aiservices-bu/fix/02-03-image-fix
+[34m|[m [1;34m|[m[1;35m\[m  
+[34m|[m [1;34m|[m * [33mca6c524[m repo name in image fix
+[34m|[m [1;34m|[m[1;34m/[m  
+[34m|[m * [33m8d1afe1[m added run button (#49)
+[34m|[m * [33m69fb24f[m bump minio buckets to 101 (#44)
+[34m|[m * [33m962a4b9[m added jupyter notebook guide and rearrange order (#42)
+[34m|[m * [33mb51f51c[m WIP: Fixes (#40)
+[34m|[m * [33m60d41a3[m fix service url of flanT5 (#39)
+[34m|[m * [33m0cc7666[m Added a step for the user to go to admin view (#37)
+[34m|[m *   [33m208fd36[m Merge pull request #34 from rh-aiservices-bu/fix/pipeline-from-dev
+[34m|[m [1;36m|[m[31m\[m  
+[34m|[m [1;36m|[m * [33m3fc5f6d[m 05-05 changes branch to dev
+[34m|[m [1;36m|[m[1;36m/[m  
+[34m|[m * [33m3cd4fb2[m adjust paths to new project name (#32)
+[34m|[m * [33m15470f5[m Fix/remove auto (#30)
+[34m|[m * [33mca05412[m adding parasol insurance throughout and updating titles (#28)
+[34m|[m * [33mbf00136[m quick readme update (#27)
+[34m|[m * [33m52ca619[m Fix #11 -  Revert model comparison to Flan-T5 (#26)
+[34m|[m *   [33m67fa1df[m Merge pull request #25 from rh-aiservices-bu/fix/repo-name-change
+[34m|[m [32m|[m[33m\[m  
+[34m|[m [32m|[m * [33m5302ac4[m change repo reference
+[34m|[m [32m|[m[32m/[m  
+[34m|[m * [33m7402052[m Fix/sanity (#208)
+[34m|[m * [33m3b1c74a[m * hide diy (#206)
+[34m|[m * [33mf5604ae[m updating prepulled images to match 2.8.1 (#205)
+[34m|[m * [33m3771a50[m Update workbench image version to 2.0.1 (#204)
+[34m|[m * [33m9b2069e[m Fixed navigation (#195)
+[34m|[m * [33mfce2b3f[m Instructions + Working GitOps (#180)
+[34m|[m * [33mf8f1214[m Feat/rename sanity pipeline (#177)
+[34m|[m * [33m3d6b08f[m Feature/streamline section 4 (#174)
+[34m|[m * [33mfa4336f[m 03/06 and 05/05 pipelines working (#172)
+[34m|[m * [33m9fec9b0[m Added instructions for locally downloading YAML (#167)
+[34m|[m * [33m0b3faa5[m Started drafting the instructions for DIY vs AUTO on the projects (#176)
+[34m|[m * [33m690a545[m update theme for Summit (#171)
+[34m|[m * [33m22ad6e6[m Better leverage antora variables (#170)
+[34m|[m *   [33m204e204[m Merge pull request #168 from rh-aiservices-bu/update-vllm
+[34m|[m [34m|[m[35m\[m  
+[34m|[m [34m|[m * [33m4e6b9c0[m Update to vLLM and Ollama for model serving
+[34m|[m [34m|[m[34m/[m  
+[34m|[m *   [33m4267ff5[m Merge pull request #165 from rh-aiservices-bu/bugfix/minor-typos
+[34m|[m [36m|[m[1;31m\[m  
+[34m|[m [36m|[m * [33m8cf9176[m minor adjustments in lab6
+[34m|[m [36m|[m * [33ma679164[m minor fixes in lab4 and update images for serving in 2.8
+[34m|[m [36m|[m * [33md88817e[m minor fixes in lab2 and update images from 2.8
+[34m|[m [36m|[m * [33mfdf6e3e[m minor fixes in lab1
+[34m|[m [36m|[m[36m/[m  
+[34m|[m *   [33m12844f2[m Merge pull request #161 from rh-aiservices-bu/feat/sanity_not_health_endpoint
+[34m|[m [1;32m|[m[1;33m\[m  
+[34m|[m [1;32m|[m * [33m7d9c238[m Updated 03/06 to use VLLM and improved response time
+[34m|[m [1;32m|[m[1;32m/[m  
+[34m|[m *   [33mc2cb827[m Merge pull request #149 from rh-aiservices-bu/bug/security_check_failed
+[34m|[m [1;34m|[m[1;35m\[m  
+[34m|[m [1;34m|[m * [33mdfb8d80[m Removing model_sha as it seems volatile
+[34m|[m [1;34m|[m[1;34m/[m  
+[34m|[m *   [33ma39219f[m Merge pull request #148 from rh-aiservices-bu/bug/sanity-pipeline-fails
+[34m|[m [1;36m|[m[31m\[m  
+[34m|[m [1;36m|[m * [33m1d71fe8[m Lowered the requirement for acceptable response similarity
+[34m|[m [1;36m|[m[1;36m/[m  
+[34m|[m *   [33m7472f65[m Merge pull request #147 from rh-aiservices-bu/feat/credits
+[34m|[m [32m|[m[33m\[m  
+[34m|[m [32m|[m * [33m2cabb7f[m link to contributors
+[34m|[m [32m|[m[32m/[m  
+[34m|[m *   [33m0834492[m Merge pull request #146 from rh-aiservices-bu/dry-run-updates-audrey
+[34m|[m [34m|[m[35m\[m  
+[34m|[m [34m|[m * [33ma428e8a[m spelling
+[34m|[m [34m|[m * [33me6296d1[m cleaning trailing dots
+[34m|[m [34m|[m * [33mcd807f6[m quick improvements.
+[34m|[m [34m|[m * [33m6fdbf14[m requested changes for section 5
+[34m|[m * [35m|[m   [33medf9db1[m Merge pull request #145 from rh-aiservices-bu/bug/pre-processing-car
+[34m|[m [35m|[m[1;31m\[m [35m\[m  
+[34m|[m [35m|[m [1;31m|[m[35m/[m  
+[34m|[m [35m|[m[35m/[m[1;31m|[m   
+[34m|[m [35m|[m * [33m19d607a[m Predicting the same values
+[34m|[m [35m|[m[35m/[m  
+[34m|[m * [33md1be19a[m adding pre-puller for pipeline images (#139)
+* [1;31m|[m [33mc2e32d5[m New version (#56)
+* [1;31m|[m [33mb9c57b9[m add pre-puller for pipeline images
+* [1;31m|[m   [33m177e176[m Merge pull request #136 from rh-aiservices-bu/feature/prepare-for-main-merge
+[1;32m|[m[1;33m\[m [1;31m\[m  
+[1;32m|[m * [1;31m|[m [33m9760fe5[m prepare for merge to main
+[1;32m|[m [1;31m|[m[1;31m/[m  
+[1;32m|[m *   [33mb2831f0[m Merge pull request #135 from rh-aiservices-bu/feature/merging-instructions
+[1;32m|[m [1;34m|[m[1;35m\[m  
+[1;32m|[m [1;34m|[m * [33m7cd3dfb[m add instructions for merging to main, build on main
+[1;32m|[m [1;34m|[m[1;34m/[m  
+[1;32m|[m *   [33m7967729[m Merge pull request #134 from rh-aiservices-bu/fix/spellchecker
+[1;32m|[m [1;36m|[m[31m\[m  
+[1;32m|[m [1;36m|[m * [33md8389af[m add missing words
+[1;32m|[m [1;36m|[m[1;36m/[m  
+[1;32m|[m *   [33m3d4fb22[m Merge pull request #133 from rh-aiservices-bu/fix/last-review
+[1;32m|[m [32m|[m[33m\[m  
+[1;32m|[m [32m|[m * [33m8e62fd8[m Update proto-claims-processing-app.png
+[1;32m|[m [32m|[m[32m/[m  
+[1;32m|[m *   [33ma2a63af[m Merge pull request #132 from rh-aiservices-bu/feature/update-app-scrrenshots
+[1;32m|[m [34m|[m[35m\[m  
+[1;32m|[m [34m|[m * [33m873ffa6[m update app screenshots
+[1;32m|[m [34m|[m[34m/[m  
+[1;32m|[m *   [33m8de9b36[m Merge pull request #131 from rh-aiservices-bu/feature/update-app
+[1;32m|[m [36m|[m[1;31m\[m  
+[1;32m|[m [36m|[m * [33m0544c9d[m update app to 1.3
+[1;32m|[m [36m|[m[36m/[m  
+[1;32m|[m *   [33m0882315[m Merge pull request #130 from rh-aiservices-bu/fix/app-menu
+[1;32m|[m [1;32m|[m[1;33m\[m  
+[1;32m|[m [1;32m|[m * [33m28be405[m Refactor ClaimDetail component and update routes
+[1;32m|[m [1;32m|[m[1;32m/[m  
+[1;32m|[m *   [33m6f0846f[m Merge pull request #129 from rh-aiservices-bu/fix/claim-processing
+[1;32m|[m [1;34m|[m[1;35m\[m  
+[1;32m|[m [1;34m|[m * [33m5c3d074[m new images
+[1;32m|[m [1;34m|[m[1;34m/[m  
+[1;32m|[m *   [33mbd94451[m Merge pull request #128 from rh-aiservices-bu/feature/per-user-db
+[1;32m|[m [1;36m|[m[31m\[m  
+[1;32m|[m [1;36m|[m * [33ma253b11[m claim processing review - step 1
+[1;32m|[m [1;36m|[m[1;36m/[m  
+[1;32m|[m * [33mf6f9f7d[m move one.demo.redhat.com info to a less visible location (#127)
+[1;32m|[m *   [33m0d666b3[m Merge pull request #125 from rh-aiservices-bu/fix/move-some-pipeline-envs
+[1;32m|[m [32m|[m[33m\[m  
+[1;32m|[m [32m|[m * [33mf77cc69[m Removed the checkout
+[1;32m|[m [32m|[m * [33mc383403[m Added POSTGRES_HOST to all tasks
+[1;32m|[m [32m|[m * [33md64282f[m Moved IMAGES_BUCKET and POSTGRES_HOST to inside the pipeline
+[1;32m|[m [32m|[m[32m/[m  
+[1;32m|[m * [33m6f64f7c[m Yaml works independently and new instructions (#124)
+[1;32m|[m *   [33m59f5941[m Merge pull request #123 from rh-aiservices-bu/fix/review
+[1;32m|[m [34m|[m[35m\[m  
+[1;32m|[m [34m|[m * [33m1181ace[m Full review
+[1;32m|[m [34m|[m[34m/[m  
+[1;32m|[m *   [33m753f8c9[m Merge pull request #120 from koep/ckoep_typos
+[1;32m|[m [36m|[m[1;31m\[m  
+[1;32m|[m [36m|[m * [33mc0d6d14[m A few typo fixes and one suggestion
+[1;32m|[m * [1;31m|[m [33mf8705ba[m Fixes/minor erwan (#121)
+[1;32m|[m [1;31m|[m[1;31m/[m  
+[1;32m|[m * [33m749f24c[m Review/erwan 20240113 (#119)
+[1;32m|[m *   [33me6acf5d[m Merge pull request #112 from tarilabs/patch-1
+[1;32m|[m [1;32m|[m[1;33m\[m  
+[1;32m|[m [1;32m|[m * [33m493bd03[m typo fix: 04-03-model-retraining.ipynb
+[1;32m|[m * [1;33m|[m   [33mb2d2d7e[m Merge pull request #116 from rh-aiservices-bu/feature/app-deployment-final
+[1;32m|[m [1;34m|[m[1;35m\[m [1;33m\[m  
+[1;32m|[m [1;34m|[m * [1;33m|[m [33m4876ce5[m Review section 5
+[1;32m|[m [1;34m|[m[1;34m/[m [1;33m/[m  
+[1;32m|[m * [1;33m|[m   [33m4689934[m Merge pull request #114 from rh-aiservices-bu/feature/shared-model-ir
+[1;32m|[m [1;33m|[m[31m\[m [1;33m\[m  
+[1;32m|[m [1;33m|[m [31m|[m[1;33m/[m  
+[1;32m|[m [1;33m|[m[1;33m/[m[31m|[m   
+[1;32m|[m [1;33m|[m * [33m878a1ac[m wip
+[1;32m|[m [1;33m|[m[1;33m/[m  
+[1;32m|[m *   [33m9622dbf[m Merge pull request #109 from rh-aiservices-bu/Remove-duplicate-connection-info
+[1;32m|[m [32m|[m[33m\[m  
+[1;32m|[m [32m|[m * [33md624b91[m Remove duplicate connection info
+[1;32m|[m [32m|[m[32m/[m  
+[1;32m|[m *   [33m2add514[m Merge pull request #108 from rh-aiservices-bu/fix-new-pages-in-RH1-link
+[1;32m|[m [34m|[m[35m\[m  
+[1;32m|[m [34m|[m * [33m65393bf[m fix new pages in RH1 link
+[1;32m|[m [34m|[m[34m/[m  
+[1;32m|[m *   [33m11d383c[m Merge pull request #106 from rh-aiservices-bu/fix/naming-uniformity
+[1;32m|[m [36m|[m[1;31m\[m  
+[1;32m|[m [36m|[m * [33m3bab5d8[m improving images display and alignment
+[1;32m|[m [36m|[m * [33mc36b725[m call it a lab. for now
+[1;32m|[m [36m|[m * [33mc963e18[m remove stale file
+[1;32m|[m [36m|[m * [33md1f6248[m more blur
+[1;32m|[m [36m|[m * [33m4abf262[m couple improvements
+[1;32m|[m * [1;31m|[m   [33ma25c976[m Merge pull request #107 from rh-aiservices-bu/fix/change_image_account
+[1;32m|[m [1;31m|[m[1;33m\[m [1;31m\[m  
+[1;32m|[m [1;31m|[m [1;33m|[m[1;31m/[m  
+[1;32m|[m [1;31m|[m[1;31m/[m[1;33m|[m   
+[1;32m|[m [1;31m|[m * [33m940bf76[m Replaced the images
+[1;32m|[m [1;31m|[m[1;31m/[m  
+[1;32m|[m * [33me65dad8[m Fix/number (#105)
+[1;32m|[m * [33mea4e687[m Feature/adding slack links etc (#104)
+[1;32m|[m *   [33m2c598ff[m Merge pull request #103 from rh-aiservices-bu/feature/enrich-database
+[1;32m|[m [1;34m|[m[1;35m\[m  
+[1;32m|[m [1;34m|[m * [33mf45cfac[m fix bucket creation
+[1;32m|[m [1;34m|[m[1;34m/[m  
+[1;32m|[m *   [33m28cfa25[m Merge pull request #102 from rh-aiservices-bu/feature/enrich-database
+[1;32m|[m [1;36m|[m[31m\[m  
+[1;32m|[m [1;36m|[m * [33mc574ed8[m new format
+[1;32m|[m [1;36m|[m[1;36m/[m  
+[1;32m|[m *   [33m63d5bbc[m Merge pull request #101 from rh-aiservices-bu/feature/add_process_claim_pipeline_yaml
+[1;32m|[m [32m|[m[33m\[m  
+[1;32m|[m [32m|[m * [33m9cb68a2[m added process_claims.yaml
+[1;32m|[m [32m|[m[32m/[m  
+[1;32m|[m *   [33m31ee528[m Merge pull request #100 from rh-aiservices-bu/fix/bucketsnum
+[1;32m|[m [34m|[m[35m\[m  
+[1;32m|[m [34m|[m * [33m5c61d91[m we might have up to 60 users.
+[1;32m|[m [34m|[m[34m/[m  
+[1;32m|[m * [33mbe6df7b[m Feature query model mesh (#99)
+[1;32m|[m *   [33m3e0d044[m Merge pull request #95 from jmhbnz/dev
+[1;32m|[m [36m|[m[1;31m\[m  
+[1;32m|[m [36m|[m * [33m8a28fa7[m Fix value for 04-05 Existing data connection - Path field.
+[1;32m|[m * [1;31m|[m   [33mcc572d7[m Merge pull request #98 from rh-aiservices-bu/feature/app-deployment
+[1;32m|[m [1;32m|[m[1;33m\[m [1;31m\[m  
+[1;32m|[m [1;32m|[m * [1;31m|[m [33md501668[m section 5 material and doc
+[1;32m|[m [1;32m|[m[1;32m/[m [1;31m/[m  
+[1;32m|[m * [1;31m|[m   [33m57e45f3[m Merge pull request #96 from rh-aiservices-bu/fix/remove-envs
+[1;32m|[m [1;31m|[m[1;35m\[m [1;31m\[m  
+[1;32m|[m [1;31m|[m [1;35m|[m[1;31m/[m  
+[1;32m|[m [1;31m|[m[1;31m/[m[1;35m|[m   
+[1;32m|[m [1;31m|[m * [33ma0067a6[m change claim automation location
+[1;32m|[m [1;31m|[m[1;31m/[m  
+[1;32m|[m *   [33mb99040f[m Merge pull request #93 from rh-aiservices-bu/feature/process_claims_pipeline
+[1;32m|[m [1;36m|[m[31m\[m  
+[1;32m|[m [1;36m|[m * [33m75f8b39[m Env vars fix
+[1;32m|[m [1;36m|[m * [33mb9a378d[m Removed secrets and added text guide
+[1;32m|[m [1;36m|[m[1;36m/[m  
+[1;32m|[m * [33ma78adc2[m Hard coded secrets (#91)
+[1;32m|[m * [33m06f6dd5[m Fixes/erwan section 02 (#92)
+* 

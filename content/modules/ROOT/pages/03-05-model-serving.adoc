@@ -18,7 +18,7 @@ image::04/04-add-data-connection.png[]
 [.bordershadow]
 image::04/04-add-data-connection-2.png[]
 
-* Here is the info you need to enter:
+* Here is the exact info you need to enter:
 ** Name:
 [.lines_space]
 [.console-input]
@@ -54,7 +54,7 @@ none
 [.console-input]
 [source, text]
 [subs=attributes+]
-models
+newmodels
 
 * The result should look like:
 +
@@ -66,69 +66,10 @@ image::04/model-data-connection-2.png[model connection]
 
 In your project, select the **Models** tab to create a model server:
 
-* Select the **Multi-model serving platform** type of model serving:
+* Select the **Single-model serving platform** type of model serving:
 +
 [.bordershadow]
-image::04/add-model-server.png[]
-
-* Then click **Add model server**:
-+
-[.bordershadow]
-image::04/add-model-server-2.png[width=75%]
-
-
-* Here is the info you need to enter:
-
-** Model server name:
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-My first Model Server
-** Serving runtime:
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-OpenVINO Model Server
-** Number of model server replicas to deploy:
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-1
-** Model server size
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-Standard
-** Accelerator
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-None
-** Model route
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-unchecked
-** Token authorization
-[.lines_space]
-[.console-input]
-[source, text]
-[subs=attributes+]
-unchecked
-
-
-* The result should look like:
-+
-[.bordershadow]
-image::04/add-model-server-config.png[]
-
-* You can click on **Add** to create the model server.
+image::04/add-model-server-2.png[]
 
 == Deploy the Model
 
@@ -137,7 +78,7 @@ Still in your project, on the **Models** tab, under **Models and model servers**
 * Click **Deploy model**:
 +
 [.bordershadow]
-image::04/select-deploy-model.png[]
+image::04/deploy-model.png[]
 
 * Here is the information you will need to enter:
 
@@ -152,36 +93,49 @@ My first Model
 [.console-input]
 [source, text]
 [subs=attributes+]
-My first Model Server (pre-filled)
-** Model server - Model framework
+OpenVINO Model Server
+** Model framework
 [.lines_space]
 [.console-input]
 [source, text]
 [subs=attributes+]
 onnx-1
-** Existing data connection - Name
+** Deployment mode
+[.lines_space]
+[.console-input]
+[source, text]
+[subs=attributes+]
+Advanced
+** Make deployed models available through and external route
+[.lines_space]
+[.console-input]
+[source, text]
+[subs=attributes+]
+checked
+** Make deployed models available through and external route
+[.lines_space]
+[.console-input]
+[source, text]
+[subs=attributes+]
+checked
+** Existing connection - Name
 [.lines_space]
 [.console-input]
 [source, text]
 [subs=attributes+]
 Shared Minio - model
-** Existing data connection - Path
+** Existing connection - Path
 [.lines_space]
 [.console-input]
 [source, text]
 [subs=attributes+]
 accident/
 
-* The result should look like:
-+
-[.bordershadow]
-image::04/deploy-a-model.png[]
-
 * Click on **Deploy**.
 * If the model is successfully deployed you will see its status as green after 15 to 30 seconds.
 +
 [.bordershadow]
-image::04/model-deployed-success.png[]
+image::04/status_green_checkmark.png[]
 
 We will now confirm that the model is indeed working by querying it!
 
@@ -196,11 +150,11 @@ Once the model is served, we can use it as an endpoint that can be queried. We'l
 [.bordershadow]
 image::04/inference-url.png[]
 
-* Note or copy the **RestUrl**, which should be something like `\http://modelmesh-serving.{user}:8008`
+* Note or copy the **RestUrl**, which should be something like `\https://my-first-model-{user}.apps.cluster-xxxxx.xxxxx.sandbox2331.opentlc.com`
 
 We will now use this URL to query the model.
 
-- In your running workbench, navigate to the folder `parasol-insurance/lab-materials/04`.
-- Look for (and open) the notebook called `04-05-model-serving.ipynb`.
+- In your running workbench, `ignore the 03 folder`, navigate to the folder `parasol-insurance/lab-materials/04`.
+- Look for (and open) the notebook called `03-05-model-serving.ipynb`.
 - Execute the cells of the notebook, and ensure you understand what is happening.
 
