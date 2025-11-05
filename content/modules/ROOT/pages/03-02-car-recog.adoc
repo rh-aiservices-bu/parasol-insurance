@@ -27,6 +27,6 @@ image::04/box-identified-cars.png[identify cars]
 
 If you want to dig deeper into this section, follow the instructions below. If you are pressed for time, you can skip to the next section.
 
-- In your running workbench, navigate to the folder `parasol-insurance/lab-materials/04`.
-- Look for (and open) the notebook called `04-02-car-recognition.ipynb`
+- In your running workbench, `ignore the 03 folder`, navigate to the folder `parasol-insurance/lab-materials/04`.
+- Look for (and open) the notebook called `03-02-car-recognition.ipynb`
 - Execute the cells of the notebook, and ensure you understand what is happening

@@ -23,8 +23,8 @@ If you want to dig deeper into this section, follow the instructions below. If y
 
 We have provided the following training data set, available as a zip file, and located in an S3 bucket: `accident-sample.zip` (as we don,t have time in this {ic-lab} to fully retrain the model, we will use a sample of the training data set).
 
-- In your running workbench, navigate to the folder `parasol-insurance/lab-materials/04`.
-- Look for (and open) the notebook called `04-03-model-retraining.ipynb`
+- In your running workbench, `ignore the 03 folder`, navigate to the folder `parasol-insurance/lab-materials/04`.
+- Look for (and open) the notebook called `03-03-model-retraining.ipynb`
 - Execute the cells of the notebook.
 
 == Interpreting the Model re-Training Results

@@ -16,6 +16,6 @@ image::04/retrained-model-results.png[retrained modelresults]
 
 If you want to dig deeper into this section, follow the instructions below. If you are pressed for time, you can skip to the next section.
 
-- In your workbench, navigate to the folder `parasol-insurance/lab-materials/04`.
-- Look for (and open) the notebook called `04-04-accident-recog.ipynb`
+- In your running workbench, `ignore the 03 folder`, navigate to the folder `parasol-insurance/lab-materials/04`.
+- Look for (and open) the notebook called `03-04-accident-recog.ipynb`
 - Execute the cells of the notebook.
