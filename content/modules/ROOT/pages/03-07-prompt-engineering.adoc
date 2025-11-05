@@ -1,0 +1,32 @@
+= Prompt Engineering exercise (optional)
+include::_attributes.adoc[]
+
+NOTE: This part of the {ic} is marked as optional. It can therefore be skipped without effect on the other parts of the lab. You can always come back to it later at the end of the {ic-lab} if you have time to spare.
+
+IMPORTANT: When you interact with ChatGPT or other commercial services, a lot of guardrails are in place to prevent you from getting unwanted  or not suitable for work results. In our {ic} exercises, we are using a model that is not protected by those guardrails, and we will be modifying its settings. Therefore, it is your responsibility to do it in a safe way, and to make sure that the results you get are suitable for you and/or your audience. The authors of this {ic} cannot be held responsible for any inappropriate results you may get.
+
+As you have seen in the previous sections, there are different factors that will influence the results you can get from your model: the model parameters, the prompt, the query, and of course the data itself...
+
+Let's see how we can adjust those different factors to get the best results.
+
+== Modifying the settings
+
+Go back to the notebook `03-01-nb-llm-example.ipynb` and try changing:
+
+- The llm parameters, like the `temperature`, to make the model more creative
+- The `prompt template`, to make the model behave differently, like giving the answer in the form of a poem. Or more useful in an enterprise context, give answers like it was addressing different types of audience: for example 5 years old children, or people without technical knowledge, or the opposite...
+- The `query` itself which you can use to override certain aspects of the prompt. This will show you why it's important to have guardrails in place against "prompt injection", like pre-filtering user queries
+
+== Modifying the data
+
+Go back to the notebook `03-02-summarization.ipynb` and try changing:
+
+- Edit or create new claims, making them harder to understand. (Note: to edit the json file in Jupyter, right click on it and select "Open With > Editor")
+- Experiment with different languages
+
+== Modifying the prompt
+
+Go back to the notebook `03-03-information-extraction.ipynb` and try changing:
+
+- Edit or create new claims, making them harder to understand
+- Try to have the model more precise and concise in date and time extraction, like making it respect a specific format

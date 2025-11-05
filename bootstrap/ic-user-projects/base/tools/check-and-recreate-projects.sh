@@ -63,7 +63,7 @@ metadata:
     openshift.io/display-name: $USER_PROJECT
   labels:
     kubernetes.io/metadata.name: $USER_PROJECT
-    modelmesh-enabled: 'false'
+    # modelmesh-enabled: 'true'
     opendatahub.io/dashboard: 'true'
   name: $USER_PROJECT
 spec:
@@ -519,7 +519,7 @@ spec:
         args:
         - -ec
         - |-
-          pod_name=\$(oc get pods --selector=app=$WORKBENCH_NAME -o jsonpath='{.items[0].metadata.name}') && oc exec \$pod_name -- git clone https://github.com/TroyNelson11/parasol-insurance && cd parasol-insurance && git checkout $BRANCH_NAME
+          pod_name=\$(oc get pods --selector=app=$WORKBENCH_NAME -o jsonpath='{.items[0].metadata.name}') && oc exec \$pod_name -- git clone https://github.com/rh-aiservices-bu/parasol-insurance && cd parasol-insurance && git checkout $BRANCH_NAME
       restartPolicy: Never
 EOF
 

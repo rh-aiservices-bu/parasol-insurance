@@ -1,0 +1,18 @@
+= Retrieval-Augmented Generation - Extending the capabilities of our model
+include::_attributes.adoc[]
+
+An LLM is a very capable tool, but only to the extent of the knowledge or information it has been trained on. After all, you only know what you know, right? But what if you need to ask a question that is not in the training data? Or what if you need to ask a question that is not in the training data, but is related to it?
+
+There are different ways to solve this problem, depending on the resources you have and the time or money you can spend on it. Here are a few options:
+
+- Fully retrain the model to include the information you need. For an LLM, it's only possible for a handful of companies in the world that can afford literally thousands of GPUs running for weeks.
+- Fine-tune the model with this new information. This requires way less resources, and can usually be done in a few hours or minutes (depending on the size of the model). However as it does not fully retrain the model, the new information may not be completely integrated in the answers. Fine-tuning excels at giving a better understanding of a specific context or vocabulary, a little bit less on injecting new knowledge. Plus you have to retrain and redeploy the model anyway any time you want to add more information.
+- Put this new information in a database and have the parts relevant to the query retrieved and added to this query as a context before sending it to the LLM. This technique is called **Retrieval Augmented Generation, or RAG**. It is interesting as you don't have to retrain or fine-tune the model to benefit of this new knowledge, that you can easily update at any time.
+
+We have already prepared a Vector Database using https://milvus.io/[Milvus,window=_blank], where we have stored (in the form of https://www.ibm.com/topics/embedding[Embeddings,window=_blank]) the content of the https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/[California Driver's Handbook,window=_blank].
+
+In this exercise, we are going to use the RAG technique to **make some queries about a Claim** and see how this new knowledge can help without having to modify our LLM.
+
+From the `parasol-insurance/lab-materials/03` folder, please open the notebook called `03-05-retrieval-augmented-generation.ipynb` and follow the instructions.
+
+When done, you can close the notebook and head to the next page.

@@ -3,7 +3,7 @@ include::_attributes.adoc[]
 
 == To the {ic} materials
 
-If you have any feedback regarding this {ic}, please use https://github.com/TroyNelson11/parasol-insurance/issues[Issues,window=_blank] and https://github.com/TroyNelson11/parasol-insurance/pulls[Pull Requests,window=_blank].
+If you have any feedback regarding this {ic}, please use https://github.com/rh-aiservices-bu/parasol-insurance/issues[Issues,window=_blank] and https://github.com/rh-aiservices-bu/parasol-insurance/pulls[Pull Requests,window=_blank].
 
 But this section of the {ic} is not meant for Improvements and Refinements **to the lab**. Instead it is about...
 

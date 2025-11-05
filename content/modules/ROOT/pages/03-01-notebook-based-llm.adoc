@@ -1,0 +1,8 @@
+= Notebook-Based LLM Example
+include::_attributes.adoc[]
+
+In this exercise, we will use a notebook to investigate how LLMs can be used.
+
+From the `parasol-insurance/lab-materials/03` folder, please open the notebook called `03-01-nb-llm-example.ipynb` and follow the instructions.
+
+When done, you can close the notebook and head to the next page.

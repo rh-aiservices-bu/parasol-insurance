@@ -18,7 +18,7 @@ def initialize():
             '-c', 
             '''cd /shared-data
             rm -r * 2>/dev/null
-            git clone https://github.com/TroyNelson11/parasol-insurance
+            git clone https://github.com/rh-aiservices-bu/parasol-insurance
             cd parasol-insurance
             git checkout $BRANCH_NAME
             ls

@@ -57,7 +57,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: "https://github.com/TroyNelson11/parasol-insurance.git"
+        repoURL: "https://github.com/rh-aiservices-bu/parasol-insurance.git"
         targetRevision: main
         path: "{{path}}"
       destination:

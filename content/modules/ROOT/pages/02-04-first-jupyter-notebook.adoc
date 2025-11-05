@@ -1,0 +1,63 @@
+= Running code in a notebook
+include::_attributes.adoc[]
+
+NOTE: If you're already at ease with Jupyter Notebooks, you can skip to the next section.
+
+A notebook is an environment where you have _cells_ that can display formatted text or code.
+
+This is an empty cell:
+
+[.bordershadow]
+image::02/02-05-cell.png[Jupyter Cell]
+
+This is a cell with some code:
+
+[.bordershadow]
+image::02/02-05-cell_code.png[Jupyter Cell Code]
+
+Code cells contain Python code that you can run interactively. You can modify the code and then run it. The code does not run on your computer or in the browser, but directly in the environment that you are connected to, *{rhoai}* in our case.
+
+You can run a code cell from the notebook interface or from the keyboard:
+
+* *From the user interface:* Select the cell (by clicking inside the cell or to the left side of the cell) and then click *Run* from the toolbar.
++
+[.bordershadow]
+image::02/02-05-run_button.png[Jupyter Run]
+
+* *From the keyboard:* Press `CTRL`+`ENTER` to run a cell or press `SHIFT`+`ENTER` to run the cell and automatically select the next one.
+
+After you run a cell, you can see the result of its code as well as information about when the cell was run, as shown in this example:
+
+[.bordershadow]
+image::02/02-05-cell_run.png[Jupyter run cell]
+
+When you save a notebook, the code and the results are saved. You can reopen the notebook to look at the results without having to run the program again, while still having access to the code.
+
+Notebooks are so named because they are like a physical _notebook_: you can take notes about your experiments (which you will do), along with the code itself, including any parameters that you set. You can see the output of the experiment inline (this is the result from a cell after it's run), along with all the notes that you want to take (to do that, from the menu switch the cell type from `Code` to `Markdown`).
+
+== Try It
+
+Now that you know the basics, give it a try!
+
+=== Procedure
+
+In your workbench:
+
+. In the left hand navigation menu, navigate to the folder called: `parasol-insurance/lab-materials/02`
+
+. Open the notebook called `02-04-first-jupyter-notebook.ipynb`
+
+. Experiment by, for example, running the existing cells, adding more cells and creating functions.
++
+You can do what you want - it's your environment and there is no risk of breaking anything or impacting other users. This environment isolation is also a great advantage brought by {rhoai}.
+. Optionally, create a new notebook in which the code cells are run by using a Python 3 kernel:
+.. Create a new notebook by either selecting *File ->New ->Notebook* or by clicking the Python 3 tile in the Notebook section of the launcher window:
++
+[.bordershadow]
+image::02/02-05-new_notebook.png[alt text]
+
+You can use different kernels, with different languages or versions, to run in your notebook.
+
+.Additional resource
+
+* If you want to learn more about notebooks, go to https://jupyter.org/[the Jupyter site,window=_blank].

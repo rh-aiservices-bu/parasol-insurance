@@ -1,6 +1,6 @@
 site:
   title: "Parasol Insurance AI Workshop"
-  url: https://github.com/TroyNelson11/parasol-insurance
+  url: https://github.com/rh-aiservices-bu/parasol-insurance
   start_page: modules::index.adoc
 
 ui:
@@ -9,7 +9,7 @@ ui:
   supplemental_files: ./content/supplemental-ui
 
 content:
-  edit_url: 'https://github.com/TroyNelson11/parasol-insurance/edit/dev/{path}'
+  edit_url: 'https://github.com/rh-aiservices-bu/parasol-insurance/edit/dev/{path}'
   sources:
     - url: ./
       start_path: content

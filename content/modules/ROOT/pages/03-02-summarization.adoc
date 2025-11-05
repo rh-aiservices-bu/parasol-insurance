@@ -1,0 +1,8 @@
+= Text Summarization
+include::_attributes.adoc[]
+
+As part of our claim processing, we want to summarize the text of a claim. In the next notebook we will investigate how the LLM can be used to do this task.
+
+From the `parasol-insurance/lab-materials/03` folder, please open the notebook called `03-02-summarization.ipynb` and follow the instructions.
+
+When done, you can close the notebook and head to the next page.
