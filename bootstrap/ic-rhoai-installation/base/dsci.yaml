@@ -21,7 +21,7 @@ spec:
         managementState: Managed
         name: knative-serving
     modelregistry:
-      managementState: Managed
+      managementState: Removed
       registriesNamespace: rhoai-model-registries
     trustyai:
       devFlags:
@@ -29,7 +29,7 @@ spec:
           - contextDir: config
             sourcePath: ''
             uri: 'https://api.github.com/repos/trustyai-explainability/trustyai-service-operator/tarball/main'
-      managementState: Managed
+      managementState: Removed
     ray:
       devFlags: {}
       managementState: Managed
